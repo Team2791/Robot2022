@@ -16,7 +16,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  */
 public final class Constants {
 
-	private static final double kWheelDiameterMeters = .15; //TODO change to actual value
+	private static final double kWheelDiameterMeters = 6; //inches mabye, TODO check if unit conversion needed
     private static final double kEncoderCPR = 1024; //actual value??
 
     public static final double kEncoderDistancePerPulse =
