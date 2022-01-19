@@ -12,4 +12,16 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+	private static final double kWheelDiameterMeters = .15; //TODO change to actual value
+    private static final double kEncoderCPR = 1024; //actual value??
+
+    public static final double kEncoderDistancePerPulse =
+        // Assumes the encoders are directly mounted on the wheel shafts
+        (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+
+	public static final boolean kLeftEncoderInverted = false;
+    public static final boolean kRightEncoderInverted = true;
+    
+}
