@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -16,7 +17,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  */
 public final class Constants {
 
-	private static final double kWheelDiameterMeters = 6; //inches mabye, TODO check if unit conversion needed
+	private static final double kWheelDiameterMeters = Units.inchesToMeters(6); 
     private static final double kEncoderCPR = 1024; //actual value??
 
     public static final double kEncoderDistancePerPulse =
@@ -26,17 +27,21 @@ public final class Constants {
 	public static final boolean kLeftEncoderInverted = false;
     public static final boolean kRightEncoderInverted = true;
 
-	public static final double kRamseteB = 0;
-    public static final double kRamseteZeta = 0;
+	public static final double kRamseteB = 2;
+    public static final double kRamseteZeta = .7;
     
 	public static final double ksVolts = 0;
 	public static final double kvVoltSecondsPerMeter = 0;
     public static final double kaVoltSecondsSquaredPerMeter = 0;
+
+    private static final double kTrackwidthMeters = 0;
     
-    public static final DifferentialDriveKinematics kDriveKinematics = null;
+    public static final DifferentialDriveKinematics kDriveKinematics =
+        new DifferentialDriveKinematics(kTrackwidthMeters);
     
 	public static final double kPDriveVel = 0;
-	public static final double kMaxSpeedMetersPerSecond = 0;
-	public static final double kMaxAccelerationMetersPerSecondSquared = 0;
+
+	public static final double kMaxSpeedMetersPerSecond = 3;
+	public static final double kMaxAccelerationMetersPerSecondSquared = 1;
 
 }
