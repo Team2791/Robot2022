@@ -3,6 +3,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.stopMotors;
+//import frc.robot.commands.HoodExtended;
+//import frc.robot.commands.HoodRetracted;
+//import frc.robot.commands.Shooter1500;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -34,9 +39,13 @@ public class OI {
         initButtons();
         
         //initUsed();
-       
+        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
+        driveButton.whenReleased(new stopMotors());
 
-
+        //MAP JOYSTICK CONTROLS HERE:
+        //driverDPadUp.whenPressed(new Shooter1500());
+        //driverA.whenPressed(new HoodExtended());
+        //driverB.whenPressed(new HoodRetracted());
         
     }
 
@@ -101,4 +110,3 @@ public class OI {
 	// 	};
     // }
 }
-
