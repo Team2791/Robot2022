@@ -13,7 +13,8 @@ public class RunMotor extends CommandBase {
     }
     public void execute()
     {
-        Robot.prototypes.setMotor(Constants.kleftoutput,Constants.krightoutput);
+        Robot.prototypes.setMotor(Constants.motorspeed);
+        
         
     }
     

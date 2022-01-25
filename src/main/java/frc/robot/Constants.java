@@ -14,6 +14,5 @@ package frc.robot;
  */
 public final class Constants 
 {
-    public static final double kleftoutput = 0;
-    public static final double krightoutput = 0;
+    public static final double motorspeed = .2;
 }
