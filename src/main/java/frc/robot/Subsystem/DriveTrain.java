@@ -8,13 +8,16 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
+
 
 public class DriveTrain extends SubsystemBase {
   private CANSparkMax leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
@@ -22,7 +25,8 @@ public class DriveTrain extends SubsystemBase {
   private CANSparkMax rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
   private CANSparkMax rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
 
-  
+  private final AHRS m_gyro;
+
   // The motors on the left side of the drive.
   private final MotorControllerGroup m_leftMotors =
       new MotorControllerGroup(leftLeader,leftFollower);
@@ -43,13 +47,14 @@ public class DriveTrain extends SubsystemBase {
      
 
   // The gyro sensor
-  private final Gyro m_gyro = new ADXRS450_Gyro();
+
 
   // Odometry class for tracking robot pose
   private final DifferentialDriveOdometry m_odometry;
 
   /** Creates a new DriveSubsystem. */
   public DriveTrain() {
+    m_gyro = new AHRS(Port.kMXP);
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
@@ -182,7 +187,7 @@ public class DriveTrain extends SubsystemBase {
    * @return the robot's heading in degrees, from -180 to 180
    */
   public double getHeading() {
-    return m_gyro.getRotation2d().getDegrees();
+    return m_gyro.getYaw();
   }
 
   /**
