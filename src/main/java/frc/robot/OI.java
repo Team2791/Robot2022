@@ -41,11 +41,6 @@ public class OI {
         //initUsed();
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
-
-        //MAP JOYSTICK CONTROLS HERE:
-        //driverDPadUp.whenPressed(new Shooter1500());
-        //driverA.whenPressed(new HoodExtended());
-        //driverB.whenPressed(new HoodRetracted());
         
     }
 
