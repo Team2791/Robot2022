@@ -16,10 +16,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.OI;
 import frc.robot.RobotMap;
+import frc.robot.Commands.DriveWithJoystick;
 
 
 public class DriveTrain extends SubsystemBase {
+  
+
   private CANSparkMax leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
   private CANSparkMax leftFollower = new CANSparkMax(RobotMap.leftFollowerID, MotorType.kBrushless);
   private CANSparkMax rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
@@ -54,6 +58,7 @@ public class DriveTrain extends SubsystemBase {
 
   /** Creates a new DriveSubsystem. */
   public DriveTrain() {
+    super.register();
     m_gyro = new AHRS(Port.kMXP);
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
@@ -69,8 +74,8 @@ public class DriveTrain extends SubsystemBase {
     m_rightEncoder.setVelocityConversionFactor(Constants.kEncoderDistancePerPulse);
 
     //sets encoder inversions
-    m_leftEncoder.setInverted(Constants.kLeftEncoderInverted);
-    m_rightEncoder.setInverted(Constants.kRightEncoderInverted);
+    //m_leftEncoder.setInverted(Constants.kLeftEncoderInverted);
+    //m_rightEncoder.setInverted(Constants.kRightEncoderInverted);
 
     resetEncoders();
     m_odometry = new DifferentialDriveOdometry(m_gyro.getRotation2d());
@@ -197,5 +202,10 @@ public class DriveTrain extends SubsystemBase {
    */
   public double getTurnRate() {
     return -m_gyro.getRate();
+  }
+
+  public void setMotors(double left, double right) {
+    leftLeader.set(left);
+    rightLeader.set(right);
   }
 }

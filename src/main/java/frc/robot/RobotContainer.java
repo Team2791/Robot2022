@@ -16,6 +16,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
@@ -33,7 +34,9 @@ import java.util.List;
  */
 public class RobotContainer {
   // The robot's subsystems
-  private final DriveTrain m_robotDrive = new DriveTrain();
+  public final static DriveTrain m_robotDrive = new DriveTrain();
+
+  Joystick m_driverController = new Joystick(Constants.kDriverControllerPort);
 
   // The driver's controller
 
@@ -44,7 +47,10 @@ public class RobotContainer {
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    
+    m_robotDrive.setDefaultCommand(
+      new RunCommand(() -> m_robotDrive.arcadeDrive(
+        -m_driverController.getY(), m_driverController.getX()),
+        m_robotDrive));
   }
 
   /**
@@ -55,7 +61,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Drive at half speed when the right bumper is held
-    
+    new JoystickButton(m_driverController, Button.kRightBumper.value)
+        .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
+        .whenReleased(() -> m_robotDrive.setMaxOutput(1));
   }
 
   /**
