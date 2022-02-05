@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,6 +20,8 @@ import frc.robot.subsystems.Drivetrain;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public static Drivetrain drivetrain;
+  public static Indexer index; 
+  public static Intake intake;
 
   private RobotContainer m_robotContainer;
   public static OI oi;
@@ -33,6 +37,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     oi = new OI();
+    index = new Indexer();
+    intake = new Intake();
   }
 
   /**
@@ -86,7 +92,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    
+  }
 
   @Override
   public void testInit() {

@@ -7,19 +7,28 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Indexer extends SubsystemBase {
   private CANSparkMax lowerMotor; 
   private CANSparkMax upperMotor;
+  DigitalInput limitSwitch;
   /** Creates a new Indexer. */
+
   public Indexer() {
       lowerMotor = new CANSparkMax(RobotMap.lowerindexerID, MotorType.kBrushless);
       upperMotor = new CANSparkMax(RobotMap.upperindexerID, MotorType.kBrushless);
+      limitSwitch = new DigitalInput(RobotMap.limitSwitch);
   }
 
-
+  public boolean getLimitSwitch() {
+        if(limitSwitch.get()) {
+            return true; 
+        }
+        return false;
+  }
   public void setLowerMotor(double lowerSpeed) {
       lowerMotor.set(lowerSpeed);
   }
