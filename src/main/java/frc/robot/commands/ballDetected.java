@@ -7,13 +7,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
+import frc.robot.subsystems.*;
 public class ballDetected extends CommandBase {
   /** Creates a new ballDetected. */
   boolean temp = true;
-
+    
   public ballDetected() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.index);
   }
   //Runs lower motor until true, then runs lower until false
   //FALSE   TRUE   FALSE 
