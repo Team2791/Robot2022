@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,7 +23,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static Indexer index; 
   public static Intake intake;
-
+  public static Shooter shooter;
   private RobotContainer m_robotContainer;
   public static OI oi;
   
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     index = new Indexer();
     intake = new Intake();
+    shooter = new Shooter();
   }
 
   /**

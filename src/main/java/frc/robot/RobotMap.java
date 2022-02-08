@@ -17,4 +17,9 @@ public class RobotMap {
     
     public static final int limitSwitch = 0;
 
+    //shooter
+    public static final int flyWheelOneID = 2; //TODO change this 
+    public static final int flyWheelTwoID = 3; //TODO change this 
+
+
 }

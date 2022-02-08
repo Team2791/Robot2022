@@ -6,42 +6,34 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.*;
-public class ballDetected extends CommandBase {
-  /** Creates a new ballDetected. */
-  boolean temp = true;
-  
-  public ballDetected() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.index);
-  }
-  //Runs lower motor until true, then runs lower until false
-  //FALSE   TRUE   FALSE 
+import frc.robot.subsystems.Shooter;
 
+public class ShooterTest extends CommandBase {
+  double flyOneSpeed, flyTwoSpeed;
+  /** Creates a new setLeftMotor. */
+  public ShooterTest(double oneSpeed, double twoSpeed) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.shooter);
+    flyOneSpeed = oneSpeed;
+    flyTwoSpeed = twoSpeed;
+  }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      Robot.index.setLowerMotor(0.5);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.index.getLimitSwitch() == true){
-        Robot.index.setLowerMotor(0.5);
-        temp = false; 
-    }
-    if(temp == false && Robot.index.getLimitSwitch() == false){
-        Robot.index.setLowerMotor(0);
-    }
+    Robot.shooter.setFlyWheelOne(flyOneSpeed);
+    Robot.shooter.setFlyWheelOne(flyTwoSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-      Robot.index.setLowerMotor(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
