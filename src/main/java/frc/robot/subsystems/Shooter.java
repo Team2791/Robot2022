@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
@@ -14,7 +15,6 @@ import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
   private CANSparkMax flyWheelOne, flyWheelTwo;
-
   public Shooter() {
     flyWheelOne = new CANSparkMax(RobotMap.flyWheelOneID, MotorType.kBrushless);
     flyWheelTwo = new CANSparkMax(RobotMap.flyWheelTwoID, MotorType.kBrushless);
@@ -27,10 +27,13 @@ public class Shooter extends SubsystemBase {
   public void setFlyWheelTwo(double speed){
     flyWheelTwo.set(speed);
   }
+
   
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Fly Wheel 1 Velocity", flyWheelOne.get());
+    SmartDashboard.putNumber("Fly Wheel 2 Velocity", flyWheelTwo.get());
   }
 }
