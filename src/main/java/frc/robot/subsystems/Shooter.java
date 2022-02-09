@@ -32,5 +32,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Fly Wheel 1 Velocity", flyWheelOne.get());
+    SmartDashboard.putNumber("Fly Wheel 2 Velocity", flyWheelTwo.get());
   }
 }
