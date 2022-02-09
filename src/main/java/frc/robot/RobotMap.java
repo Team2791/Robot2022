@@ -14,7 +14,7 @@ public class RobotMap {
 
     public static final int intakeMotor = 5;
     public static final int intakeLeft = 1;
-
+    public static final int climb = 1;
     
     
 
