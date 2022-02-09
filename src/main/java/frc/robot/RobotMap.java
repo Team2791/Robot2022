@@ -15,7 +15,8 @@ public class RobotMap {
     public static final int intakeright = 33;
 
     
-    public static final int limitSwitch = 0;
+    public static final int lowerLimitSwitchID = 0;
+    public static final int upperLimitSwitchID = 0;
 
     //shooter
     public static final int flyWheelOneID = 2; //TODO change this 
