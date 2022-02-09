@@ -28,11 +28,11 @@ public class ballDetected extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.index.getLimitSwitch() == true){
+    if(Robot.index.getLowerLimitSwitch()){
         Robot.index.setLowerMotor(0.5);
         temp = false; 
     }
-    if(temp == false && Robot.index.getLimitSwitch() == false){
+    if(temp == false && Robot.index.getUpperLimitSwitch() == false){
         Robot.index.setLowerMotor(0);
     }
   }

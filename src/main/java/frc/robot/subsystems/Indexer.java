@@ -14,21 +14,30 @@ import frc.robot.RobotMap;
 public class Indexer extends SubsystemBase {
   private CANSparkMax lowerMotor; 
   private CANSparkMax upperMotor;
-  DigitalInput limitSwitch;
+  DigitalInput lowerLimitSwitch;
+  DigitalInput upperLimitSwitch; 
   /** Creates a new Indexer. */
 
   public Indexer() {
       lowerMotor = new CANSparkMax(RobotMap.lowerindexerID, MotorType.kBrushless);
       upperMotor = new CANSparkMax(RobotMap.upperindexerID, MotorType.kBrushless);
-      limitSwitch = new DigitalInput(RobotMap.limitSwitch);
+      lowerLimitSwitch = new DigitalInput(RobotMap.lowerLimitSwitchID);
+      upperLimitSwitch = new DigitalInput(RobotMap.upperLimitSwitchID);
+
   }
 
-  public boolean getLimitSwitch() {
-        if(limitSwitch.get()) {
+  public boolean getUpperLimitSwitch() {
+        if(lowerLimitSwitch.get()) {
             return true; 
         }
         return false;
   }
+  public boolean getLowerLimitSwitch() {
+    if(upperLimitSwitch.get()) {
+        return true; 
+    }
+    return false;
+}
   public void setLowerMotor(double lowerSpeed) {
       lowerMotor.set(lowerSpeed);
   }

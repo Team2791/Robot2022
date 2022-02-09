@@ -19,7 +19,8 @@ public class RobotMap {
     
 
     
-    public static final int limitSwitch = 0;
+    public static final int lowerLimitSwitchID = 0;
+    public static final int upperLimitSwitchID = 0;
 
     public static final int leftClimbID = 2;
     public static final int rightClimbID = 3;
