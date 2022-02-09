@@ -7,21 +7,23 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  private CANSparkMax upperClimber, lowerClimber;
-  private Solenoid climberPiston;
+  private CANSparkMax LCM,RCM;
+
   public Climber() {
-    upperClimber = new CANSparkMax(RobotMap.upperClimbID, MotorType.kBrushless);
-    lowerClimber = new CANSparkMax(RobotMap.lowrClimbID, MotorType.kBrushless);
+    LCM = new CANSparkMax(RobotMap.rightClimbID, MotorType.kBrushless);
+    RCM = new CANSparkMax(RobotMap.rightClimbID, MotorType.kBrushless);
   }
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Right Velocity", LCM.get());
+    SmartDashboard.putNumber("Left Velocity", RCM.get());
     // This method will be called once per scheduler run
   }
 }

@@ -10,18 +10,22 @@ public class RobotMap {
     public static final int lowerindexerID = 68;
     public static final int upperindexerID = 67;
 
-    public static final int intakeMotor = 6;
-    public static final int intakeleft = 21;
-    public static final int intakeright = 33;
+    
+
+    public static final int intakeMotor = 5;
+    public static final int intakeLeft = 1;
+
+    
+    
 
     
     public static final int limitSwitch = 0;
 
-    public static final int upperClimbID = 44;
-    public static final int lowrClimbID = 45;
+    public static final int leftClimbID = 2;
+    public static final int rightClimbID = 3;
     //shooter
-    public static final int flyWheelOneID = 2; //TODO change this 
-    public static final int flyWheelTwoID = 3; //TODO change this 
+    public static final int flyWheelFrontID = 7; //TODO change this 
+    public static final int flyWheelBackID = 8; //TODO change this 
 
 
 }

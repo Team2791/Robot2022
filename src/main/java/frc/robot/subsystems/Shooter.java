@@ -13,26 +13,26 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
-  private CANSparkMax flyWheelOne, flyWheelTwo;
+  private CANSparkMax flyWheelBack, flyWheelFront;
 
   public Shooter() {
-    flyWheelOne = new CANSparkMax(RobotMap.flyWheelOneID, MotorType.kBrushless);
-    flyWheelTwo = new CANSparkMax(RobotMap.flyWheelTwoID, MotorType.kBrushless);
+    flyWheelBack= new CANSparkMax(RobotMap.flyWheelBackID, MotorType.kBrushless);
+    flyWheelFront = new CANSparkMax(RobotMap.flyWheelFrontID, MotorType.kBrushless);
 
   }
 
-  public void setFlyWheelOne(double speed){
-    flyWheelOne.set(speed);
+  public void setBackFlyWheel(double speed){
+    flyWheelBack.set(speed);
   }
-  public void setFlyWheelTwo(double speed){
-    flyWheelTwo.set(speed);
+  public void setFrontWheelTwo(double speed){
+    flyWheelFront.set(speed);
   }
   
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Fly Wheel 1 Velocity", flyWheelOne.get());
-    SmartDashboard.putNumber("Fly Wheel 2 Velocity", flyWheelTwo.get());
+    SmartDashboard.putNumber("Fly Wheel 1 Velocity", flyWheelBack.get());
+    SmartDashboard.putNumber("Fly Wheel 2 Velocity", flyWheelFront.get());
   }
 }

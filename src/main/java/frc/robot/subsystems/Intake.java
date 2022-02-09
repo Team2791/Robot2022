@@ -19,8 +19,8 @@ public class Intake extends SubsystemBase {
 
   public Intake() {
       motor1 = new CANSparkMax(RobotMap.intakeMotor, MotorType.kBrushless);
-      left = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeleft);
-      right = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeright);
+      left = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeLeft);
+      right = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeLeft);
   }
 
   public void setMotor(double speed) {
