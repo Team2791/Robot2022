@@ -18,7 +18,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
 	private static final double kWheelDiameterMeters = Units.inchesToMeters(6); 
-    private static final double kEncoderCPR = 1024; //actual value??
+    private static final double kEncoderCPR = 4096; //actual value??
 
     public static final double kEncoderDistancePerPulse =
         // Assumes the encoders are directly mounted on the wheel shafts

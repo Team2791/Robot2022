@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
@@ -83,9 +84,19 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // Update the odometry in the periodic block
+    var translation = m_odometry.getPoseMeters().getTranslation();
     m_odometry.update(
-        m_gyro.getRotation2d(), m_leftEncoder.getPosition(), m_rightEncoder.getPosition());
+        m_gyro.getRotation2d(), m_leftEncoder.getPosition(), -m_rightEncoder.getPosition());
+    // Update the odometry in the periodic block
+  
+    SmartDashboard.putNumber("X Translation", translation.getX());
+    SmartDashboard.putNumber("Y Translation", translation.getY());;
+
+    SmartDashboard.putNumber("Left Velocity", leftLeader.get());
+    SmartDashboard.putNumber("Right Velocity", rightLeader.get());
+    SmartDashboard.putNumber("Gyro angle", -m_gyro.getYaw());
+
+    
   }
 
   /**
@@ -192,7 +203,7 @@ public class DriveTrain extends SubsystemBase {
    * @return the robot's heading in degrees, from -180 to 180
    */
   public double getHeading() {
-    return m_gyro.getYaw();
+    return -m_gyro.getYaw();
   }
 
   /**
@@ -208,4 +219,5 @@ public class DriveTrain extends SubsystemBase {
     leftLeader.set(left);
     rightLeader.set(right);
   }
+  
 }
