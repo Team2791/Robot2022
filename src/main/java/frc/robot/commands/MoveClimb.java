@@ -3,25 +3,36 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-import frc.robot.Robot;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.Robot;
 
-public class stopMotors extends CommandBase {
-  /** Creates a new stopMotors. */
+public class MoveClimb extends CommandBase {
+  /** Creates a new ClimbUp. */
+  private Timer timer = new Timer();
+  private double speed1;
 
-  public stopMotors() {
+  public MoveClimb(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.drivetrain);
+    addRequirements(Robot.climber);
+    speed1 = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.climber.setExtended();
+    timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.setMotors(0,0);
+    if(timer.get() > Constants.kClimberTime){
+      Robot.climber.setMotors(speed1);
+    }
   }
 
   // Called once the command ends or is interrupted.

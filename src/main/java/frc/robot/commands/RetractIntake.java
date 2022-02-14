@@ -6,13 +6,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-
-public class setLeftMotor extends CommandBase {
-  double leftspeed;
-  /** Creates a new setLeftMotor. */
-  public setLeftMotor(double speed) {
+import frc.robot.subsystems.*;
+public class RetractIntake extends CommandBase {
+  /** Creates a new RetractIntake. */
+  public RetractIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    leftspeed = speed;
+    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
@@ -22,7 +21,7 @@ public class setLeftMotor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.setMotors(leftspeed,0);
+    Robot.intake.setRetracted();
   }
 
   // Called once the command ends or is interrupted.

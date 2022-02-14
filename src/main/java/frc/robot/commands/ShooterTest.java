@@ -6,23 +6,29 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.subsystems.Shooter;
 
-public class setRightMotor extends CommandBase {
-  double rightspeed;
-  /** Creates a new setRightMotor. */
-  public setRightMotor(double speed) {
+public class ShooterTest extends CommandBase {
+  double flyOneSpeed, flyTwoSpeed;
+  /** Creates a new setLeftMotor. */
+  public ShooterTest(double oneSpeed, double twoSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    rightspeed=speed;
+    addRequirements(Robot.shooter);
+    flyOneSpeed = oneSpeed;
+    flyTwoSpeed = twoSpeed;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.setMotors(0,rightspeed);
+    Robot.shooter.setFrontFlywheel(flyOneSpeed);
+    Robot.shooter.setBackFlywheel(flyTwoSpeed);
   }
 
   // Called once the command ends or is interrupted.

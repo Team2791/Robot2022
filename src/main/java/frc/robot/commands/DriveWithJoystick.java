@@ -12,9 +12,10 @@ public class DriveWithJoystick extends CommandBase {
     private double deadzone;
 
     public DriveWithJoystick(Joystick stick, double deadzone) {
-       
+       addRequirements(Robot.drivetrain);
         this.stick = stick;
         this.deadzone = deadzone;
+
     }
 
     public void execute() {

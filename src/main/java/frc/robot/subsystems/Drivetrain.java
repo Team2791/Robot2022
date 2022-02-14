@@ -8,6 +8,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase{
@@ -15,6 +16,7 @@ public class Drivetrain extends SubsystemBase{
     private RelativeEncoder rightEncoder, leftEncoder;
 
      public Drivetrain() {
+        super.register();
         leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
         rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
         leftFollower = new CANSparkMax(RobotMap.leftFollowerID, MotorType.kBrushless);
@@ -72,5 +74,11 @@ public class Drivetrain extends SubsystemBase{
         return rightEncoder.getPosition();
     }
 
-    
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("Right Velocity", rightLeader.get());
+        SmartDashboard.putNumber("Left Velocity", leftLeader.get());
+        SmartDashboard.putNumber("Right Position", getRightPosition());
+        SmartDashboard.putNumber("Left Position", getLeftPosition());
+    }
 }
