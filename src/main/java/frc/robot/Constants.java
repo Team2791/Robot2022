@@ -17,13 +17,15 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
 
-	private static final double kWheelDiameterMeters = Units.inchesToMeters(6); 
+	public static final double kWheelDiameterMeters = Units.inchesToMeters(6); 
     private static final double kEncoderCPR = 4096; //actual value??
 
+   
+    public static final double gearRatio = 1/7.95;
+    public static final double kEncoderPositionConversionFactor = kWheelDiameterMeters * gearRatio *Math.PI;
     public static final double kEncoderDistancePerPulse =
-        // Assumes the encoders are directly mounted on the wheel shafts
-        (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
-
+    // Assumes the encoders are directly mounted on the wheel shafts
+    kEncoderPositionConversionFactor/60;;
 	public static final boolean kLeftEncoderInverted = false;
     public static final boolean kRightEncoderInverted = true;
 
@@ -41,8 +43,8 @@ public final class Constants {
     
 	public static final double kPDriveVel = 3.1242;
  
-	public static final double kMaxSpeedMetersPerSecond = 3;
-	public static final double kMaxAccelerationMetersPerSecondSquared = 1;
+	public static final double kMaxSpeedMetersPerSecond = 0.1;
+	public static final double kMaxAccelerationMetersPerSecondSquared = 0.1;
     public static final double kCreep = 0.2;
     public static final double TURN_FACTOR = 2;
     public static final int kDriverControllerPort = 0;

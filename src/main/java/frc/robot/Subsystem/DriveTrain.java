@@ -67,8 +67,8 @@ public class DriveTrain extends SubsystemBase {
     m_rightMotors.setInverted(true);
 
     // Sets the distance per pulse for the encoders
-    m_leftEncoder.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
-    m_rightEncoder.setPositionConversionFactor(Constants.kEncoderDistancePerPulse);
+    m_leftEncoder.setPositionConversionFactor(Constants.kEncoderPositionConversionFactor);
+    m_rightEncoder.setPositionConversionFactor(Constants.kEncoderPositionConversionFactor);
 
     //different from source code; sets velocity conversion for the getRate()
     m_leftEncoder.setVelocityConversionFactor(Constants.kEncoderDistancePerPulse);
@@ -89,12 +89,20 @@ public class DriveTrain extends SubsystemBase {
         m_gyro.getRotation2d(), m_leftEncoder.getPosition(), -m_rightEncoder.getPosition());
     // Update the odometry in the periodic block
   
+    
+
+    SmartDashboard.putNumber("Left position", -m_leftEncoder.getPosition());
+    SmartDashboard.putNumber("Right position", m_rightEncoder.getPosition());
+
     SmartDashboard.putNumber("X Translation", translation.getX());
     SmartDashboard.putNumber("Y Translation", translation.getY());;
 
     SmartDashboard.putNumber("Left Velocity", leftLeader.get());
     SmartDashboard.putNumber("Right Velocity", rightLeader.get());
+    SmartDashboard.putNumber("Rotation 2d", m_gyro.getRotation2d().getDegrees());
     SmartDashboard.putNumber("Gyro angle", -m_gyro.getYaw());
+    SmartDashboard.putBoolean("Gyro calibrating", m_gyro.isCalibrating());
+
 
     
   }
@@ -124,6 +132,7 @@ public class DriveTrain extends SubsystemBase {
    */
   public void resetOdometry(Pose2d pose) {
     resetEncoders();
+    m_gyro.reset();
     m_odometry.resetPosition(pose, m_gyro.getRotation2d());
   }
 
@@ -219,5 +228,9 @@ public class DriveTrain extends SubsystemBase {
     leftLeader.set(left);
     rightLeader.set(right);
   }
+
+public void calibrateGyro() {
+  m_gyro.calibrate();
+}
   
 }
