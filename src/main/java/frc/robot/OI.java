@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.MoveClimb;
 import frc.robot.commands.RunIndexer;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.IntakeAndIndex;
 import frc.robot.commands.ballDetected;
 import frc.robot.commands.stopMotors;
 import frc.robot.controller.AnalogButton;
@@ -49,7 +50,7 @@ public class OI {
 
         operatorY.whenPressed(new MoveClimb(Constants.kClimbSpeedDown));
 
-        driverX.whenPressed(new RunIndexer());
+        driverX.whenPressed(new IntakeAndIndex());
         
     }
 
