@@ -19,4 +19,6 @@ public final class Constants {
     public static final double kClimberTime = 0.1;
     public static final double kClimbSpeedUp = 0.5;
     public static final double kClimbSpeedDown = -0.5;
+
+    public static final double indexerSpeed = 0.5;
 }
