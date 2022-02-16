@@ -102,6 +102,8 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("Rotation 2d", m_gyro.getRotation2d().getDegrees());
     SmartDashboard.putNumber("Gyro angle", -m_gyro.getYaw());
     SmartDashboard.putBoolean("Gyro calibrating", m_gyro.isCalibrating());
+   
+
 
 
     
@@ -132,7 +134,7 @@ public class DriveTrain extends SubsystemBase {
    */
   public void resetOdometry(Pose2d pose) {
     resetEncoders();
-    m_gyro.reset();
+    m_gyro.zeroYaw();
     m_odometry.resetPosition(pose, m_gyro.getRotation2d());
   }
 

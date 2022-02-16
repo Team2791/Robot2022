@@ -32,19 +32,19 @@ public final class Constants {
 	public static final double kRamseteB = 2;
     public static final double kRamseteZeta = .7;
     
-	public static final double ksVolts = 0.23597;
-	public static final double kvVoltSecondsPerMeter = 2.5323;
+	public static final double ksVolts = 0.087396;
+	public static final double kvVoltSecondsPerMeter = 2.3279;
     public static final double kaVoltSecondsSquaredPerMeter = 0.25637;
 
-    private static final double kTrackwidthMeters = 0.81038;
+    private static final double kTrackwidthMeters =  0.81038;
     
     public static final DifferentialDriveKinematics kDriveKinematics =
         new DifferentialDriveKinematics(kTrackwidthMeters);
     
-	public static final double kPDriveVel = 3.1242;
+	public static final double kPDriveVel = 0.23188;
  
-	public static final double kMaxSpeedMetersPerSecond = 0.1;
-	public static final double kMaxAccelerationMetersPerSecondSquared = 0.1;
+	public static final double kMaxSpeedMetersPerSecond = 0.5;
+	public static final double kMaxAccelerationMetersPerSecondSquared = 0.5;
     public static final double kCreep = 0.2;
     public static final double TURN_FACTOR = 2;
     public static final int kDriverControllerPort = 0;
