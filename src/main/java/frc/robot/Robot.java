@@ -4,7 +4,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
@@ -21,15 +26,15 @@ import frc.robot.subsystems.Shooter;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  public static Drivetrain drivetrain;
-  public static Indexer index; 
-  public static Intake intake;
-  public static Shooter shooter;
   private RobotContainer m_robotContainer;
   public static OI oi;
+  public static Intake intake;
+  public static Compressor compressor;
+  public static Shooter shooter;
+  public static Indexer indexer;
+  public static Drivetrain drivetrain;
   public static Climber climber;
-  
-
+  public static PowerDistribution pdp;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -40,10 +45,14 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     oi = new OI();
-    index = new Indexer();
+    compressor = new Compressor(RobotMap.kPCM);
     intake = new Intake();
     shooter = new Shooter();
+    indexer = new Indexer();
+    drivetrain = new Drivetrain();
     climber = new Climber();
+    pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
+    
   }
 
   /**
@@ -60,6 +69,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putData(CommandScheduler.getInstance());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -78,6 +88,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    
   }
 
   /** This function is called periodically during autonomous. */
@@ -97,9 +108,7 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
-    
-  }
+  public void teleopPeriodic() {}
 
   @Override
   public void testInit() {

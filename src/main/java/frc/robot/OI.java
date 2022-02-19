@@ -3,12 +3,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.MoveClimb;
-import frc.robot.commands.RunIndexer;
 import frc.robot.commands.DriveWithJoystick;
-import frc.robot.commands.IntakeAndIndex;
-import frc.robot.commands.ballDetected;
+import frc.robot.commands.IntakeCommands.*;
+import frc.robot.commands.ShooterCommands.*;
+import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.stopMotors;
+import frc.robot.commands.IndexerCommands.*;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -44,13 +44,21 @@ public class OI {
         //MAP JOYSTICK CONTROLS HERE:
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
-        //driverX.whenPressed(new ballDetected());
+        driverA.whileHeld(new RunIntake());
+        driverX.whenPressed(new extendIntake());
+        driverB.whenPressed(new RetractIntake());
+        driverDPadLeft.whileHeld(new RunIndexerBelts());
+        driverDPadLeft.whenReleased(new StopIndexer());
 
-        operatorX.whenPressed(new MoveClimb(Constants.kClimbSpeedUp)); //climb up
-
-        operatorY.whenPressed(new MoveClimb(Constants.kClimbSpeedDown));
-
-        driverX.whenPressed(new IntakeAndIndex());
+        //MAP Operator joystick here:
+        operatorX.whenPressed(new ShooterTest());
+        operatorLT.whenPressed(new StopFlywheel());
+        operatorY.whenPressed(new retractClimbPiston());
+        operatorA.whenPressed(new extendClimbPiston());
+        operatorRB.whileHeld(new RunClimb());
+        operatorLB.whileHeld(new RunClimbDown());
+        operatorRB.whenReleased(new StopClimb());
+        operatorLB.whenReleased(new StopClimb());
         
     }
 

@@ -21,4 +21,8 @@ public final class Constants {
     public static final double kClimbSpeedDown = -0.5;
 
     public static final double indexerSpeed = 0.5;
+    public static final double intakeSpeed = 0.3;
+    
+    public static final double frontFlySpeed = 0.5;
+    public static final double backFlySpeed = 0.5;
 }

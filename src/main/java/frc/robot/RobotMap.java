@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class RobotMap {
     public static final int leftLeaderID = 3;
@@ -7,26 +8,28 @@ public class RobotMap {
     public static final int leftFollowerID = 4;
     public static final int rightFollowerID = 2;
 
-    public static final int lowerindexerID = 68;
-    public static final int upperindexerID = 67;
+    public static final int lowerindexerID = 6;
+    public static final int upperindexerID = 9;
 
     
 
     public static final int intakeMotor = 5;
-    public static final int intakeLeft = 1;
+    public static final int intakeLeft = 2;
     public static final int climb = 1;
-    
+    public static final int intakeRight = 3;
     
 
     
     public static final int lowerLimitSwitchID = 0;
-    public static final int upperLimitSwitchID = 0;
+    public static final int upperLimitSwitchID = 1;
 
-    public static final int leftClimbID = 2;
-    public static final int rightClimbID = 3;
+    public static final int leftClimbID = 10;
+    public static final int rightClimbID = 11;
     //shooter
-    public static final int flyWheelFrontID = 7; //TODO change this 
-    public static final int flyWheelBackID = 8; //TODO change this 
-
+    public static final int flyWheelFrontID = 7; 
+    public static final int flyWheelBackID = 8; 
+    public static PneumaticsModuleType kPCM;
+    public static final int kPDP = 0;
+    
 
 }

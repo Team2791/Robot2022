@@ -17,7 +17,7 @@ import frc.robot.RobotMap;
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
   private CANSparkMax climbLeft,climbRight;
-  private Solenoid climbSolRight, climbSolLeft;
+  private Solenoid climbSol;
 
 
   public Climber() {
@@ -27,30 +27,24 @@ public class Climber extends SubsystemBase {
     climbLeft.setIdleMode(IdleMode.kBrake);
     climbRight.setIdleMode(IdleMode.kBrake);
 
-    climbSolLeft = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.climb);
-    climbSolRight = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.climb);
+    climbSol = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.climb);
+    
 
 
      
   }
-  public void setMotors(double speed)
-  {
+  public void setMotors(double speed) {
     climbLeft.set(speed);
     climbRight.set(speed);
 
   }
-  public void setExtended()
-  {
+  public void setExtended() {
     //pins in (motors can run)
-    climbSolRight.set(true);
-    climbSolLeft.set(true);
+    climbSol.set(true);
   }
-  public void setRetracted()
-  {
+  public void setRetracted() {
     //pins out (motors cannot run)
-    climbSolRight.set(false);
-    climbSolLeft.set(false);
-
+    climbSol.set(false);
   }
   @Override
   public void periodic() {

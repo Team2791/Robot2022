@@ -24,7 +24,7 @@ public class Intake extends SubsystemBase {
       motor.setIdleMode(IdleMode.kBrake);
 
       left = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeLeft);
-      //right = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeLeft);
+      right = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeRight);
   }
 
   public void setMotor(double speed) {
@@ -34,12 +34,13 @@ public class Intake extends SubsystemBase {
   //Intake goes down 
   public void setExtended() {
       left.set(false);
-      //right.set(false);
+      right.set(false);
   }
+
   //Intake goes up 
   public void setRetracted() {
       left.set(true);
-      //right.set(true);
+      right.set(true);
   }
 
   @Override
