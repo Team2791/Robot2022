@@ -23,21 +23,21 @@ public class Intake extends SubsystemBase {
       motor = new CANSparkMax(RobotMap.intakeMotor, MotorType.kBrushless);
       motor.setIdleMode(IdleMode.kBrake);
 
-      left = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeLeft);
-      right = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakeRight);
+      left = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.intakeLeft);
+      right = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.intakeRight);
   }
 
   public void setMotor(double speed) {
       motor.set(speed);
   }
 
-  //Intake goes down 
+  //Intake goes up (driver x, cant intake pieces)
   public void setExtended() {
       left.set(false);
       right.set(false);
   }
 
-  //Intake goes up 
+  //Intake goes down (driver b, intake pieces)
   public void setRetracted() {
       left.set(true);
       right.set(true);

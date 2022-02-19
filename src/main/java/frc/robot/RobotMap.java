@@ -14,9 +14,9 @@ public class RobotMap {
     
 
     public static final int intakeMotor = 5;
-    public static final int intakeLeft = 2;
+    public static final int intakeLeft = 12;
     public static final int climb = 1;
-    public static final int intakeRight = 3;
+    public static final int intakeRight = 13;
     
 
     
@@ -28,7 +28,7 @@ public class RobotMap {
     //shooter
     public static final int flyWheelFrontID = 7; 
     public static final int flyWheelBackID = 8; 
-    public static PneumaticsModuleType kPCM;
+    public static final int kPCM = 1;
     public static final int kPDP = 0;
     
 

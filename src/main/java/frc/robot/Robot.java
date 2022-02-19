@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Climber;
+//import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
+ import frc.robot.subsystems.Indexer;
+ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,15 +26,15 @@ import frc.robot.subsystems.Shooter;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private RobotContainer m_robotContainer;
+  //private RobotContainer m_robotContainer;
   public static OI oi;
   public static Intake intake;
   public static Compressor compressor;
   public static Shooter shooter;
   public static Indexer indexer;
   public static Drivetrain drivetrain;
-  public static Climber climber;
-  public static PowerDistribution pdp;
+  //public static Climber climber;
+  //public static PowerDistribution pdp;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -43,16 +43,18 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
-    oi = new OI();
-    compressor = new Compressor(RobotMap.kPCM);
+    //m_robotContainer = new RobotContainer();
+    
+    
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
     drivetrain = new Drivetrain();
-    climber = new Climber();
-    pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
-    
+    //climber = new Climber();
+    //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
+    oi = new OI();
+    compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
+    compressor.enableDigital();
   }
 
   /**
@@ -68,8 +70,10 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+    compressor.enableAnalog(Constants.minPressure, Constants.maxPressure);
     CommandScheduler.getInstance().run();
     SmartDashboard.putData(CommandScheduler.getInstance());
+    SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

@@ -4,9 +4,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.IntakeIndexerEnd;
+import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.ClimberCommands.*;
+//import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.stopMotors;
 import frc.robot.commands.IndexerCommands.*;
 import frc.robot.controller.AnalogButton;
@@ -44,21 +46,31 @@ public class OI {
         //MAP JOYSTICK CONTROLS HERE:
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
+
         driverA.whileHeld(new RunIntake());
-        driverX.whenPressed(new extendIntake());
-        driverB.whenPressed(new RetractIntake());
-        driverDPadLeft.whileHeld(new RunIndexerBelts());
+        driverA.whenReleased(new StopIntake());
+        driverY.whenPressed(new StopIntake());
+        driverX.whenPressed(new extendIntake()); //intake up (no taking in game piece)
+        driverB.whenPressed(new RetractIntake()); //intake down (taking in game piece)
+        driverDPadLeft.whileHeld(new ReverseIndexer());
         driverDPadLeft.whenReleased(new StopIndexer());
+
+        driverDPadRight.whileHeld(new RunIndexerBelts());
+        driverDPadRight.whenReleased(new StopIndexer());
 
         //MAP Operator joystick here:
         operatorX.whenPressed(new ShooterTest());
         operatorLT.whenPressed(new StopFlywheel());
-        operatorY.whenPressed(new retractClimbPiston());
-        operatorA.whenPressed(new extendClimbPiston());
-        operatorRB.whileHeld(new RunClimb());
-        operatorLB.whileHeld(new RunClimbDown());
-        operatorRB.whenReleased(new StopClimb());
-        operatorLB.whenReleased(new StopClimb());
+
+        operatorA.whileHeld(new IntakeIndexerStart());
+        operatorA.whenReleased(new IntakeIndexerEnd());
+        operatorY.whenPressed(new IntakeIndexerEnd());
+        //operatorY.whenPressed(new retractClimbPiston());
+        //operatorA.whenPressed(new extendClimbPiston());
+        //operatorRB.whileHeld(new RunClimb());
+        //operatorLB.whileHeld(new RunClimbDown());
+        //operatorRB.whenReleased(new StopClimb());
+        //operatorLB.whenReleased(new StopClimb());
         
     }
 
@@ -69,7 +81,7 @@ public class OI {
             driverB = new JoystickButton(driverStick, 2);
             driverX = new JoystickButton(driverStick,3);
             driverY = new JoystickButton(driverStick,4);
-            driverBack = new JoystickButton(driverStick, 7);
+        driverBack = new JoystickButton(driverStick, 7);
             driverStart = new JoystickButton(driverStick, 8);
             driverRB = new JoystickButton(driverStick, 6);
             driverLB = new JoystickButton(driverStick, 5);

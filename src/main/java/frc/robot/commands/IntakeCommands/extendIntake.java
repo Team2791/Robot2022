@@ -5,6 +5,7 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
 
@@ -18,6 +19,7 @@ public class extendIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.intake.setMotor(Constants.intakeSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

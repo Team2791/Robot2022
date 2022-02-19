@@ -25,7 +25,7 @@ public class Indexer extends SubsystemBase {
       upperMotor = new CANSparkMax(RobotMap.upperindexerID, MotorType.kBrushless);
 
       lowerMotor.setIdleMode(IdleMode.kBrake);
-      lowerMotor.setIdleMode(IdleMode.kBrake);
+      upperMotor.setIdleMode(IdleMode.kBrake);
 
       lowerLimitSwitch = new DigitalInput(RobotMap.lowerLimitSwitchID);
       upperLimitSwitch = new DigitalInput(RobotMap.upperLimitSwitchID);

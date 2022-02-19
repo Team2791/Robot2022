@@ -20,9 +20,11 @@ public final class Constants {
     public static final double kClimbSpeedUp = 0.5;
     public static final double kClimbSpeedDown = -0.5;
 
-    public static final double indexerSpeed = 0.5;
+    public static final double indexerSpeed = 0.7;
     public static final double intakeSpeed = 0.3;
-    
-    public static final double frontFlySpeed = 0.5;
-    public static final double backFlySpeed = 0.5;
+
+    public static final double frontFlySpeed = 0.4;
+    public static final double backFlySpeed = -0.3;
+    public static final double minPressure = 60;
+    public static final double maxPressure = 100;
 }

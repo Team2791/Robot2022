@@ -19,6 +19,7 @@ public class Drivetrain extends SubsystemBase{
         super.register();
         leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
         rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
+        rightLeader.setInverted(true);
         leftFollower = new CANSparkMax(RobotMap.leftFollowerID, MotorType.kBrushless);
         leftFollower.follow(leftLeader, false);
         rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
