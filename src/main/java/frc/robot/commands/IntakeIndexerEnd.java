@@ -21,7 +21,7 @@ public class IntakeIndexerEnd extends CommandBase {
     Robot.intake.setMotor(0);
     Robot.indexer.setLowerMotor(0);
     Robot.indexer.setUpperMotor(0);
-    Robot.intake.setExtended();
+    Robot.intake.setRetracted();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

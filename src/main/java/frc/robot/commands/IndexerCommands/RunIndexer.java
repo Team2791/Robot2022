@@ -10,6 +10,7 @@ import frc.robot.Robot;
 
 public class RunIndexer extends CommandBase {
   /** Creates a new RunIndexer. */
+  private boolean pastUpper = false;
   public RunIndexer() {
     addRequirements(Robot.indexer);
   }
@@ -17,26 +18,32 @@ public class RunIndexer extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      if(Robot.indexer.getUpperLimitSwitch()==false ) {
-        Robot.indexer.setUpperMotor(Constants.indexerSpeed);
-        Robot.indexer.setLowerMotor(Constants.indexerSpeed);
-      }
-     
-      if(Robot.indexer.getUpperLimitSwitch()==true && Robot.indexer.getLowerLimitSwitch()==false) {
-        Robot.indexer.setLowerMotor(Constants.indexerSpeed);
-      }
+    if(Robot.indexer.getUpperLimitSwitch()==true ) {
+      Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+      Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if(Robot.indexer.getUpperLimitSwitch()==true) {
-        Robot.indexer.stopUpperMotor();
-      }
-      if(Robot.indexer.getUpperLimitSwitch()==true && Robot.indexer.getLowerLimitSwitch()==true) {
-        Robot.indexer.stopUpperMotor();
-        Robot.indexer.stopLowerMotor();
-      }
+    if(Robot.indexer.getUpperLimitSwitch()==true && !pastUpper) {
+      Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+      Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    }
+   
+    if(Robot.indexer.getUpperLimitSwitch()==false && Robot.indexer.getLowerLimitSwitch()==true) {
+      Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+      Robot.indexer.stopUpperMotor();
+    }
+    if(Robot.indexer.getUpperLimitSwitch()==false) {
+      Robot.indexer.stopUpperMotor();
+      pastUpper = true;
+    }
+    if(Robot.indexer.getUpperLimitSwitch()==false && Robot.indexer.getLowerLimitSwitch()==false) {
+      Robot.indexer.stopUpperMotor();
+      Robot.indexer.stopLowerMotor();
+    }
 
   }
 

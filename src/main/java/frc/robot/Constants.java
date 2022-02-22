@@ -20,7 +20,8 @@ public final class Constants {
     public static final double kClimbSpeedUp = 0.5;
     public static final double kClimbSpeedDown = -0.5;
 
-    public static final double indexerSpeed = 0.7;
+    public static final double bottomindexerSpeed = 1;
+    public static final double topindexerSpeed = 1;
     public static final double intakeSpeed = 0.3;
 
     public static final double frontFlySpeed = 0.4;

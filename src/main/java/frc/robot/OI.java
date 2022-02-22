@@ -10,6 +10,7 @@ import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
 //import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.stopMotors;
+import frc.robot.commands.CommandGroups.IntakeAndIndex;
 import frc.robot.commands.IndexerCommands.*;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
@@ -45,14 +46,19 @@ public class OI {
 
         //MAP JOYSTICK CONTROLS HERE:
 
+        driverA.whenHeld(new IntakeAndIndex());
+   
+
         //Drive Commmands
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
 
-        //Intake Commands
-        driverA.whileHeld(new RunIntake());
-        driverA.whenReleased(new StopIntake());
-        driverY.whenPressed(new StopIntake());
+        //Intake wheels 
+        //driverA.whileHeld(new RunIntake());
+        //driverA.whenReleased(new StopIntake());
+        //driverY.whenPressed(new StopIntake());
+
+        //Intake up and down 
         driverX.whenPressed(new RetractIntake()); //intake up (no taking in game piece)
         driverB.whenPressed(new ReleaseIntake()); //intake down (taking in game piece)
 
@@ -72,6 +78,10 @@ public class OI {
         operatorA.whileHeld(new IntakeIndexerStart());
         operatorA.whenReleased(new IntakeIndexerEnd());
         operatorY.whenPressed(new IntakeIndexerEnd());
+
+
+
+        //Climb commands
         //operatorY.whenPressed(new retractClimbPiston());
         //operatorA.whenPressed(new extendClimbPiston());
         //operatorRB.whileHeld(new RunClimb());

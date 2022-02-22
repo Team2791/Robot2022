@@ -2,37 +2,35 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.IndexerCommands;
+package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class RunIndexerBelts extends CommandBase {
-  /** Creates a new RunIndexerBelts. */
-  public RunIndexerBelts() {
-    addRequirements(Robot.indexer);
-   
+public class ExtendRunIntake extends CommandBase {
+  /** Creates a new ExtendRunIntake. */
+  public ExtendRunIntake() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    Robot.intake.setRetracted();
+    Robot.intake.setMotor(Constants.intakeSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // Robot.indexer.stopUpperMotor();
-    // Robot.indexer.stopLowerMotor();
+    Robot.intake.setMotor(0);
+    Robot.intake.setExtended();
   }
 
   // Returns true when the command should end.

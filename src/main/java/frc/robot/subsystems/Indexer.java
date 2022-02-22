@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -33,17 +34,11 @@ public class Indexer extends SubsystemBase {
   }
 
   public boolean getUpperLimitSwitch() {
-        if(lowerLimitSwitch.get()) {
-            return true; 
-        }
-        return false;
+        return upperLimitSwitch.get();
   }
   public boolean getLowerLimitSwitch() {
-    if(upperLimitSwitch.get()) {
-        return true; 
-    }
-    return false;
-}
+        return lowerLimitSwitch.get();
+  }
   public void setLowerMotor(double lowerSpeed) {
       lowerMotor.set(lowerSpeed);
   }
@@ -60,5 +55,7 @@ public class Indexer extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("Upper Limit Switch", upperLimitSwitch.get());
+    SmartDashboard.putBoolean("Lower Limit Switch", lowerLimitSwitch.get());
   }
 }

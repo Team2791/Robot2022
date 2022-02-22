@@ -25,8 +25,8 @@ public class IntakeIndexerStart extends CommandBase {
   @Override
   public void execute() {
     Robot.intake.setMotor(Constants.intakeSpeed);
-    Robot.indexer.setLowerMotor(Constants.indexerSpeed);
-    Robot.indexer.setUpperMotor(Constants.indexerSpeed);
+    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
   }
 
   // Called once the command ends or is interrupted.
