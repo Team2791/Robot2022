@@ -71,13 +71,16 @@ public class OI {
         driverDPadRight.whenPressed(new ReleaseIntake());
         driverDPadRight.whenReleased(new StopIndexer());
 
-        operatorB.whileHeld(new ReleaseBallManual());
+        //operatorRT.whenPressed(new ReleaseBallManual());
 
+
+        operatorRT.whenHeld(new TwoBallManuel(Robot.indexer.getLowerLimitSwitch()));
+        
 
         //MAP Operator joystick here:
 
         //Shooter
-        operatorX.whenPressed(new ShooterTest());
+        operatorB.whileHeld(new ShooterTest());
         operatorLT.whenPressed(new StopFlywheel());
 
         //intake and indexer

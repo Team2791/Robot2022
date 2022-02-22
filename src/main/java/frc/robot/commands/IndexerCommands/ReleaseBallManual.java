@@ -5,15 +5,16 @@
 package frc.robot.commands.IndexerCommands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class ReleaseBallManual extends CommandBase {
   /** Creates a new ReleaseBall. */
-  private boolean twoballs, temp = false; 
+  private boolean twoballs, finish = false; 
   private Timer timer = new Timer();
-  
+  private boolean ran = false;
 
 
   public ReleaseBallManual() {
@@ -24,7 +25,6 @@ public class ReleaseBallManual extends CommandBase {
   @Override
   public void initialize() {
     twoballs = !Robot.indexer.getLowerLimitSwitch();
-    timer.reset();
     
 
   }
@@ -32,25 +32,14 @@ public class ReleaseBallManual extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!twoballs) {
-        Robot.shooter.setBackFlywheel(Constants.backFlySpeed);
-        Robot.shooter.setFrontFlywheel(Constants.frontFlySpeed);
-        timer.start();
-
-        if(timer.get()>3)
-          Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+    //SmartDashboard.putBoolean("two?", twoballs);
+    if(twoballs == false){
+      Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
     }
-    else {
-      Robot.shooter.setBackFlywheel(Constants.backFlySpeed);
-      Robot.shooter.setFrontFlywheel(Constants.frontFlySpeed);
-      timer.start();
-
-      if(timer.get()>3) {
-        Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-        //Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-        timer.reset();
-    
-      }
+    if(twoballs==true){
+      
+       Robot.indexer.setUpperMotor(Constants.topindexerSpeed);    
+      
       if(Robot.indexer.getLowerLimitSwitch()==false && Robot.indexer.getUpperLimitSwitch() == true) {
         Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
         Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
@@ -59,6 +48,8 @@ public class ReleaseBallManual extends CommandBase {
       if(Robot.indexer.getLowerLimitSwitch()==true && Robot.indexer.getUpperLimitSwitch() == false){
         Robot.indexer.stopUpperMotor();
         Robot.indexer.stopLowerMotor();
+        finish = true;
+
       }
       
     }
@@ -67,8 +58,7 @@ public class ReleaseBallManual extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooter.setBackFlywheel(0);
-    Robot.shooter.setFrontFlywheel(0);
+  
     Robot.indexer.stopLowerMotor();
     Robot.indexer.stopUpperMotor();
   }
@@ -76,6 +66,6 @@ public class ReleaseBallManual extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }

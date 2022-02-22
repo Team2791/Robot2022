@@ -27,8 +27,10 @@ public class ShooterTest extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setFrontFlywheel(Constants.frontFlySpeed);
+    
     Robot.shooter.setBackFlywheel(Constants.backFlySpeed);
+    Robot.shooter.setFrontFlywheel(Constants.frontFlySpeed);
+
   }
 
   // Called once the command ends or is interrupted.
