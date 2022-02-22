@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class ReleaseBall extends CommandBase {
+public class ReleaseBallManual extends CommandBase {
   /** Creates a new ReleaseBall. */
   private boolean twoballs, temp = false; 
   private Timer timer = new Timer();
-  private Timer timer2 = new Timer();
+  
 
 
-  public ReleaseBall() {
+  public ReleaseBallManual() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,7 +25,7 @@ public class ReleaseBall extends CommandBase {
   public void initialize() {
     twoballs = !Robot.indexer.getLowerLimitSwitch();
     timer.reset();
-    timer2.reset();
+    
 
   }
 
@@ -59,13 +59,7 @@ public class ReleaseBall extends CommandBase {
       if(Robot.indexer.getLowerLimitSwitch()==true && Robot.indexer.getUpperLimitSwitch() == false){
         Robot.indexer.stopUpperMotor();
         Robot.indexer.stopLowerMotor();
-        timer2.start();
       }
-      if(timer2.get()>3) {
-        Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-        Robot.indexer.setLowerMotor(Constants.topindexerSpeed);
-
-      } 
       
     }
   }

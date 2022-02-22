@@ -64,9 +64,15 @@ public class OI {
 
         //Indexer
         driverDPadLeft.whileHeld(new ReverseIndexer());
+        driverDPadLeft.whenPressed(new ReleaseIntake());
         driverDPadLeft.whenReleased(new StopIndexer());
+
         driverDPadRight.whileHeld(new RunIndexerBelts());
+        driverDPadRight.whenPressed(new ReleaseIntake());
         driverDPadRight.whenReleased(new StopIndexer());
+
+        operatorB.whileHeld(new ReleaseBallManual());
+
 
         //MAP Operator joystick here:
 
