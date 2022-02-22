@@ -4,6 +4,7 @@
 
 package frc.robot.commands.IndexerCommands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -11,6 +12,10 @@ import frc.robot.Robot;
 public class ReleaseBall extends CommandBase {
   /** Creates a new ReleaseBall. */
   private boolean twoballs; 
+  private Timer timer = new Timer();
+  private Timer timer2 = new Timer();
+
+
   public ReleaseBall() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -19,6 +24,7 @@ public class ReleaseBall extends CommandBase {
   @Override
   public void initialize() {
     twoballs = !Robot.indexer.getLowerLimitSwitch();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -27,12 +33,30 @@ public class ReleaseBall extends CommandBase {
     if(!twoballs) {
         Robot.shooter.setBackFlywheel(Constants.backFlySpeed);
         Robot.shooter.setFrontFlywheel(Constants.frontFlySpeed);
-        Robot.indexer.setUpperMotor(Constants.indexerSpeed);
+        timer.start();
+
+        if(timer.get()>1)
+          Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
     }
-    else{
-      if(!(Robot.indexer.getUpperLimitSwitch() && ))
+    else {
       Robot.shooter.setBackFlywheel(Constants.backFlySpeed);
       Robot.shooter.setFrontFlywheel(Constants.frontFlySpeed);
+      timer.start();
+
+      if(timer.get()>1) {
+        Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+        Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+        timer.reset();
+      }
+      if(Robot.indexer.getLowerLimitSwitch()==true && Robot.indexer.getUpperLimitSwitch() == false) {
+        Robot.indexer.stopUpperMotor();
+        Robot.indexer.stopLowerMotor();
+        timer2.start();
+      }
+      if(timer2.get()>1) {
+        Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+      } 
+      
     }
   }
 

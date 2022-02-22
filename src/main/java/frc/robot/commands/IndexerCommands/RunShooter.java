@@ -24,7 +24,7 @@ public class RunShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.indexer.setUpperMotor(Constants.indexerSpeed);
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
   }
 
   // Called once the command ends or is interrupted.
