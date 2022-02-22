@@ -44,24 +44,31 @@ public class OI {
         //initUsed();
 
         //MAP JOYSTICK CONTROLS HERE:
+
+        //Drive Commmands
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
 
+        //Intake Commands
         driverA.whileHeld(new RunIntake());
         driverA.whenReleased(new StopIntake());
         driverY.whenPressed(new StopIntake());
-        driverX.whenPressed(new extendIntake()); //intake up (no taking in game piece)
-        driverB.whenPressed(new RetractIntake()); //intake down (taking in game piece)
+        driverX.whenPressed(new RetractIntake()); //intake up (no taking in game piece)
+        driverB.whenPressed(new ReleaseIntake()); //intake down (taking in game piece)
+
+        //Indexer
         driverDPadLeft.whileHeld(new ReverseIndexer());
         driverDPadLeft.whenReleased(new StopIndexer());
-
         driverDPadRight.whileHeld(new RunIndexerBelts());
         driverDPadRight.whenReleased(new StopIndexer());
 
         //MAP Operator joystick here:
+
+        //Shooter
         operatorX.whenPressed(new ShooterTest());
         operatorLT.whenPressed(new StopFlywheel());
 
+        //intake and indexer
         operatorA.whileHeld(new IntakeIndexerStart());
         operatorA.whenReleased(new IntakeIndexerEnd());
         operatorY.whenPressed(new IntakeIndexerEnd());

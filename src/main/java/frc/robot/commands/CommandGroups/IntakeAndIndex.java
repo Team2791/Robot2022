@@ -2,12 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.IndexerCommands;
+package frc.robot.commands.CommandGroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.RunIntake;
-import frc.robot.commands.IntakeCommands.extendIntake;
+import frc.robot.commands.IndexerCommands.RunIndexer;
+import frc.robot.commands.IntakeCommands.ReleaseIntake;
+import frc.robot.commands.IntakeCommands.RetractIntake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,6 +20,6 @@ public class IntakeAndIndex extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     
-    addCommands(new extendIntake(),  new RunIndexerBelts());
+    addCommands(new ReleaseIntake(), new RunIntake(), new RunIndexer());
   }
 }

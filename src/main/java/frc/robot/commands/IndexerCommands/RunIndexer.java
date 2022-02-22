@@ -17,14 +17,11 @@ public class RunIndexer extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      if(Robot.indexer.getUpperLimitSwitch()==false && Robot.indexer.getLowerLimitSwitch()==false) {
+      if(Robot.indexer.getUpperLimitSwitch()==false ) {
         Robot.indexer.setUpperMotor(Constants.indexerSpeed);
         Robot.indexer.setLowerMotor(Constants.indexerSpeed);
       }
-      if(Robot.indexer.getUpperLimitSwitch()==false && Robot.indexer.getLowerLimitSwitch()==true) {
-        Robot.indexer.setUpperMotor(Constants.indexerSpeed);
-        Robot.indexer.setLowerMotor(Constants.indexerSpeed);
-      }
+     
       if(Robot.indexer.getUpperLimitSwitch()==true && Robot.indexer.getLowerLimitSwitch()==false) {
         Robot.indexer.setLowerMotor(Constants.indexerSpeed);
       }
