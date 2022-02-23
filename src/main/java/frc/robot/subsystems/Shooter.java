@@ -5,12 +5,14 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 
 public class Shooter extends SubsystemBase {
@@ -23,6 +25,16 @@ public class Shooter extends SubsystemBase {
     flyWheelBack.setIdleMode(IdleMode.kCoast);
     flyWheelFront.setIdleMode(IdleMode.kCoast);
 
+    flyWheelBack.getPIDController().setP(Constants.BackFlywheelkP);
+    flyWheelBack.getPIDController().setFF(Constants.BackFlywheelkFF);
+    flyWheelBack.getPIDController().setD(Constants.BackFlywheelkD);
+    flyWheelBack.getPIDController().setOutputRange(-1, 1);
+
+    flyWheelFront.getPIDController().setP(Constants.FrontFlywheelkP);
+    flyWheelFront.getPIDController().setFF(Constants.FrontFlywheelkFF);
+    flyWheelFront.getPIDController().setD(Constants.FrontFlywheelkD);
+    flyWheelFront.getPIDController().setOutputRange(-1, 1);
+
   }
 
   public void setBackFlywheel(double speed){
@@ -30,6 +42,22 @@ public class Shooter extends SubsystemBase {
   }
   public void setFrontFlywheel(double speed){
     flyWheelFront.set(speed);
+  }
+
+  public void setFrontShooterPID(final double setpoint){
+    if (setpoint == 0) {
+        setFrontFlywheel(setpoint);
+    } else {
+        flyWheelFront.getPIDController().setReference(setpoint, ControlType.kDutyCycle);
+    }
+  }
+
+  public void setBackShooterPID(final double setpoint){
+    if (setpoint == 0) {
+        setFrontFlywheel(setpoint);
+    } else {
+        flyWheelFront.getPIDController().setReference(setpoint, ControlType.kDutyCycle);
+    }
   }
   
 

@@ -28,4 +28,18 @@ public final class Constants {
     public static final double backFlySpeed = -0.3;
     public static final double minPressure = 60;
     public static final double maxPressure = 100;
+
+    //PID CONSTANTS
+    //feedforward (ff): reduces error in PID system (prediction technique); probably won't use this maybe
+    //kP: increasing this increases the speed of the control system response aka reduces oscillations
+    //kP values that are too high will result in more oscillations
+    //kD: increasing this will help decrease the amplitude of the oscillations (prevents overshooting)
+    //to determine values, start with kP; increase until oscillations start, then decrease back down to where there were no oscillations
+    //then, if needed, increase kD slightly
+    public static final double BackFlywheelkP = 0;
+    public static final double BackFlywheelkFF = 0;
+    public static final double BackFlywheelkD = 0;
+    public static final double FrontFlywheelkFF = 0;
+    public static final double FrontFlywheelkP = 0;
+    public static final double FrontFlywheelkD = 0;
 }

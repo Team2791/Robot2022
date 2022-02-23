@@ -35,6 +35,10 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   //public static Climber climber;
   //public static PowerDistribution pdp;
+
+  private static double setpointFront = 0; //for PID testing
+  private static double setpointBack = 0; //for PID testing
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -108,11 +112,49 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
+    SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
+    SmartDashboard.putNumber("Front Shooter kD", Constants.BackFlywheelkD);
+    SmartDashboard.putNumber("Front Shooter setpoint", 0);
+
+    SmartDashboard.putNumber("Back Shooter kP", Constants.FrontFlywheelkP);
+    SmartDashboard.putNumber("Back Shooter kF", Constants.FrontFlywheelkFF);
+    SmartDashboard.putNumber("Back Shooter kD", Constants.FrontFlywheelkD);
+    SmartDashboard.putNumber("Back Shooter setpoint", 0);
+
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    //PID testing for front flywheel
+    //double kpF = SmartDashboard.getNumber("Front Shooter kP", 0);
+    //double kf = SmartDashboard.getNumber("Shooter kF", 0);
+    //double kd = SmartDashboard.getNumber("Shooter kD", 0);
+    double lastFrontSetpoint = setpointFront;
+    setpointFront = SmartDashboard.getNumber("Shooter setpoint", 0);
+    if (setpointFront == 0)
+        shooter.setFrontFlywheel(0);
+    else {
+        if(setpointFront!=lastFrontSetpoint)
+            shooter.setFrontShooterPID(setpointFront);
+    }
+    //PID testing for back flywheel
+    //double kpB = SmartDashboard.getNumber("Front Shooter kP", 0);
+    //double kf = SmartDashboard.getNumber("Shooter kF", 0);
+    //double kd = SmartDashboard.getNumber("Shooter kD", 0);
+    double lastBackSetpoint = setpointBack;
+    setpointBack = SmartDashboard.getNumber("Shooter setpoint", 0);
+    if (setpointBack == 0)
+        shooter.setBackFlywheel(0);
+    else {
+        if(setpointBack!=lastBackSetpoint)
+            shooter.setBackShooterPID(setpointBack);
+    }
+
+
+  }
 
   @Override
   public void testInit() {
