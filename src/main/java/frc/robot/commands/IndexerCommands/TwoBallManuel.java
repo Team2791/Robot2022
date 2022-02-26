@@ -13,6 +13,7 @@ import frc.robot.Robot;
 public class TwoBallManuel extends CommandBase {
   /** Creates a new TwoBallManuel. */
   private Timer timer = new Timer();
+  private Timer timer2 = new Timer();
   private boolean twoballs;
   private boolean finish = false;
   public TwoBallManuel(boolean twoball) {
@@ -24,17 +25,24 @@ public class TwoBallManuel extends CommandBase {
   @Override
   public void initialize() {
     timer.reset();
+    
+    timer2.reset();
+    Robot.indexer.setLowerMotor(-Constants.bottomindexerSpeed);
+    Robot.indexer.setUpperMotor(-Constants.topindexerSpeed);
+    timer2.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putBoolean("twoballs", twoballs);
-    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    timer.start();
 
-    if(Robot.indexer.getUpperLimitSwitch()==false && timer.get()>0.1) {
+    if(timer2.get()>0.1) {
+      Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+      Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+    timer.start();
+    }
+
+    if(Robot.indexer.getUpperLimitSwitch()==false && timer.get()>0.35) {
       Robot.indexer.stopLowerMotor();
       Robot.indexer.stopUpperMotor();
 

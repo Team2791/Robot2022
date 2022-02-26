@@ -4,14 +4,25 @@
 
 package frc.robot;
 
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.IndexerCommands.RunIndexer;
 //import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
  import frc.robot.subsystems.Indexer;
@@ -25,7 +36,9 @@ import frc.robot.subsystems.Intake;
  * project.
  */
 public class Robot extends TimedRobot {
+  Thread m_visionThread;
   private Command m_autonomousCommand;
+  
   //private RobotContainer m_robotContainer;
   public static OI oi;
   public static Intake intake;
@@ -38,7 +51,7 @@ public class Robot extends TimedRobot {
 
   private static double setpointFront = 0; //for PID testing
   private static double setpointBack = 0; //for PID testing
-
+  private Timer timer;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -48,17 +61,38 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     //m_robotContainer = new RobotContainer();
-    
-    
+    CameraServer.startAutomaticCapture();
+    m_visionThread = 
+    new Thread ( 
+      () -> {
+        UsbCamera camera = CameraServer.startAutomaticCapture();
+        camera.setResolution(640, 480);
+        CvSink cvSink = CameraServer.getVideo();
+        CvSource outputStream = CameraServer.putVideo("Rectangle", 640, 480);
+
+        Mat mat = new Mat();
+        while(!Thread.interrupted()) {
+          if(cvSink.grabFrame(mat) == 0) {
+            outputStream.notifyError(cvSink.getError());
+            continue;
+          }
+          Imgproc.rectangle(mat, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
+          outputStream.putFrame(mat);
+        }
+      });
+      m_visionThread.setDaemon(true);
+      m_visionThread.start();
+    timer = new Timer();
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
+
     drivetrain = new Drivetrain();
     //climber = new Climber();
     //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
-    compressor.enableDigital();
+    //compressor.enableDigital();
   }
 
   /**
@@ -78,6 +112,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putData(CommandScheduler.getInstance());
     SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -96,12 +131,19 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    // timer.reset();
+    // timer.start();
+    // Robot.drivetrain.setMotors(0.5, 0.5);
     
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    // if(timer.get()>2){
+    //   Robot.drivetrain.setMotors(0, 0);
+    // }
+  }
 
   @Override
   public void teleopInit() {
@@ -153,7 +195,7 @@ public class Robot extends TimedRobot {
             shooter.setBackShooterPID(setpointBack);
     }
 
-
+    
   }
 
   @Override

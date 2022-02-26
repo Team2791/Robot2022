@@ -27,7 +27,8 @@ public class Drivetrain extends SubsystemBase{
 
         leftEncoder = leftLeader.getEncoder();
         rightEncoder = rightLeader.getEncoder();
-        setBrakeMode();
+        //setBrakeMode();
+        setCoastMode();
 
     }
 

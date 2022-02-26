@@ -55,7 +55,10 @@ public class Indexer extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putBoolean("Upper Limit Switch", upperLimitSwitch.get());
-    SmartDashboard.putBoolean("Lower Limit Switch", lowerLimitSwitch.get());
+    SmartDashboard.putBoolean("Upper Limit Switch", !upperLimitSwitch.get());
+    SmartDashboard.putBoolean("Lower Limit Switch", !lowerLimitSwitch.get());
+    SmartDashboard.putNumber("Lower Indexer Belt", lowerMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Upper Indexer Belt", upperMotor.getEncoder().getVelocity());
+
   }
 }

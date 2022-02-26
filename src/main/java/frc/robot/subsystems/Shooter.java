@@ -28,12 +28,15 @@ public class Shooter extends SubsystemBase {
     flyWheelBack.getPIDController().setP(Constants.BackFlywheelkP);
     flyWheelBack.getPIDController().setFF(Constants.BackFlywheelkFF);
     flyWheelBack.getPIDController().setD(Constants.BackFlywheelkD);
-    flyWheelBack.getPIDController().setOutputRange(-1, 1);
+    //flyWheelBack.getPIDController().setOutputRange(-1, 1);
 
     flyWheelFront.getPIDController().setP(Constants.FrontFlywheelkP);
     flyWheelFront.getPIDController().setFF(Constants.FrontFlywheelkFF);
     flyWheelFront.getPIDController().setD(Constants.FrontFlywheelkD);
-    flyWheelFront.getPIDController().setOutputRange(-1, 1);
+    //flyWheelFront.getPIDController().setOutputRange(-1, 1);
+
+    flyWheelBack.enableVoltageCompensation(11.5);
+    flyWheelFront.enableVoltageCompensation(11.5);
 
   }
 
@@ -48,7 +51,7 @@ public class Shooter extends SubsystemBase {
     if (setpoint == 0) {
         setFrontFlywheel(setpoint);
     } else {
-        flyWheelFront.getPIDController().setReference(setpoint, ControlType.kDutyCycle);
+        flyWheelFront.getPIDController().setReference(setpoint, CANSparkMax.ControlType.kDutyCycle);
     }
   }
 
@@ -56,7 +59,7 @@ public class Shooter extends SubsystemBase {
     if (setpoint == 0) {
         setFrontFlywheel(setpoint);
     } else {
-        flyWheelFront.getPIDController().setReference(setpoint, ControlType.kDutyCycle);
+        flyWheelBack.getPIDController().setReference(setpoint, CANSparkMax.ControlType.kDutyCycle);
     }
   }
   
@@ -64,7 +67,9 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Fly Wheel 1 Velocity", flyWheelBack.get());
-    SmartDashboard.putNumber("Fly Wheel 2 Velocity", flyWheelFront.get());
+    SmartDashboard.putNumber("Fly Wheel 1", flyWheelBack.get());
+    SmartDashboard.putNumber("Fly Wheel 2", flyWheelFront.get());
+    SmartDashboard.putNumber("Front Flywheel", flyWheelFront.getEncoder().getVelocity());
+    SmartDashboard.putNumber("back Flywheel", flyWheelBack.getEncoder().getVelocity()); 
   }
 }

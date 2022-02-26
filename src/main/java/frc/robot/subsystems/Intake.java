@@ -45,7 +45,7 @@ public class Intake extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putBoolean("Intake", left.get());
+    //SmartDashboard.putBoolean("Intake", left.get());
     // This method will be called once per scheduler run
   }
 }
