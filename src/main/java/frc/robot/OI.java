@@ -58,6 +58,7 @@ public class OI {
         //Intake up and down 
         driverX.whenPressed(new RetractIntake()); //intake up (no taking in game piece)
         driverB.whenPressed(new ReleaseIntake()); //intake down (taking in game piece)
+        driverY.whenHeld(new ReverseIntake());
 
         //Indexer
         operatorDPadDown.whileHeld(new ReverseIndexer());
@@ -68,7 +69,7 @@ public class OI {
         operatorDPadUp.whenPressed(new ReleaseIntake());
         operatorDPadUp.whenReleased(new StopIndexer());
 
-        operatorY.whenHeld(new RunIndexer());
+        operatorRB.whenHeld(new RunIndexer());
 
         operatorRT.whenHeld(new TwoBallManuel(Robot.indexer.getLowerLimitSwitch()));
         

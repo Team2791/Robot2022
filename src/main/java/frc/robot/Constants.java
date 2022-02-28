@@ -13,7 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double kCreep = 0.2;
+    public static final double kCreep = 0.3;
     public static final double TURN_FACTOR = -0.55;
 
     public static final double kClimberTime = 0.1;
@@ -22,7 +22,7 @@ public final class Constants {
 
     public static final double bottomindexerSpeed = 1;
     public static final double topindexerSpeed = 1;
-    public static final double intakeSpeed = 0.8;
+    public static final double intakeSpeed = 0.9;
 
     public static final double frontFlySpeed = 0.4;
     public static final double backFlySpeed = -0.3;
@@ -51,4 +51,5 @@ public final class Constants {
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
+    public static final double driveTime = 1.25;
 }

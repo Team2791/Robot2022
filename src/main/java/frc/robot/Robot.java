@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoCommandGroups.StartShooterandShoot;
+import frc.robot.commands.AutoCommandGroups.ShootIntakeShoot;
 import frc.robot.commands.IndexerCommands.RunIndexer;
 //import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
@@ -51,7 +53,8 @@ public class Robot extends TimedRobot {
 
   private static double setpointFront = 0; //for PID testing
   private static double setpointBack = 0; //for PID testing
-  private Timer timer;
+  private Timer timer, shooterTimer1,shooterTimer2;
+  private boolean firstBallShot;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -83,6 +86,8 @@ public class Robot extends TimedRobot {
       m_visionThread.setDaemon(true);
       m_visionThread.start();
     timer = new Timer();
+    shooterTimer1 = new Timer();
+    shooterTimer2 = new Timer(); 
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
@@ -93,6 +98,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
+    m_autonomousCommand = new ShootIntakeShoot();
   }
 
   /**
@@ -117,7 +123,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    Robot.drivetrain.setCoastMode();
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -126,23 +134,38 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    Robot.drivetrain.setBrakeMode();
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
     // timer.reset();
-    // timer.start();
-    // Robot.drivetrain.setMotors(0.5, 0.5);
+    // shooterTimer1.reset();
+    // shooterTimer2.reset();
     
+    // Robot.shooter.setBackFlywheel(Constants.kUpperBackCloseSpeed);
+    // Robot.shooter.setFrontFlywheel(Constants.kUpperFrontCloseSpeed);
+    // shooterTimer1.start();    
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // if(timer.get()>2){
-    //   Robot.drivetrain.setMotors(0, 0);
+    // if(shooterTimer1.get()>2) {
+    //   Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+    //   Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    //   firstBallShot = true;
+    //   shooterTimer1.reset();
+    //   shooterTimer2.start();
+    //   //Robot.drivetrain.setMotors(0.3,0.3);
     // }
+    // if(firstBallShot && shooterTimer2.get()>2) {
+    //   Robot.drivetrain.setMotors(0,0);
+    //   Robot.intake.setRetracted();
+    //   Robot.intake.setMotor(Constants.intakeSpeed);
+    // }
+
   }
 
   @Override

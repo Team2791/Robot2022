@@ -18,6 +18,7 @@ public class TwoBallManuel extends CommandBase {
   private boolean finish = false;
   public TwoBallManuel(boolean twoball) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.indexer);
     twoballs = twoball;
   }
 
@@ -45,6 +46,7 @@ public class TwoBallManuel extends CommandBase {
     if(Robot.indexer.getUpperLimitSwitch()==false && timer.get()>0.35) {
       Robot.indexer.stopLowerMotor();
       Robot.indexer.stopUpperMotor();
+      
 
     }
 
