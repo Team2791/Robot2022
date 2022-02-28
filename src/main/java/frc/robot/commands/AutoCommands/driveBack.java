@@ -13,6 +13,7 @@ public class driveBack extends CommandBase {
   /** Creates a new driveBack. */
   boolean finished=false;
   Timer timer;
+  double speed1 = 0, speed2 = -0.05;
   public driveBack() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
@@ -22,17 +23,28 @@ public class driveBack extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    timer.reset();
     timer.start();
-    Robot.drivetrain.setMotors(-0.45,-0.5); //.5.5
+     //.5.5
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>1.15) {
-      Robot.drivetrain.setMotors(0,0);
-      finished=true;
+
+    if(timer.get()<1.15) {
+       if(speed1>-.45){
+        speed1-=0.01; //tune for ramp up
+        speed2-=0.01; //tune for ramp up
+      }
+      Robot.drivetrain.setMotors(speed1, speed2);
     }
+    else{
+      Robot.drivetrain.setMotors(0, 0);
+      finished = true;
+    }
+     
+    
   }
   // btw joes phone password is 830216
   // Called once the command ends or is interrupted.
@@ -43,5 +55,5 @@ public class driveBack extends CommandBase {
   @Override
   public boolean isFinished() {
     return finished;
-  }
+  } 
 }
