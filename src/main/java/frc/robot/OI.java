@@ -1,24 +1,25 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
-import frc.robot.commands.IntakeIndexerEnd;
-import frc.robot.commands.IntakeIndexerStart;
+//import frc.robot.commands.IntakeIndexerEnd;
+//import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
 //import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.stopMotors;
-import frc.robot.commands.CommandGroups.IntakeAndIndex;
+import frc.robot.commands.CommandGroups.*;
 import frc.robot.commands.IndexerCommands.*;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
 
 public class OI {
-    public static Joystick driverStick;
-    public static Joystick operatorStick;
+    public static XboxController driverStick;
+    public static XboxController operatorStick;
     public static Joystick pitStick; 
     private Button driveButton;
     private Button driverLB, driverRB;
@@ -31,13 +32,13 @@ public class OI {
     private Button driverX;
     private Button driverRS, driverLS;
     private Button driverRX;
-    protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
+    protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadUp, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
     private Button operatorA, operatorB, operatorX, operatorY;
     private Button pitA, pitB, pitX, pitY; 
 
     public OI(){
-        driverStick = new Joystick(0);
-        operatorStick = new Joystick(1);
+        driverStick = new XboxController(0);
+        operatorStick = new XboxController(1);
         pitStick = new Joystick(3);
 
         initButtons();
@@ -47,32 +48,29 @@ public class OI {
         //MAP JOYSTICK CONTROLS HERE:
 
         driverA.whenHeld(new IntakeAndIndex());
-   
+        //driverY.whenHeld(new RunIntake());
+
 
         //Drive Commmands
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
-
-        //Intake wheels 
-        //driverA.whileHeld(new RunIntake());
-        //driverA.whenReleased(new StopIntake());
-        //driverY.whenPressed(new StopIntake());
-
+       
+    
         //Intake up and down 
         driverX.whenPressed(new RetractIntake()); //intake up (no taking in game piece)
         driverB.whenPressed(new ReleaseIntake()); //intake down (taking in game piece)
+        driverY.whenHeld(new ReverseIntake());
 
         //Indexer
-        driverDPadLeft.whileHeld(new ReverseIndexer());
-        driverDPadLeft.whenPressed(new ReleaseIntake());
-        driverDPadLeft.whenReleased(new StopIndexer());
+        operatorDPadDown.whileHeld(new ReverseIndexer());
+        operatorDPadDown.whenPressed(new ReleaseIntake());
+        operatorDPadDown.whenReleased(new StopIndexer());
 
-        driverDPadRight.whileHeld(new RunIndexerBelts());
-        driverDPadRight.whenPressed(new ReleaseIntake());
-        driverDPadRight.whenReleased(new StopIndexer());
+        operatorDPadUp.whileHeld(new RunIndexerBelts());
+        operatorDPadUp.whenPressed(new ReleaseIntake());
+        operatorDPadUp.whenReleased(new StopIndexer());
 
-        //operatorRT.whenPressed(new ReleaseBallManual());
-
+        operatorRB.whenHeld(new RunIndexer());
 
         operatorRT.whenHeld(new TwoBallManuel(Robot.indexer.getLowerLimitSwitch()));
         
@@ -80,15 +78,10 @@ public class OI {
         //MAP Operator joystick here:
 
         //Shooter
-        operatorB.whileHeld(new ShooterTest());
+        //operatorB.whileHeld(new ShooterTest());
+        operatorA.whenHeld(new UpperHubClose());
+        operatorB.whenHeld(new LowerHubClose());
         operatorLT.whenPressed(new StopFlywheel());
-
-        //intake and indexer
-        operatorA.whileHeld(new IntakeIndexerStart());
-        operatorA.whenReleased(new IntakeIndexerEnd());
-        operatorY.whenPressed(new IntakeIndexerEnd());
-
-
 
         //Climb commands
         //operatorY.whenPressed(new retractClimbPiston());
@@ -119,7 +112,7 @@ public class OI {
             driverDPadUp = new DPadButton(driverStick, DPadButton.kDPadUp);
             driverDPadLeft = new DPadButton(driverStick, DPadButton.kDPadLeft);
             driveButton = new MultiButton(new Button[] {
-                new AnalogButton(driverStick, 3, 2, 0, 0.2),
+                new AnalogButton(driverStick, 3),
                 driverRB,
                 driverLB
             });
@@ -137,6 +130,8 @@ public class OI {
             operatorRT = new AnalogButton(operatorStick, 3);
             operatorLS = new AnalogButton(operatorStick, 1);
             operatorDPadDown = new DPadButton(operatorStick, DPadButton.kDPadDown);
+            operatorDPadUp = new DPadButton(operatorStick, DPadButton.kDPadUp);
+
             operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
             operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
         }

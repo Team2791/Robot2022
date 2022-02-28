@@ -5,33 +5,38 @@
 package frc.robot.commands.ShooterCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class StopFlywheel extends CommandBase {
-  /** Creates a new StopFlywheel. */
-  public StopFlywheel() {
+public class UpperHubClose extends CommandBase {
+  /** Creates a new UpperHubClose. */
+  public UpperHubClose() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() {}
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    Robot.shooter.setFrontShooterPID(Constants.kUpperFrontCloseSpeed);
+    Robot.shooter.setBackShooterPID(Constants.kUpperBackCloseSpeed);
+
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
     Robot.shooter.setFrontFlywheel(0);
     Robot.shooter.setBackFlywheel(0);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

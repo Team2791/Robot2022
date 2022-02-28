@@ -1,19 +1,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class DriveWithJoystick extends CommandBase {
-    private Joystick stick;
+    private XboxController stick;
     private boolean isSquaredTurn;
     private double deadzone;
 
-    public DriveWithJoystick(Joystick stick, double deadzone) {
+    public DriveWithJoystick(XboxController driverStick, double deadzone) {
        addRequirements(Robot.drivetrain);
-        this.stick = stick;
+        this.stick = driverStick;
         this.deadzone = deadzone;
 
     }

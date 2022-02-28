@@ -13,8 +13,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double kCreep = 0.2;
-    public static final double TURN_FACTOR = 0.55;
+    public static final double kCreep = 0.3;
+    public static final double TURN_FACTOR = -0.55;
 
     public static final double kClimberTime = 0.1;
     public static final double kClimbSpeedUp = 0.5;
@@ -22,7 +22,7 @@ public final class Constants {
 
     public static final double bottomindexerSpeed = 1;
     public static final double topindexerSpeed = 1;
-    public static final double intakeSpeed = 0.3;
+    public static final double intakeSpeed = 0.9;
 
     public static final double frontFlySpeed = 0.4;
     public static final double backFlySpeed = -0.3;
@@ -36,10 +36,20 @@ public final class Constants {
     //kD: increasing this will help decrease the amplitude of the oscillations (prevents overshooting)
     //to determine values, start with kP; increase until oscillations start, then decrease back down to where there were no oscillations
     //then, if needed, increase kD slightly
-    public static final double BackFlywheelkP = 0;
+    public static final double BackFlywheelkP = 0;//.001;//.09;
     public static final double BackFlywheelkFF = 0;
     public static final double BackFlywheelkD = 0;
     public static final double FrontFlywheelkFF = 0;
-    public static final double FrontFlywheelkP = 0;
+    public static final double FrontFlywheelkP = 0;//.01;//.135;
     public static final double FrontFlywheelkD = 0;
+
+//P values tried 10,5,1 , .1,, .01, .001
+    public static final double kUpperFrontCloseSpeed = .45; //45 good
+    public static final double kUpperBackCloseSpeed = -.95; //65 good
+    public static final double kLowerFrontCloseSpeed = 0.1;
+    public static final double kLowerBackCloseSpeed = -.5;
+
+    public static final double kUpperFrontCloseVelocity = 2350;
+    public static final double kUpperBackCloseVelocity = -3455;
+    public static final double driveTime = 1.25;
 }
