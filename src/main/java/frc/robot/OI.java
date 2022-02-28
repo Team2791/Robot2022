@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
@@ -17,8 +18,8 @@ import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
 
 public class OI {
-    public static Joystick driverStick;
-    public static Joystick operatorStick;
+    public static XboxController driverStick;
+    public static XboxController operatorStick;
     public static Joystick pitStick; 
     private Button driveButton;
     private Button driverLB, driverRB;
@@ -36,8 +37,8 @@ public class OI {
     private Button pitA, pitB, pitX, pitY; 
 
     public OI(){
-        driverStick = new Joystick(0);
-        operatorStick = new Joystick(1);
+        driverStick = new XboxController(0);
+        operatorStick = new XboxController(1);
         pitStick = new Joystick(3);
 
         initButtons();
@@ -111,7 +112,7 @@ public class OI {
             driverDPadUp = new DPadButton(driverStick, DPadButton.kDPadUp);
             driverDPadLeft = new DPadButton(driverStick, DPadButton.kDPadLeft);
             driveButton = new MultiButton(new Button[] {
-                new AnalogButton(driverStick, 3, 2, 0, 0.2),
+                new AnalogButton(driverStick, 3),
                 driverRB,
                 driverLB
             });
