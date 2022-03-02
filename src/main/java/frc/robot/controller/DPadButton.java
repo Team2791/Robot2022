@@ -9,10 +9,10 @@ public class DPadButton extends Button{
     public static final int kDPadRight = 1;
     public static final int kDPadDown = 2;
     public static final int kDPadLeft = 3;
-    private XboxController stick;
+    private Joystick stick;
     private int direction;
 
-    public DPadButton(XboxController driverStick, int direction) {
+    public DPadButton(Joystick driverStick, int direction) {
         this.direction = direction;
         this.stick = driverStick;
     }

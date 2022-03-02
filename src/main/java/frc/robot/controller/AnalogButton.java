@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 
 public class AnalogButton extends Button{
-    XboxController stick;
+    Joystick stick;
     int positive;
     int negative;
     int alternate;
     double dead;
 
-    public AnalogButton(XboxController driverStick, int positiveAxis) {
+    public AnalogButton(Joystick driverStick, int positiveAxis) {
         stick = driverStick;
         positive = positiveAxis;
         negative = -1;
@@ -19,7 +19,7 @@ public class AnalogButton extends Button{
         dead = 0.2;
     }
 
-    public AnalogButton(XboxController joystick, int positiveAxis, int negativeAxis) {
+    public AnalogButton(Joystick joystick, int positiveAxis, int negativeAxis) {
         stick = joystick;
         positive = positiveAxis;
         negative = negativeAxis;
@@ -27,14 +27,14 @@ public class AnalogButton extends Button{
         dead = 0.2;
     }
 
-    public AnalogButton(XboxController joystick, int positiveAxis, int negativeAxis, double deadZone) {
+    public AnalogButton(Joystick joystick, int positiveAxis, int negativeAxis, double deadZone) {
         stick = joystick;
         positive = positiveAxis;
         negative = negativeAxis;
         alternate = -1;
         dead = Math.abs(deadZone);
     }
-    public AnalogButton(XboxController joystick, int positiveAxis, int negativeAxis, int alternateAxis, double deadZone) {
+    public AnalogButton(Joystick joystick, int positiveAxis, int negativeAxis, int alternateAxis, double deadZone) {
         stick = joystick;
         positive = positiveAxis;
         negative = negativeAxis;
