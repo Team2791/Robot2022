@@ -27,11 +27,14 @@ public class Climber extends SubsystemBase {
 
 
   public Climber() {
+      //order of operations: retracted until motors start moving down. 
+      //when the motors move down, the soleinoids are extended
+      //when the motors stop moving down, the solenoids retract
     super.register();
     climbLeft = new TalonFX(RobotMap.leftClimbID);
     climbRight = new TalonFX(RobotMap.rightClimbID);
     climbSol = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.climb);
-    
+    resetClimberPosition();
 
      
   }
@@ -48,6 +51,17 @@ public class Climber extends SubsystemBase {
   public void setRetracted() {
     //pins out (motors cannot run)
     climbSol.set(false);
+  }
+  public double getLeftClimbPosition() {
+      return climbRight.getSelectedSensorPosition();
+  }
+  public double getRightClimbPosition() {
+    return climbLeft.getSelectedSensorPosition();
+  }
+  public void resetClimberPosition() {
+      climbRight.setSelectedSensorPosition(0);
+      climbLeft.setSelectedSensorPosition(0);
+
   }
   @Override
   public void periodic() {

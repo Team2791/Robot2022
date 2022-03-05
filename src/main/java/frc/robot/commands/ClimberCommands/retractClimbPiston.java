@@ -11,6 +11,8 @@ public class retractClimbPiston extends CommandBase {
   /** Creates a new retractClimbPiston. */
   public retractClimbPiston() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.climber);
+
   }
 
   // Called when the command is initially scheduled.

@@ -10,7 +10,8 @@ import frc.robot.Robot;
 public class extendClimbPiston extends CommandBase {
   /** Creates a new extendClimbPiston. */
   public extendClimbPiston() {
-    // Use addRequirements() here to declare subsystem dependencies.
+    // Use addRequirements() here to declare subsystem dependencies..
+    addRequirements(Robot.climber);
   }
 
   // Called when the command is initially scheduled.

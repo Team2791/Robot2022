@@ -17,8 +17,8 @@ public class AutoLowShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.shooter.setFrontFlywheel(Constants.kLowerFrontCloseSpeed);
-    Robot.shooter.setBackFlywheel(Constants.kLowerBackCloseSpeed);
+    Robot.shooter.setFrontFlywheel(Constants.kUpperFrontCloseSpeed);
+    Robot.shooter.setBackFlywheel(Constants.kUpperBackCloseSpeed);
 
   }
 

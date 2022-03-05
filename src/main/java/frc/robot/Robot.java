@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.stopMotors;
 import frc.robot.commands.AutoCommandGroups.ShootIntakeShoot;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
@@ -86,7 +88,7 @@ public class Robot extends TimedRobot {
       m_visionThread.start();
       CameraServer.startAutomaticCapture();
 
-      CameraServer.startAutomaticCapture();
+      //CameraServer.startAutomaticCapture();
     m_visionThread2 = 
     new Thread ( 
       () -> {
@@ -108,7 +110,7 @@ public class Robot extends TimedRobot {
       m_visionThread2.setDaemon(true);
       m_visionThread2.start();
       CameraServer.startAutomaticCapture();
-      
+
     timer = new Timer();
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
@@ -143,6 +145,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(CommandScheduler.getInstance());
     SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
     
+   
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -163,6 +167,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+  
+
+
     // timer.reset();
     // shooterTimer1.reset();
     // shooterTimer2.reset();
@@ -201,6 +208,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    Robot.climber.resetClimberPosition();
 
     SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
     SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);

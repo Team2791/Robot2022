@@ -17,10 +17,10 @@ public final class Constants {
     public static final double TURN_FACTOR = -0.55;
 
     public static final double kClimberTime = 0.1;
-    public static final double kClimbSpeedUp = 0.5;
-    public static final double kClimbSpeedDown = -0.5;
+    public static final double kClimbSpeedUp = 0.25;
+    public static final double kClimbSpeedDown = -0.25;
 
-    public static final double bottomindexerSpeed = 1;
+    public static final double bottomindexerSpeed = 0.75;
     public static final double topindexerSpeed = 1;
     public static final double intakeSpeed = 0.9;
 
@@ -45,13 +45,13 @@ public final class Constants {
 
 //P values tried 10,5,1 , .1,, .01, .001
     public static final double kUpperFrontCloseSpeed = .40; //45 good
-    public static final double kUpperBackCloseSpeed = -.40; //65 good
+    public static final double kUpperBackCloseSpeed = -.45; //65 good
     public static final double kLowerFrontCloseSpeed = 0.07;
     public static final double kLowerBackCloseSpeed = -.40
     ;
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
-    public static final double driveTime = 1.25;
+    public static final double driveTime = 1.45;
 }
 

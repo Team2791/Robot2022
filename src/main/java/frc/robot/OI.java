@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.creep;
+import frc.robot.commands.creep2;
 //import frc.robot.commands.IntakeIndexerEnd;
 //import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
@@ -22,7 +24,7 @@ public class OI {
     public static Joystick driverStick;
     public static Joystick operatorStick;
     public static XboxController pitStick; 
-    private Button driveButton;
+    Button driveButton;
     private Button driverLB, driverRB;
     private Button driverStart, driverBack;
     private Button operatorStart;
@@ -53,8 +55,8 @@ public class OI {
 
 
         //Drive Commmands
-        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-        driveButton.whenReleased(new stopMotors());
+         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
+         driveButton.whenReleased(new stopMotors());
        
     
         //Intake up and down 
@@ -64,11 +66,9 @@ public class OI {
 
         //Indexer
         operatorDPadDown.whileHeld(new ReverseIndexer());
-        operatorDPadDown.whenPressed(new ReleaseIntake());
         operatorDPadDown.whenReleased(new StopIndexer());
 
         operatorDPadUp.whileHeld(new RunIndexerBelts());
-        operatorDPadUp.whenPressed(new ReleaseIntake());
         operatorDPadUp.whenReleased(new StopIndexer());
 
         operatorRB.whenHeld(new RunIndexer());
@@ -83,13 +83,17 @@ public class OI {
         operatorB.whenHeld(new LowerHubClose());
         operatorLT.whenPressed(new StopFlywheel());
 
+        driverRB.whenHeld(new creep());
+        driverLB.whenHeld(new creep2());
+
         //Climb commands
-        operatorY.whenPressed(new retractClimbPiston());
-        operatorX.whenPressed(new extendClimbPiston());
-        operatorDPadRight.whileHeld(new RunClimb()); //no timer for solenoids (MoveClimb.java for that)
-        operatorDPadLeft.whileHeld(new RunClimbDown()); //no timer 
+        // operatorDPadRight.whenPressed(new ClimberUp());
+
+        // operatorDPadLeft.whileHeld(new ClimberDown()); //no timer 
+
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());
+        operatorDPadLeft.whenReleased(new retractClimbPiston());
         
     }
 
@@ -112,11 +116,15 @@ public class OI {
             driverDPadUp = new DPadButton(driverStick, DPadButton.kDPadUp);
             driverDPadLeft = new DPadButton(driverStick, DPadButton.kDPadLeft);
             driveButton = new MultiButton(new Button[] {
-                new AnalogButton(driverStick, 0),
-                driverRB,
-                driverLB
+                new AnalogButton(driverStick, 3,2,0,0.2)
+        
             });
 
+            // driveButton = new MultiButton(new Button[] {
+            //     new AnalogButton(driverStick, 0),
+            //     driverLB,
+            //     driverRB
+            // });
 //OPERATOR BUTTONS//
             operatorA = new JoystickButton(operatorStick, 1);
             operatorB = new JoystickButton(operatorStick, 2);

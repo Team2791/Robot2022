@@ -15,7 +15,7 @@ public class RobotMap {
 
     public static final int intakeMotor = 5;
     public static final int intakeLeft = 12;
-    public static final int climb = 1;
+    public static final int climb = 11;
     public static final int intakeRight = 13;
     
 

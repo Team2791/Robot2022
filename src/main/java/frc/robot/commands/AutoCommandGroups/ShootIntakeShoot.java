@@ -10,8 +10,10 @@ import frc.robot.commands.AutoCommands.AutoLowShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.driveBack;
+import frc.robot.commands.AutoCommands.wait2sec;
 import frc.robot.commands.CommandGroups.ShootBall;
 import frc.robot.commands.IndexerCommands.RunIndexer;
+import frc.robot.commands.IndexerCommands.RunIndexerBelts;
 import frc.robot.commands.IndexerCommands.TwoBallManuel;
 import frc.robot.commands.IntakeCommands.RetractIntake;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
@@ -24,7 +26,7 @@ public class ShootIntakeShoot extends SequentialCommandGroup {
   public ShootIntakeShoot() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    //addCommands(new ShootBall(), new StopFlywheel(), new driveIntakeIndexAuto(), new RunIndexer2(), new driveBack(), new ShootBall(), new StopFlywheel() );
-    addCommands(new driveIntakeIndexAuto(), new AutoLowShot(), new AutoRunIndexer(),new driveBack(), new ShootBall(), new AutoRunIndexerBelts(),new StopFlywheel() );
+    //addCommands(new ShootBall(), new StopFlywheel(), new driveIntakeIndexAuto(), new RunIndexer(), new driveBack(), new ShootBall(), new StopFlywheel() );
+    addCommands(new driveIntakeIndexAuto(), new AutoRunIndexer(),new driveBack(), new AutoLowShot(), new wait2sec(), new TwoBallManuel(true),new TwoBallManuel(true), new StopFlywheel() );
   }
 }

@@ -6,33 +6,28 @@ package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
 
-public class drive extends CommandBase {
-  /** Creates a new drive. */
+public class wait2sec extends CommandBase {
+  /** Creates a new wait2sec. */
   Timer timer;
-  boolean finished = false ;
-  public drive() {
+  boolean finished;
+  public wait2sec() {
     // Use addRequirements() here to declare subsystem dependencies.
-    timer = new Timer();
-    addRequirements(Robot.drivetrain);
+    Timer timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    timer.reset();
     timer.start();
-    Robot.drivetrain.setMotors(0.22,0.22);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>Constants.driveTime) {
-      Robot.drivetrain.setMotors(0,0);
+    if(timer.get()>2)
       finished = true;
-    }
   }
 
   // Called once the command ends or is interrupted.
