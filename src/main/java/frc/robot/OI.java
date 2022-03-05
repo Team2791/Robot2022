@@ -9,7 +9,7 @@ import frc.robot.commands.DriveWithJoystick;
 //import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
-//import frc.robot.commands.ClimberCommands.*;
+import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.stopMotors;
 import frc.robot.commands.CommandGroups.*;
 import frc.robot.commands.IndexerCommands.*;
@@ -47,7 +47,7 @@ public class OI {
 
         //MAP JOYSTICK CONTROLS HERE:
 
-        driverA.whenHeld(new IntakeAndIndex());
+        driverA.whenHeld(new ExtendRunIntake());
         //driverY.whenHeld(new RunIntake());
 
 
@@ -75,7 +75,6 @@ public class OI {
         operatorRT.whenHeld(new TwoBallManuel(Robot.indexer.getLowerLimitSwitch()));
         
 
-        //MAP Operator joystick here:
 
         //Shooter
         //operatorB.whileHeld(new ShooterTest());
@@ -84,12 +83,12 @@ public class OI {
         operatorLT.whenPressed(new StopFlywheel());
 
         //Climb commands
-        //operatorY.whenPressed(new retractClimbPiston());
-        //operatorA.whenPressed(new extendClimbPiston());
-        //operatorRB.whileHeld(new RunClimb());
-        //operatorLB.whileHeld(new RunClimbDown());
-        //operatorRB.whenReleased(new StopClimb());
-        //operatorLB.whenReleased(new StopClimb());
+        operatorY.whenPressed(new retractClimbPiston());
+        operatorX.whenPressed(new extendClimbPiston());
+        operatorDPadRight.whileHeld(new RunClimb()); //no timer for solenoids (MoveClimb.java for that)
+        operatorDPadLeft.whileHeld(new RunClimbDown()); //no timer 
+        operatorDPadRight.whenReleased(new StopClimb());
+        operatorDPadLeft.whenReleased(new StopClimb());
         
     }
 

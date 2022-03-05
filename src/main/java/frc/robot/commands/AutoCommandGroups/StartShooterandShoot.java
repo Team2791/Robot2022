@@ -5,7 +5,7 @@
 package frc.robot.commands.AutoCommandGroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.AutoCommands.RunAutoIndexer;
+import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.RunShooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -16,7 +16,7 @@ public class StartShooterandShoot extends ParallelCommandGroup {
   public StartShooterandShoot() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new RunShooter(),new RunAutoIndexer());
+    addCommands(new RunShooter(),new AutoRunIndexerBelts());
   }
 }
 

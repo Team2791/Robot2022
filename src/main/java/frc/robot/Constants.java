@@ -44,12 +44,14 @@ public final class Constants {
     public static final double FrontFlywheelkD = 0;
 
 //P values tried 10,5,1 , .1,, .01, .001
-    public static final double kUpperFrontCloseSpeed = .45; //45 good
-    public static final double kUpperBackCloseSpeed = -.95; //65 good
-    public static final double kLowerFrontCloseSpeed = 0.1;
-    public static final double kLowerBackCloseSpeed = -.5;
+    public static final double kUpperFrontCloseSpeed = .40; //45 good
+    public static final double kUpperBackCloseSpeed = -.40; //65 good
+    public static final double kLowerFrontCloseSpeed = 0.07;
+    public static final double kLowerBackCloseSpeed = -.40
+    ;
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
     public static final double driveTime = 1.25;
 }
+

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.AutoLowShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
+import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.driveBack;
 import frc.robot.commands.CommandGroups.ShootBall;
 import frc.robot.commands.IndexerCommands.RunIndexer;
@@ -24,6 +25,6 @@ public class ShootIntakeShoot extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     //addCommands(new ShootBall(), new StopFlywheel(), new driveIntakeIndexAuto(), new RunIndexer2(), new driveBack(), new ShootBall(), new StopFlywheel() );
-    addCommands(new driveIntakeIndexAuto(), new AutoLowShot(), new AutoRunIndexer(),new driveBack(), new ShootBall(), new StopFlywheel() );
+    addCommands(new driveIntakeIndexAuto(), new AutoLowShot(), new AutoRunIndexer(),new driveBack(), new ShootBall(), new AutoRunIndexerBelts(),new StopFlywheel() );
   }
 }

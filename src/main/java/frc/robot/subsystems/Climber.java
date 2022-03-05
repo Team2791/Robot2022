@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
@@ -28,7 +29,7 @@ public class Climber extends SubsystemBase {
     climbRight = new TalonFX(RobotMap.rightClimbID);
     
 
-    climbSol = new Solenoid(PneumaticsModuleType.CTREPCM, RobotMap.climb);
+    climbSol = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.climb);
     
 
 

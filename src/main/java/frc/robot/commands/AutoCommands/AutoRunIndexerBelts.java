@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class RunAutoIndexer extends CommandBase {
+public class AutoRunIndexerBelts extends CommandBase {
   Timer shooterTimer,indexerTimer;
   private boolean finished= false;
   /** Creates a new RunIndexer. */
-  public RunAutoIndexer() {
+  public AutoRunIndexerBelts() {
     // Use addRequirements() here to declare subsystem dependencies.
     shooterTimer = new Timer();
     indexerTimer = new Timer();

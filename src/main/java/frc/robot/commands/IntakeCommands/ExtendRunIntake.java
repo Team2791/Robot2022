@@ -19,12 +19,15 @@ public class ExtendRunIntake extends CommandBase {
   @Override
   public void initialize() {
     Robot.intake.setRetracted();
-    Robot.intake.setMotor(Constants.intakeSpeed);
+    // Robot.intake.setMotor(Constants.intakeSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+   
+    Robot.intake.setMotor(Constants.intakeSpeed);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

@@ -26,23 +26,18 @@ public class driveBack extends CommandBase {
     timer.reset();
     timer.start();
      //.5.5
+     Robot.drivetrain.setMotors(-0.5,-0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if(timer.get()<1.15) {
-       if(speed1>-.45){
-        speed1-=0.01; //tune for ramp up
-        speed2-=0.01; //tune for ramp up
-      }
-      Robot.drivetrain.setMotors(speed1, speed2);
-    }
-    else{
-      Robot.drivetrain.setMotors(0, 0);
+    if(timer.get()>1.15) {
+      Robot.drivetrain.setMotors(0,0);
       finished = true;
     }
+   
+
      
     
   }
