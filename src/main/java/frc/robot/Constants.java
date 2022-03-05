@@ -13,7 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double kCreep = 0.3;
+    public static final double kCreep = 0.25;
     public static final double TURN_FACTOR = -0.55;
 
     public static final double kClimberTime = 0.1;

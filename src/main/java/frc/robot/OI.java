@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
@@ -18,9 +19,9 @@ import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
 
 public class OI {
-    public static XboxController driverStick;
-    public static XboxController operatorStick;
-    public static Joystick pitStick; 
+    public static Joystick driverStick;
+    public static Joystick operatorStick;
+    public static XboxController pitStick; 
     private Button driveButton;
     private Button driverLB, driverRB;
     private Button driverStart, driverBack;
@@ -37,9 +38,9 @@ public class OI {
     private Button pitA, pitB, pitX, pitY; 
 
     public OI(){
-        driverStick = new XboxController(0);
-        operatorStick = new XboxController(1);
-        pitStick = new Joystick(3);
+        driverStick = new Joystick(0);
+        operatorStick = new Joystick(1);
+        pitStick = new XboxController(3);
 
         initButtons();
         
@@ -99,7 +100,7 @@ public class OI {
             driverB = new JoystickButton(driverStick, 2);
             driverX = new JoystickButton(driverStick,3);
             driverY = new JoystickButton(driverStick,4);
-        driverBack = new JoystickButton(driverStick, 7);
+            driverBack = new JoystickButton(driverStick, 7);
             driverStart = new JoystickButton(driverStick, 8);
             driverRB = new JoystickButton(driverStick, 6);
             driverLB = new JoystickButton(driverStick, 5);
@@ -111,7 +112,7 @@ public class OI {
             driverDPadUp = new DPadButton(driverStick, DPadButton.kDPadUp);
             driverDPadLeft = new DPadButton(driverStick, DPadButton.kDPadLeft);
             driveButton = new MultiButton(new Button[] {
-                new AnalogButton(driverStick, 3),
+                new AnalogButton(driverStick, 0),
                 driverRB,
                 driverLB
             });

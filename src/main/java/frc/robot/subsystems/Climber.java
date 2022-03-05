@@ -34,25 +34,25 @@ public class Climber extends SubsystemBase {
 
 
      
-  }
-  public void setMotors(double speed) {
-    climbLeft.set(TalonFXControlMode.PercentOutput,speed);
-    climbRight.set(TalonFXControlMode.PercentOutput,speed);
+//   }
+//   public void setMotors(double speed) {
+//     climbLeft.set(TalonFXControlMode.PercentOutput,speed);
+//     climbRight.set(TalonFXControlMode.PercentOutput,speed);
     
 
-  }
-  public void setExtended() {
-    //pins in (motors can run)
-    climbSol.set(true);
-  }
-  public void setRetracted() {
-    //pins out (motors cannot run)
-    climbSol.set(false);
-  }
-  @Override
-  public void periodic() {
-    SmartDashboard.putNumber("Right Velocity", climbRight.getActiveTrajectoryVelocity());
-    SmartDashboard.putNumber("Left Velocity", climbLeft.getActiveTrajectoryVelocity());
-    // This method will be called once per scheduler run
-  }
-}
+//   }
+//   public void setExtended() {
+//     //pins in (motors can run)
+//     climbSol.set(true);
+//   }
+//   public void setRetracted() {
+//     //pins out (motors cannot run)
+//     climbSol.set(false);
+//   }
+//   @Override
+//   public void periodic() {
+//     SmartDashboard.putNumber("Right Velocity", climbRight.getActiveTrajectoryVelocity());
+//     SmartDashboard.putNumber("Left Velocity", climbLeft.getActiveTrajectoryVelocity());
+//     // This method will be called once per scheduler run
+//   }
+// }

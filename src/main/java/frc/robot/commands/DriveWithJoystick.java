@@ -7,11 +7,11 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class DriveWithJoystick extends CommandBase {
-    private XboxController stick;
+    private Joystick stick;
     private boolean isSquaredTurn;
     private double deadzone;
 
-    public DriveWithJoystick(XboxController driverStick, double deadzone) {
+    public DriveWithJoystick(Joystick driverStick, double deadzone) {
        addRequirements(Robot.drivetrain);
         this.stick = driverStick;
         this.deadzone = deadzone;
@@ -42,7 +42,6 @@ public class DriveWithJoystick extends CommandBase {
         }
         
         double turn = stick.getRawAxis(0) * Constants.TURN_FACTOR;
-
         if(turn < deadzone && turn > -deadzone) {
             turn = 0;
         }

@@ -25,9 +25,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoCommandGroups.ShootIntakeShoot;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
- import frc.robot.subsystems.Indexer;
- import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
+import frc.robot.commands.AutoCommandGroups.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -46,7 +47,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static Indexer indexer;
   public static Drivetrain drivetrain;
-  public static Climber climber;
+  // public static Climber climber;
   //public static PowerDistribution pdp;
 
   private static double setpointFront = 0; //for PID testing
@@ -91,7 +92,7 @@ public class Robot extends TimedRobot {
     indexer = new Indexer();
 
     drivetrain = new Drivetrain();
-    climber = new Climber();
+    // climber = new Climber();
     //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
