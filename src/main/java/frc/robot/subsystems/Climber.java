@@ -5,7 +5,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -21,38 +23,36 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
   private TalonFX climbLeft,climbRight;
   private Solenoid climbSol;
+  private CANCoder climbLeftEncoder, climbRightEncoder;
 
 
   public Climber() {
     super.register();
-    climbLeft = new TalonFX(RobotMap.rightClimbID);
+    climbLeft = new TalonFX(RobotMap.leftClimbID);
     climbRight = new TalonFX(RobotMap.rightClimbID);
-    
-
     climbSol = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.climb);
     
 
-
      
-//   }
-//   public void setMotors(double speed) {
-//     climbLeft.set(TalonFXControlMode.PercentOutput,speed);
-//     climbRight.set(TalonFXControlMode.PercentOutput,speed);
+  }
+  public void setMotors(double speed) {
+    climbLeft.set(TalonFXControlMode.PercentOutput,speed);
+    climbRight.set(TalonFXControlMode.PercentOutput,speed);
     
 
-//   }
-//   public void setExtended() {
-//     //pins in (motors can run)
-//     climbSol.set(true);
-//   }
-//   public void setRetracted() {
-//     //pins out (motors cannot run)
-//     climbSol.set(false);
-//   }
-//   @Override
-//   public void periodic() {
-//     SmartDashboard.putNumber("Right Velocity", climbRight.getActiveTrajectoryVelocity());
-//     SmartDashboard.putNumber("Left Velocity", climbLeft.getActiveTrajectoryVelocity());
-//     // This method will be called once per scheduler run
-//   }
-// }
+  }
+  public void setExtended() {
+    //pins in (motors can run)
+    climbSol.set(true);
+  }
+  public void setRetracted() {
+    //pins out (motors cannot run)
+    climbSol.set(false);
+  }
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber("Right Velocity", climbRight.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Left Velocity", climbLeft.getSelectedSensorPosition());
+    // // This method will be called once per scheduler run
+  }
+}

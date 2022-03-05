@@ -25,10 +25,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoCommandGroups.ShootIntakeShoot;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Shooter;
+ import frc.robot.subsystems.Indexer;
+ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
-import frc.robot.commands.AutoCommandGroups.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -38,6 +37,7 @@ import frc.robot.commands.AutoCommandGroups.*;
  */
 public class Robot extends TimedRobot {
   Thread m_visionThread;
+  Thread m_visionThread2;
   private Command m_autonomousCommand;
   
   //private RobotContainer m_robotContainer;
@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static Indexer indexer;
   public static Drivetrain drivetrain;
-  // public static Climber climber;
+  public static Climber climber;
   //public static PowerDistribution pdp;
 
   private static double setpointFront = 0; //for PID testing
@@ -84,6 +84,31 @@ public class Robot extends TimedRobot {
       });
       m_visionThread.setDaemon(true);
       m_visionThread.start();
+      CameraServer.startAutomaticCapture();
+
+      CameraServer.startAutomaticCapture();
+    m_visionThread2 = 
+    new Thread ( 
+      () -> {
+        UsbCamera camera2 = CameraServer.startAutomaticCapture();
+        camera2.setResolution(640, 480);
+        CvSink cvSink2 = CameraServer.getVideo();
+        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 640, 480);
+
+        Mat mat2 = new Mat();
+        while(!Thread.interrupted()) {
+          if(cvSink2.grabFrame(mat2) == 0) {
+            outputStream2.notifyError(cvSink2.getError());
+            continue;
+          }
+          Imgproc.rectangle(mat2, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
+          outputStream2.putFrame(mat2);
+        }
+      });
+      m_visionThread2.setDaemon(true);
+      m_visionThread2.start();
+      CameraServer.startAutomaticCapture();
+      
     timer = new Timer();
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
@@ -92,7 +117,7 @@ public class Robot extends TimedRobot {
     indexer = new Indexer();
 
     drivetrain = new Drivetrain();
-    // climber = new Climber();
+    climber = new Climber();
     //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
