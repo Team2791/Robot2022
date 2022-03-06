@@ -50,18 +50,14 @@ public class OI {
 
         //MAP JOYSTICK CONTROLS HERE:
 
+        //Intake commands 
         driverA.whenHeld(new ExtendRunIntake());
-        //driverY.whenHeld(new RunIntake());
-
 
         //Drive Commmands
          driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
          driveButton.whenReleased(new stopMotors());
        
-    
         //Intake up and down 
-        driverX.whenPressed(new RetractIntake()); //intake up (no taking in game piece)
-        driverB.whenPressed(new ReleaseIntake()); //intake down (taking in game piece)
         driverY.whenHeld(new ReverseIntake());
 
         //Indexer
@@ -73,9 +69,8 @@ public class OI {
 
         operatorRB.whenHeld(new RunIndexer());
 
-        operatorRT.whenHeld(new TwoBallManuel(Robot.indexer.getLowerLimitSwitch()));
+        operatorRT.whenHeld(new TwoBallManuel());
         
-
 
         //Shooter
         //operatorB.whileHeld(new ShooterTest());

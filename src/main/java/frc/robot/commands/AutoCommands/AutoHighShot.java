@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class AutoLowShot extends CommandBase {
+public class AutoHighShot extends CommandBase {
   /** Creates a new AutoLowShot. */
-  public AutoLowShot() {
+  public AutoHighShot() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -19,7 +20,6 @@ public class AutoLowShot extends CommandBase {
   public void initialize() {
     Robot.shooter.setFrontFlywheel(Constants.kUpperFrontCloseSpeed);
     Robot.shooter.setBackFlywheel(Constants.kUpperBackCloseSpeed);
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.

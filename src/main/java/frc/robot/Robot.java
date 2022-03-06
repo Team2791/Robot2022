@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.stopMotors;
 import frc.robot.commands.AutoCommandGroups.ShootIntakeShoot;
+import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
  import frc.robot.subsystems.Indexer;
@@ -124,7 +125,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    m_autonomousCommand = new ShootIntakeShoot();
+    m_autonomousCommand = new LeftZoneAuto();
   }
 
   /**
@@ -144,9 +145,6 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putData(CommandScheduler.getInstance());
     SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
-    
-   
-    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -166,36 +164,12 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
-    }
-  
-
-
-    // timer.reset();
-    // shooterTimer1.reset();
-    // shooterTimer2.reset();
-    
-    // Robot.shooter.setBackFlywheel(Constants.kUpperBackCloseSpeed);
-    // Robot.shooter.setFrontFlywheel(Constants.kUpperFrontCloseSpeed);
-    // shooterTimer1.start();    
-
+    }  
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // if(shooterTimer1.get()>2) {
-    //   Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    //   Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-    //   firstBallShot = true;
-    //   shooterTimer1.reset();
-    //   shooterTimer2.start();
-    //   //Robot.drivetrain.setMotors(0.3,0.3);
-    // }
-    // if(firstBallShot && shooterTimer2.get()>2) {
-    //   Robot.drivetrain.setMotors(0,0);
-    //   Robot.intake.setRetracted();
-    //   Robot.intake.setMotor(Constants.intakeSpeed);
-    // }
 
   }
 
@@ -248,9 +222,7 @@ public class Robot extends TimedRobot {
     else {
         if(setpointBack!=lastBackSetpoint)
             shooter.setBackShooterPID(setpointBack);
-    }
-
-    
+    }    
   }
 
   @Override

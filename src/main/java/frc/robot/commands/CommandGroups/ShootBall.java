@@ -5,7 +5,7 @@
 package frc.robot.commands.CommandGroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AutoCommands.AutoLowShot;
+import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.IndexerCommands.RunIndexerBelts;
 import frc.robot.commands.IndexerCommands.RunShooter;
 import frc.robot.commands.ShooterCommands.LowerHubClose;
@@ -19,6 +19,6 @@ public class ShootBall extends SequentialCommandGroup {
   public ShootBall() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new AutoLowShot(), new RunIndexerBelts());
+    addCommands(new AutoHighShot(), new RunIndexerBelts());
   }
 }

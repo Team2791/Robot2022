@@ -10,39 +10,24 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class AutoRunIndexerBelts extends CommandBase {
-  Timer shooterTimer,indexerTimer;
-  private boolean finished= false;
+  private boolean finished=false;
   /** Creates a new RunIndexer. */
   public AutoRunIndexerBelts() {
     // Use addRequirements() here to declare subsystem dependencies.
-    shooterTimer = new Timer();
-    indexerTimer = new Timer();
+    addRequirements(Robot.indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooterTimer.reset();
-    shooterTimer.start();
-    
-
+    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(shooterTimer.get()>1.1) {
-      Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-      Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-      shooterTimer.reset();
-      indexerTimer.start();
-    }
-    if(indexerTimer.get()>2) {
-      Robot.indexer.stopLowerMotor();
-      Robot.indexer.stopUpperMotor();
-      finished= true;
-      
-    }
+  
     
   }
 
@@ -55,6 +40,6 @@ public class AutoRunIndexerBelts extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return true;
   }
 }

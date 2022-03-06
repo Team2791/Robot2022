@@ -17,6 +17,7 @@ public class driveIntakeIndexAuto extends ParallelRaceGroup {
   public driveIntakeIndexAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+    //PARALLEL RACE GROUP
     addCommands(new drive(), new ExtendRunIntake(), new RunIndexer());
   }
     // btw joes phone password is 830216

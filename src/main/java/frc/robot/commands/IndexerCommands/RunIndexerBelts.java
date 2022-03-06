@@ -18,21 +18,21 @@ public class RunIndexerBelts extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+   
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // Robot.indexer.stopUpperMotor();
-    // Robot.indexer.stopLowerMotor();
+    Robot.indexer.stopUpperMotor();
+    Robot.indexer.stopLowerMotor();
   }
 
   // Returns true when the command should end.

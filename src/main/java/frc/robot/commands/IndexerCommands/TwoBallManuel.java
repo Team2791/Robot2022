@@ -14,13 +14,9 @@ public class TwoBallManuel extends CommandBase {
   /** Creates a new TwoBallManuel. */
   private Timer timer = new Timer();
   private Timer timer2 = new Timer();
-  private boolean twoballs;
-  private boolean finish = false;
-  public TwoBallManuel(boolean twoball) {
+  public TwoBallManuel() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.indexer);
-    twoballs = twoball;
-  }
+    addRequirements(Robot.indexer);  }
 
   // Called when the command is initially scheduled.
   @Override
@@ -40,31 +36,13 @@ public class TwoBallManuel extends CommandBase {
     if(timer2.get()>0.1) {
       Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
       Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    timer.start();
+      timer.start();
     }
 
     if(Robot.indexer.getUpperLimitSwitch()==false && timer.get()>0.35) {
       Robot.indexer.stopLowerMotor();
       Robot.indexer.stopUpperMotor();
-      
-
     }
-
-    // if(twoballs==true) {
-    //   Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    //   Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-    // }
-    // if(twoballs==false) {
-    //   Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    //   Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
-
-    //   if(Robot.indexer.getLowerLimitSwitch()==true && Robot.indexer.getUpperLimitSwitch()==false) {
-    //     Robot.indexer.stopLowerMotor();
-    //     Robot.indexer.stopUpperMotor();
-    //     finish = true;
-    //   }
-    // }
-    
   }
 
   // Called once the command ends or is interrupted.
@@ -77,6 +55,6 @@ public class TwoBallManuel extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finish;
+    return false;
   }
 }

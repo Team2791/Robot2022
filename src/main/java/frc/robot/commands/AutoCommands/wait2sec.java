@@ -13,7 +13,7 @@ public class wait2sec extends CommandBase {
   boolean finished;
   public wait2sec() {
     // Use addRequirements() here to declare subsystem dependencies.
-    Timer timer = new Timer();
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
