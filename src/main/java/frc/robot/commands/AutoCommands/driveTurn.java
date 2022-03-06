@@ -9,43 +9,49 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class driveBack extends CommandBase {
-  /** Creates a new driveBack. */
-  boolean finished=false;
-  Timer timer;
-  public driveBack() {
+public class driveTurn extends CommandBase {
+  /** Creates a new driveCurved. */
+  Timer timer, timer2;
+  boolean finished = false , part1 = false;;
+  public driveTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.drivetrain);
     timer = new Timer();
+    timer2 = new Timer();
+    addRequirements(Robot.drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
     timer.start();
-     //.5.5
-     Robot.drivetrain.setMotors(-0.49,-0.53);
+    timer.reset();
+    timer2.reset();
+    Robot.drivetrain.setMotors(0.3,0.3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>1.1) {
+    if(timer.get()>0.7 && part1==false) {
       Robot.drivetrain.setMotors(0,0);
+      part1= true;
+    }
+    if(part1) {
+      Robot.drivetrain.setMotors(-0.2,0.2);
+      timer2.start();
+    }
+    if(part1 && timer2.get()>0.8) {
       finished = true;
-    }   
+    }
   }
-  // btw joes phone password is 830216
+
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-     
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return finished;
-  } 
+  }
 }

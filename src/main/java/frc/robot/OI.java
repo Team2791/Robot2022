@@ -77,13 +77,14 @@ public class OI {
         operatorA.whenHeld(new UpperHubClose());
         operatorB.whenHeld(new LowerHubClose());
         operatorLT.whenPressed(new StopFlywheel());
+        operatorY.whenHeld(new longShotOuterTarmac());
 
         driverRB.whenHeld(new creep());
         driverLB.whenHeld(new creep2());
 
         //Climb commands
-        operatorDPadRight.whenHeld(new ClimberUp());
-        operatorDPadLeft.whileHeld(new ClimberDown()); //no timer 
+        // operatorDPadRight.whenHeld(new ClimberUp());
+        // operatorDPadLeft.whileHeld(new ClimberDown()); //no timer 
 
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());

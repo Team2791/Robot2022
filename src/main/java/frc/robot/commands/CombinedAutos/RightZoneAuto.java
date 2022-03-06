@@ -10,6 +10,7 @@ import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.driveBack;
+import frc.robot.commands.AutoCommands.driveBackRightZone;
 import frc.robot.commands.AutoCommands.wait2sec;
 import frc.robot.commands.IndexerCommands.StopIndexer;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
@@ -21,6 +22,6 @@ public class RightZoneAuto extends SequentialCommandGroup {
   public RightZoneAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new driveIntakeIndexAuto(), new AutoRunIndexer(), new driveBack(), new AutoHighShot(), new wait2sec(), new AutoRunIndexerBelts(), new StopFlywheel(), new StopIndexer());
+    addCommands(new driveIntakeIndexAuto(), new AutoRunIndexer(), new driveBackRightZone(), new AutoHighShot(), new wait2sec(), new AutoRunIndexerBelts(), new wait2sec(),new StopFlywheel(), new StopIndexer());
   }
 }

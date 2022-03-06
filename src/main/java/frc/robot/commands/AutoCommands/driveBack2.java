@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class driveBack extends CommandBase {
+public class driveBack2 extends CommandBase {
   /** Creates a new driveBack. */
   boolean finished=false;
   Timer timer;
-  public driveBack() {
+  public driveBack2() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
     timer = new Timer();
@@ -25,7 +25,7 @@ public class driveBack extends CommandBase {
     timer.reset();
     timer.start();
      //.5.5
-     Robot.drivetrain.setMotors(-0.49,-0.53);
+     Robot.drivetrain.setMotors(-0.4,-0.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -26,6 +26,8 @@ import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.stopMotors;
 import frc.robot.commands.AutoCommandGroups.ShootIntakeShoot;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
+import frc.robot.commands.CombinedAutos.RightZoneAuto;
+import frc.robot.commands.CombinedAutos.RightZoneThreeBallAuto;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
  import frc.robot.subsystems.Indexer;
@@ -125,7 +127,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    m_autonomousCommand = new LeftZoneAuto();
+    m_autonomousCommand = new RightZoneThreeBallAuto();
   }
 
   /**

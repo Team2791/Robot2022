@@ -22,6 +22,6 @@ public class LeftZoneAuto extends SequentialCommandGroup {
   public LeftZoneAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new driveIntakeIndexAuto(), new AutoRunIndexer(), new driveBack(), new AutoHighShot(), new wait2sec(), new AutoRunIndexerBelts(), new StopFlywheel(), new StopIndexer());
+    addCommands(new driveIntakeIndexAuto(), new AutoRunIndexer(), new driveBack(), new AutoHighShot(), new wait2sec(), new AutoRunIndexerBelts(), new wait2sec(),new StopFlywheel(), new StopIndexer());
   }
 }

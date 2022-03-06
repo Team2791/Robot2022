@@ -18,8 +18,8 @@ public class AutoHighShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.shooter.setFrontFlywheel(Constants.kUpperFrontCloseSpeed);
-    Robot.shooter.setBackFlywheel(Constants.kUpperBackCloseSpeed);
+    Robot.shooter.setFrontFlywheel(Constants.autoHighShotFront);
+    Robot.shooter.setBackFlywheel(Constants.autoHighShotBack);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

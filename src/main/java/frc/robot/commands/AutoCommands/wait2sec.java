@@ -6,6 +6,7 @@ package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 
 public class wait2sec extends CommandBase {
   /** Creates a new wait2sec. */
@@ -26,7 +27,7 @@ public class wait2sec extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>2)
+    if(timer.get()>Constants.waitTime)
       finished = true;
   }
 
