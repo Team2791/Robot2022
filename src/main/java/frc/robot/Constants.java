@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -52,4 +56,20 @@ public final class Constants {
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
     public static final double driveTime = 1.25;
+    public static final double gearRatio=1/5.9;
+
+
+    //Odmetery
+    public static final double kWheelDiameterMeters = Units.inchesToMeters(6);
+    public static final double kEncoderPositionConversionFactor = kWheelDiameterMeters * gearRatio *Math.PI;
+    public static final double kEncoderDistancePerPulse=kEncoderPositionConversionFactor/60;
+    public static final double ksVolts = 0;
+    public static final double kvVoltSecondsPerMeter = 0;
+    public static final double kaVoltSecondsSquaredPerMeter = 0;
+    private static final double kTrackWidth = 0.810; //Meters
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackWidth);
+    public static final double kMaxSpeed = 0;
+    public static final double kMaxAcceleration = 0;
+    public static final double kPDrive = 0;
+    
 }

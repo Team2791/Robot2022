@@ -7,16 +7,32 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase{
     private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower;
     private RelativeEncoder rightEncoder, leftEncoder;
-
+    private final MotorControllerGroup m_rightMotors =
+        new MotorControllerGroup(rightLeader,rightFollower);
+    private final MotorControllerGroup m_leftMotors =
+        new MotorControllerGroup(leftLeader,leftFollower);
+    private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+    private final DifferentialDriveOdometry m_odometry;
+    
+    private final AHRS m_gyro;
      public Drivetrain() {
         super.register();
+        m_gyro = new AHRS(Port.kMXP);
+
         leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
         rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
         rightLeader.setInverted(true);
@@ -27,6 +43,12 @@ public class Drivetrain extends SubsystemBase{
 
         leftEncoder = leftLeader.getEncoder();
         rightEncoder = rightLeader.getEncoder();
+        leftEncoder.setPositionConversionFactor(Constants.kEncoderPositionConversionFactor);
+        rightEncoder.setPositionConversionFactor(Constants.kEncoderPositionConversionFactor);
+        leftEncoder.setVelocityConversionFactor(Constants.kEncoderDistancePerPulse);
+        rightEncoder.setVelocityConversionFactor(Constants.kEncoderDistancePerPulse);
+        resetEncoders();
+        m_odometry= new DifferentialDriveOdometry(m_gyro.getRotation2d());
         //setBrakeMode();
         setCoastMode();
 
@@ -36,12 +58,33 @@ public class Drivetrain extends SubsystemBase{
         leftLeader.set(left);
         rightLeader.set(right);
     }
-
+    public Pose2d getPose(){
+        return m_odometry.getPoseMeters();
+    }
+    public void resetOdometery(Pose2d pose){
+        resetEncoders();
+        m_gyro.zeroYaw();
+        m_odometry.resetPosition(pose, m_gyro.getRotation2d());
+    }
     public void setBrakeMode() {
         leftLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
         rightLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
         leftFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
         rightFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
+
+    }
+    public DifferentialDriveWheelSpeeds getWheelSpeeds(){
+        return new DifferentialDriveWheelSpeeds(leftEncoder.getVelocity(), rightEncoder.getVelocity());
+    }
+    public void tankDriveVolts(double leftV, double rightV){
+        m_leftMotors.setVoltage(leftV);
+        m_rightMotors.setVoltage(rightV);
+        m_drive.feed();
+
+
+    }
+    public double getAverageEncoderDistance(){
+        return(leftEncoder.getPosition() + rightEncoder.getPosition())/2.0;
 
     }
     public void setCoastMode() {
@@ -75,7 +118,11 @@ public class Drivetrain extends SubsystemBase{
     public double getRightPosition(){
         return rightEncoder.getPosition();
     }
-
+    public void resetEncoders()
+    {
+        leftEncoder.setPosition(0);
+        rightEncoder.setPosition(0);
+    }
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Right Velocity", rightLeader.get());
