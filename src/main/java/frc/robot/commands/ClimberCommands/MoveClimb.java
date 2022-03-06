@@ -12,12 +12,9 @@ import frc.robot.Robot;
 public class MoveClimb extends CommandBase {
   /** Creates a new ClimbUp. */
   private Timer timer = new Timer();
-  private double speed1;
-
-  public MoveClimb(double speed) {
+  public MoveClimb() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
-    speed1 = speed;
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +28,7 @@ public class MoveClimb extends CommandBase {
   @Override
   public void execute() {
     if(timer.get() > Constants.kClimberTime){
-      Robot.climber.setMotors(speed1);
+      Robot.climber.setMotors(Constants.climberSpeed);
     }
   }
 

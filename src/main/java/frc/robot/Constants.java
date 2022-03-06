@@ -53,5 +53,6 @@ public final class Constants {
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
     public static final double driveTime = 1.45;
+    public static double climberSpeed = 0.2;
 }
 
