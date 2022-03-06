@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
     public static final double kCreep = 0.325;
-    public static final double TURN_FACTOR = -0.45;
+    public static final double TURN_FACTOR = -0.55;
 
     public static final double kClimberTime = 0.1;
     public static final double kClimbSpeedUp = 0.25;
@@ -46,7 +46,7 @@ public final class Constants {
 //P values tried 10,5,1 , .1,, .01, .001
     public static final double kUpperFrontCloseSpeed = .38; //45 good40
     public static final double kUpperBackCloseSpeed = -.38; //65 good45 //.33 and .38 sometimes hitting lip
-    public static final double kLowerFrontCloseSpeed = 0.07;
+    public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
     public static final double autoHighShotFront=0.35;
     public static final double autoHighShotBack=-0.38;

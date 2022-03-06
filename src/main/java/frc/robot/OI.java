@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.SetBrakeMode;
+import frc.robot.commands.SetCoastMode;
 import frc.robot.commands.creep;
 import frc.robot.commands.creep2;
 //import frc.robot.commands.IntakeIndexerEnd;
@@ -49,6 +51,8 @@ public class OI {
         //initUsed();
 
         //MAP JOYSTICK CONTROLS HERE:
+
+        
 
         //Intake commands 
         driverA.whenHeld(new ExtendRunIntake());

@@ -41,6 +41,9 @@ public class DriveWithJoystick extends CommandBase {
             if(Math.abs(thrust) < deadzone) {
                 thrust = 0;
             }
+            if(thrust>0.6){
+                thrust= 0.6;
+            }
         }
         
         double turn = stick.getRawAxis(0) * Constants.TURN_FACTOR;
