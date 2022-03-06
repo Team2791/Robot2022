@@ -80,8 +80,9 @@ public class OI {
         //operatorB.whileHeld(new ShooterTest());
         operatorA.whenHeld(new UpperHubClose());
         operatorB.whenHeld(new LowerHubClose());
-        operatorLT.whenPressed(new StopFlywheel());
         operatorY.whenHeld(new longShotOuterTarmac());
+        operatorLT.whenPressed(new StopFlywheel());
+        
 
         driverRB.whenHeld(new creep());
         driverLB.whenHeld(new creep2());

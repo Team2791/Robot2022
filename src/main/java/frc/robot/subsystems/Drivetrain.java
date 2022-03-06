@@ -75,6 +75,10 @@ public class Drivetrain extends SubsystemBase{
     public double getRightPosition(){
         return rightEncoder.getPosition();
     }
+    public void resetEncoders() {
+        rightEncoder.setPosition(0);
+        leftEncoder.setPosition(0);
+    }
 
     @Override
     public void periodic() {

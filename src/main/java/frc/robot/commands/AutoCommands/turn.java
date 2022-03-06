@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class driveBack2 extends CommandBase {
-  /** Creates a new driveBack. */
-  boolean finished=false;
+public class turn extends CommandBase {
+  /** Creates a new driveCurved. */
+  boolean finished = false;
   Timer timer;
-  public driveBack2() {
+  public turn() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
     timer = new Timer();
@@ -21,30 +21,25 @@ public class driveBack2 extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-     //.5.5
-     Robot.drivetrain.setMotors(-0.4,-0.4);
+    Robot.drivetrain.setMotors(-0.2,0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>1.1) {
+    if(timer.get()>0.8) {
       Robot.drivetrain.setMotors(0,0);
       finished = true;
-    }   
+    }
   }
-  // btw joes phone password is 830216
+
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-     
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return finished;
-  } 
+  }
 }

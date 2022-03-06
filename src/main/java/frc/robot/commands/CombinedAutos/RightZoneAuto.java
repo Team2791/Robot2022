@@ -9,7 +9,6 @@ import frc.robot.commands.AutoCommandGroups.driveIntakeIndexAuto;
 import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
-import frc.robot.commands.AutoCommands.driveBack;
 import frc.robot.commands.AutoCommands.driveBackRightZone;
 import frc.robot.commands.AutoCommands.wait2sec;
 import frc.robot.commands.IndexerCommands.StopIndexer;

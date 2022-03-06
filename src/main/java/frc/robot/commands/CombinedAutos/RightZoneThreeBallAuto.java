@@ -10,6 +10,9 @@ import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.AutoRunIndexerSingleBall;
+import frc.robot.commands.AutoCommands.DriveDistance;
+import frc.robot.commands.AutoCommands.DriveDistanceBack;
+import frc.robot.commands.AutoCommands.TurnOpposite;
 import frc.robot.commands.AutoCommands.driveBack;
 import frc.robot.commands.AutoCommands.driveBack2;
 import frc.robot.commands.AutoCommands.driveBackCurved;
@@ -39,6 +42,7 @@ public class RightZoneThreeBallAuto extends SequentialCommandGroup {
     new AutoRunIndexerBelts(), 
     new wait2sec(), 
     new stopIndexerAuto(), 
+
     new driveTurn(), 
     new driveIntakeIndexAutoLong(), 
     new AutoRunIndexerSingleBall(),
@@ -51,5 +55,27 @@ public class RightZoneThreeBallAuto extends SequentialCommandGroup {
     new wait2sec(), 
     new StopFlywheel(), 
     new stopIndexerAuto());
+
+    // addCommands(new driveIntakeIndexAuto(), 
+    // new AutoRunIndexer(), 
+    // new driveBackRightZone(), 
+    // new AutoHighShot(), 
+    // new wait2sec(), 
+    // new AutoRunIndexerBelts(), 
+    // new wait2sec(), 
+    // new stopIndexerAuto(), 
+    // new DriveDistance(3),
+    // new driveIntakeIndexAutoLong(), 
+    // new AutoRunIndexerSingleBall(),
+    // new DriveDistanceBack(4), 
+    // new TurnOpposite(), 
+    // new DriveDistanceBack(2),
+
+    // new AutoHighShot(), 
+    // new wait2sec(),
+    // new AutoRunIndexerBelts(), 
+    // new wait2sec(), 
+    // new StopFlywheel(), 
+    // new stopIndexerAuto());
   }
 }

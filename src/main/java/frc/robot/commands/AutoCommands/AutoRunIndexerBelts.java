@@ -4,13 +4,11 @@
 
 package frc.robot.commands.AutoCommands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class AutoRunIndexerBelts extends CommandBase {
-  private boolean finished=false;
   /** Creates a new RunIndexer. */
   public AutoRunIndexerBelts() {
     // Use addRequirements() here to declare subsystem dependencies.
