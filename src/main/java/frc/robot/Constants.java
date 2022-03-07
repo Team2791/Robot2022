@@ -68,8 +68,8 @@ public final class Constants {
     public static final double kaVoltSecondsSquaredPerMeter = 0;
     private static final double kTrackWidth = 0.810; //Meters
     public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackWidth);
-    public static final double kMaxSpeed = 0;
-    public static final double kMaxAcceleration = 0;
-    public static final double kPDrive = 0;
+    public static final double kMaxSpeed = 0.5;
+    public static final double kMaxAcceleration = 0.5;
+    public static final double kPDrive = 0.5;
     
 }

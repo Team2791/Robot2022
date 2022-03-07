@@ -83,7 +83,7 @@ public class RobotContainer {
           new Pose2d(4,0, new Rotation2d(0)),
            config);
            
-      String t = "C:\\Users\\team2\\Documents\\GitHub\\Robot2022\\PathWeaver\\Paths\\goBack.path";
+      String t = "C:\\Users\\mdhus\\OneDrive\\Desktop\\ROBOT\\Robot2022\\src\\main\\deploy\\paths\\goBack.wpilib.json";
       Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
       try{
         testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
