@@ -4,45 +4,26 @@
 
 package frc.robot.commands.AutoCommands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class driveTurn extends CommandBase {
-  /** Creates a new driveCurved. */
-  Timer timer, timer2;
-  boolean finished = false , part1 = false;;
-  public driveTurn() {
+public class ExtendRunIntakeAuto extends CommandBase {
+  /** Creates a new ExtendRunIntakeAuto. */
+  public ExtendRunIntakeAuto() {
     // Use addRequirements() here to declare subsystem dependencies.
-    timer = new Timer();
-    timer2 = new Timer();
-    addRequirements(Robot.drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.start();
-    timer.reset();
-    timer2.reset();
-    Robot.drivetrain.setMotors(0.3,0.3);
+    Robot.intake.setRetracted();
+    Robot.intake.setMotor(Constants.intakeSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if(timer.get()>0.7 && part1==false) {
-      Robot.drivetrain.setMotors(0,0);
-      part1= true;
-    }
-    if(part1) {
-      Robot.drivetrain.setMotors(-0.2,0.2);
-      timer2.start();
-    }
-    if(part1 && timer2.get()>0.8) {
-      finished = true;
-    }
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
@@ -51,6 +32,6 @@ public class driveTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return true;
   }
 }

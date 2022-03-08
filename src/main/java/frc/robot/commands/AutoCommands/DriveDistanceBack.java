@@ -9,12 +9,13 @@ import frc.robot.Robot;
 
 public class DriveDistanceBack extends CommandBase {
   /** Creates a new DriveDistance. */
-  double distance;
+  double leftDistance, rightDistance;
   boolean finished;
-  public DriveDistanceBack(double DriveDistance) {
+  public DriveDistanceBack(double left, double right) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
-    distance = -DriveDistance;
+    leftDistance = -left;
+    rightDistance = -right;
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +28,7 @@ public class DriveDistanceBack extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.drivetrain.getLeftPosition()> distance && Robot.drivetrain.getRightPosition()>distance) {
+    if(Robot.drivetrain.getLeftPosition()<leftDistance && Robot.drivetrain.getRightPosition()<rightDistance) {
       Robot.drivetrain.setMotors(0,0);
       finished = true;
     }

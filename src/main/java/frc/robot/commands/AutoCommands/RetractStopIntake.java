@@ -4,47 +4,29 @@
 
 package frc.robot.commands.AutoCommands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 
-public class driveBack2 extends CommandBase {
-  /** Creates a new driveBack. */
-  boolean finished=false;
-  Timer timer;
-  public driveBack2() {
+public class RetractStopIntake extends CommandBase {
+  /** Creates a new RetractStopIntake. */
+  public RetractStopIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.drivetrain);
-    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    timer.reset();
-    timer.start();
-     //.5.5
-     Robot.drivetrain.setMotors(-0.4,-0.4);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    if(timer.get()>1.1) {
-      Robot.drivetrain.setMotors(0,0);
-      finished = true;
-    }   
-  }
-  // btw joes phone password is 830216
+  public void execute() {}
+
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-     
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
-  } 
+    return false;
+  }
 }
