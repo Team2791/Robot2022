@@ -85,16 +85,18 @@ public class OI {
 
         driverRB.whenHeld(new creep());
         driverLB.whenHeld(new creep2());
+        driverB.whenHeld(new SetBrakeMode());
 
         //Climb commands
         operatorDPadRight.whenHeld(new MoveClimb());
         operatorDPadLeft.whenHeld(new RunClimbDown());
-
-
+        //stop climb 
         operatorDPadRight.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new StopClimb());
-        //operatorDPadLeft.whenReleased(new retractClimbPiston());
-        
+        operatorDPadLeft.whenReleased(new StopClimb());    
+        pitY.whenHeld(new PitMoveClimb());
+        pitX.whenHeld(new PitMoveClimbDown());
+
+
     }
 
     private void initButtons(){
