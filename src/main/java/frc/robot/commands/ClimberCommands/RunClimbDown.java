@@ -18,20 +18,27 @@ public class RunClimbDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.climber.setMotors(Constants.kClimbSpeedDown);
+    Robot.climber.setExtended();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if(Robot.climber.getRightClimbPosition()>Constants.minClimbHeight && Robot.climber.getLeftClimbPosition()>Constants.minClimbHeight && Robot.climber.getClimbSolenoid()) {
+      Robot.climber.setMotors(-Constants.climberSpeed);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.climber.setMotors(0);
+    Robot.climber.setRetracted();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return !(Robot.climber.getLeftClimbPosition()>Constants.minClimbHeight);
   }
 }

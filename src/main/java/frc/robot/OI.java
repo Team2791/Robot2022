@@ -88,12 +88,15 @@ public class OI {
         driverLB.whenHeld(new creep2());
 
         //Climb commands
+        operatorDPadRight.whenHeld(new MoveClimb());
+        operatorDPadLeft.whenHeld(new RunClimbDown());
+
         // operatorDPadRight.whenHeld(new ClimberUp());
         // operatorDPadLeft.whileHeld(new ClimberDown()); //no timer 
 
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new retractClimbPiston());
+        //operatorDPadLeft.whenReleased(new retractClimbPiston());
         
     }
 

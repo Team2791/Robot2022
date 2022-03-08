@@ -27,6 +27,9 @@ public class Drivetrain extends SubsystemBase{
 
         leftEncoder = leftLeader.getEncoder();
         rightEncoder = rightLeader.getEncoder();
+
+        leftEncoder.setPositionConversionFactor(Constants.conversionFactor);
+        rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
         //setBrakeMode();
         setCoastMode();
 
@@ -82,8 +85,8 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Right Velocity", rightLeader.get());
-        SmartDashboard.putNumber("Left Velocity", leftLeader.get());
+        // SmartDashboard.putNumber("Right Velocity", rightLeader.get());
+        // SmartDashboard.putNumber("Left Velocity", leftLeader.get());
         SmartDashboard.putNumber("Right Position", getRightPosition());
         SmartDashboard.putNumber("Left Position", getLeftPosition());
 

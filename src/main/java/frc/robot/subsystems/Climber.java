@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -21,10 +22,8 @@ import frc.robot.RobotMap;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  private TalonFX climbLeft,climbRight;
+  private TalonFX climbLeft, climbRight;
   private Solenoid climbSol;
-  private CANCoder climbLeftEncoder, climbRightEncoder;
-
 
   public Climber() {
       //order of operations: retracted until motors start moving down. 
@@ -33,14 +32,20 @@ public class Climber extends SubsystemBase {
     super.register();
     climbLeft = new TalonFX(RobotMap.leftClimbID);
     climbRight = new TalonFX(RobotMap.rightClimbID);
-    climbSol = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.climb);
-    resetClimberPosition();
+    climbLeft.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
+    climbRight.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
 
-     
+    climbSol = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.climb);
+
+    resetClimberPosition(); 
+
+    climbLeft.setNeutralMode(NeutralMode.Brake);
+    climbRight.setNeutralMode(NeutralMode.Brake);
+
   }
   public void setMotors(double speed) {
     climbLeft.set(TalonFXControlMode.PercentOutput,speed);
-    climbRight.set(TalonFXControlMode.PercentOutput,speed);
+    climbRight.set(TalonFXControlMode.PercentOutput,-speed);
     
 
   }
@@ -53,20 +58,24 @@ public class Climber extends SubsystemBase {
     climbSol.set(false);
   }
   public double getLeftClimbPosition() {
-      return climbRight.getSelectedSensorPosition();
+      return climbLeft.getSelectedSensorPosition();
   }
   public double getRightClimbPosition() {
-    return climbLeft.getSelectedSensorPosition();
-  }
-  public void resetClimberPosition() {
-      climbRight.setSelectedSensorPosition(0);
-      climbLeft.setSelectedSensorPosition(0);
+    return climbRight.getSelectedSensorPosition();
 
   }
+  public void resetClimberPosition() {
+    climbLeft.setSelectedSensorPosition(0);
+    climbRight.setSelectedSensorPosition(0);
+  }
+  public boolean getClimbSolenoid(){
+    return climbSol.get();
+  }
+
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Right Velocity", climbRight.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Left Velocity", climbLeft.getSelectedSensorPosition());
-    // // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Right Climb", climbRight.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Left Climb", climbLeft.getSelectedSensorPosition());
+        // // This method will be called once per scheduler run
   }
 }

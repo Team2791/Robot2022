@@ -5,6 +5,7 @@
 package frc.robot.commands.AutoCommandGroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.drive;
 import frc.robot.commands.AutoCommands.driveLong;
 import frc.robot.commands.IndexerCommands.RunIndexer;
@@ -19,7 +20,7 @@ public class driveIntakeIndexAutoLong extends ParallelRaceGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     //PARALLEL RACE GROUP
-    addCommands(new driveLong(), new ExtendRunIntake(), new RunIndexer());
+    addCommands(new DriveDistance(6), new ExtendRunIntake(), new RunIndexer());
   }
     // btw joes phone password is 830216
 

@@ -11,7 +11,6 @@ import frc.robot.Robot;
 
 public class MoveClimb extends CommandBase {
   /** Creates a new ClimbUp. */
-  private Timer timer = new Timer();
   public MoveClimb() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
@@ -21,24 +20,26 @@ public class MoveClimb extends CommandBase {
   @Override
   public void initialize() {
     Robot.climber.setExtended();
-    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get() > Constants.kClimberTime){
+    if(-Robot.climber.getLeftClimbPosition()<Constants.maxClimbHeight && Robot.climber.getRightClimbPosition()<Constants.maxClimbHeight && Robot.climber.getClimbSolenoid()) {
       Robot.climber.setMotors(Constants.climberSpeed);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.climber.setMotors(0);
+    Robot.climber.setRetracted();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return !(Robot.climber.getLeftClimbPosition() < Constants.maxClimbHeight);
   }
 }

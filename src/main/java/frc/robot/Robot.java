@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     //m_robotContainer = new RobotContainer();
+
     CameraServer.startAutomaticCapture();
     m_visionThread = 
     new Thread ( 
@@ -121,12 +122,16 @@ public class Robot extends TimedRobot {
     indexer = new Indexer();
 
     drivetrain = new Drivetrain();
+    Robot.drivetrain.resetEncoders();
+
     climber = new Climber();
     //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
     m_autonomousCommand = new RightZoneThreeBallAuto();
+
+    climber.resetClimberPosition();
   }
 
   /**
@@ -162,10 +167,12 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     Robot.drivetrain.setBrakeMode();
+    Robot.drivetrain.resetEncoders();
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }  
+
   }
 
   /** This function is called periodically during autonomous. */

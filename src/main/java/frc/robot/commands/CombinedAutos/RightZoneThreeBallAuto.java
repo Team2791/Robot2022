@@ -21,6 +21,7 @@ import frc.robot.commands.AutoCommands.driveBackRightZone;
 import frc.robot.commands.AutoCommands.driveTurn;
 import frc.robot.commands.AutoCommands.driveTurnOpposite;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
+import frc.robot.commands.AutoCommands.turn;
 import frc.robot.commands.AutoCommands.wait2sec;
 import frc.robot.commands.IndexerCommands.StopIndexer;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
@@ -34,28 +35,6 @@ public class RightZoneThreeBallAuto extends SequentialCommandGroup {
   public RightZoneThreeBallAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new driveIntakeIndexAuto(), 
-    new AutoRunIndexer(), 
-    new driveBackRightZone(), 
-    new AutoHighShot(), 
-    new wait2sec(), 
-    new AutoRunIndexerBelts(), 
-    new wait2sec(), 
-    new stopIndexerAuto(), 
-
-    new driveTurn(), 
-    new driveIntakeIndexAutoLong(), 
-    new AutoRunIndexerSingleBall(),
-    new driveBackLong(), 
-    new driveTurnOpposite(), 
-    new driveBack2(),
-    new AutoHighShot(), 
-    new wait2sec(),
-    new AutoRunIndexerBelts(), 
-    new wait2sec(), 
-    new StopFlywheel(), 
-    new stopIndexerAuto());
-
     // addCommands(new driveIntakeIndexAuto(), 
     // new AutoRunIndexer(), 
     // new driveBackRightZone(), 
@@ -64,18 +43,41 @@ public class RightZoneThreeBallAuto extends SequentialCommandGroup {
     // new AutoRunIndexerBelts(), 
     // new wait2sec(), 
     // new stopIndexerAuto(), 
-    // new DriveDistance(3),
+
+    // new driveTurn(), 
     // new driveIntakeIndexAutoLong(), 
     // new AutoRunIndexerSingleBall(),
-    // new DriveDistanceBack(4), 
-    // new TurnOpposite(), 
-    // new DriveDistanceBack(2),
-
+    // new driveBackLong(), 
+    // new driveTurnOpposite(), 
+    // new driveBack2(),
     // new AutoHighShot(), 
     // new wait2sec(),
     // new AutoRunIndexerBelts(), 
     // new wait2sec(), 
     // new StopFlywheel(), 
     // new stopIndexerAuto());
+
+    addCommands(new driveIntakeIndexAuto(), 
+    new AutoRunIndexer(), 
+    new driveBackRightZone(), 
+    new AutoHighShot(), 
+    new wait2sec(), 
+    new AutoRunIndexerBelts(), 
+    new wait2sec(), 
+    new stopIndexerAuto(), 
+    new DriveDistance(2),
+    new turn(),
+    new driveIntakeIndexAutoLong(), 
+    new AutoRunIndexerSingleBall(),
+    new DriveDistanceBack(6), 
+    new TurnOpposite(), 
+    new DriveDistanceBack(2),
+
+    new AutoHighShot(), 
+    new wait2sec(),
+    new AutoRunIndexerBelts(), 
+    new wait2sec(), 
+    new StopFlywheel(), 
+    new stopIndexerAuto());
   }
 }

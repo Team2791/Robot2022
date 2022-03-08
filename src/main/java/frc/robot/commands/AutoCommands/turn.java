@@ -21,13 +21,16 @@ public class turn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
+    timer.reset();
+    timer.start();
     Robot.drivetrain.setMotors(-0.2,0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>0.8) {
+    if(timer.get()>1.05) {
       Robot.drivetrain.setMotors(0,0);
       finished = true;
     }

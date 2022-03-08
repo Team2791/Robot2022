@@ -27,7 +27,7 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.drivetrain.getLeftPosition() == distance && Robot.drivetrain.getRightPosition() == distance) {
+    if(Robot.drivetrain.getLeftPosition()>distance && Robot.drivetrain.getRightPosition()> distance) {
       Robot.drivetrain.setMotors(0,0);
       finished = true;
     }
