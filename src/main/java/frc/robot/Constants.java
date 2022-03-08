@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -13,6 +16,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
     public static final double kCreep = 0.325;
     public static final double TURN_FACTOR = -0.55;
 
@@ -48,20 +52,31 @@ public final class Constants {
     public static final double kUpperBackCloseSpeed = -.38; //65 good45 //.33 and .38 sometimes hitting lip
     public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
+
     public static final double autoHighShotFront=0.35;
     public static final double autoHighShotBack=-0.38;
+    public static final double autoMidShotFront=0.35;
+    public static final double autoMidShotBack=-0.55;
+
     public static final double longShotFrontWheel=0.3;
     public static final double longShotBackWheel=-.6;
-
+    public static final double wheelDiameterMeters = Units.inchesToMeters(6);
     ;
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
-    public static final double driveTime = 1.45;
-    public static double climberSpeed = 0.2;
+    public static final double driveTime = 1.4;
+    public static double climberSpeed = 0.1;
 
     //auto constants
     public static final double waitTime = 1.35;
+    public static final double maxClimbHeight = 385000;
+    public static final double minClimbHeight = -400000;
+    public static final double conversionFactor = wheelDiameterMeters * 0.2 * Math.PI;
+
 
 }
+
+
+	
 

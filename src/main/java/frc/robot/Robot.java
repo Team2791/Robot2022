@@ -31,6 +31,7 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
  import frc.robot.subsystems.Indexer;
  import frc.robot.subsystems.Shooter;
+import me.wobblyyyy.pathfinder2.Pathfinder;
 import frc.robot.subsystems.Intake;
 
 /**
@@ -127,6 +128,9 @@ public class Robot extends TimedRobot {
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
     m_autonomousCommand = new RightZoneThreeBallAuto();
+
+
+  
   }
 
   /**
