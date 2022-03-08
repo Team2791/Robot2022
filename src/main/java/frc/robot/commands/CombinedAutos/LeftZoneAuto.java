@@ -5,11 +5,14 @@
 package frc.robot.commands.CombinedAutos;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AutoCommandGroups.driveIntakeIndexAuto;
 import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
-import frc.robot.commands.AutoCommands.driveBack;
+import frc.robot.commands.AutoCommands.DriveDistance;
+import frc.robot.commands.AutoCommands.DriveDistanceBack;
+import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
+import frc.robot.commands.AutoCommands.RetractStopIntake;
+import frc.robot.commands.AutoCommands.stopIndexerAuto;
 import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.IndexerCommands.StopIndexer;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
@@ -20,16 +23,18 @@ import frc.robot.commands.ShooterCommands.StopFlywheel;
 public class LeftZoneAuto extends SequentialCommandGroup {
   /** Creates a new LeftZoneAuto. */
   public LeftZoneAuto() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new driveIntakeIndexAuto(), 
+
+    addCommands(
+    new ExtendRunIntakeAuto(),
+    new DriveDistance(2,2), 
     new AutoRunIndexer(), 
-    new driveBack(), 
+    new DriveDistanceBack(2,2.5), 
     new AutoHighShot(), 
-    new wait(1.35), 
+    new RetractStopIntake(),
+    new wait(1.5), 
     new AutoRunIndexerBelts(), 
-    new wait(1.35),
+    new wait(1.3), 
     new StopFlywheel(), 
-    new StopIndexer());
+    new stopIndexerAuto());
   }
 }

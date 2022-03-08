@@ -6,6 +6,7 @@ package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 
 public class DriveDistance extends CommandBase {
   /** Creates a new DriveDistance. */

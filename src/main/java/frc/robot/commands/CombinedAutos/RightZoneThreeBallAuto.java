@@ -3,27 +3,20 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.CombinedAutos;
-import frc.robot.commands.AutoCommandGroups.driveIntakeIndexAuto;
-import frc.robot.commands.AutoCommandGroups.driveIntakeIndexAutoCurved;
-import frc.robot.commands.AutoCommandGroups.driveIntakeIndexAutoLong;
 import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.AutoRunIndexerSingleBall;
 import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.DriveDistanceBack;
-import frc.robot.commands.AutoCommands.TurnOpposite;
-import frc.robot.commands.AutoCommands.driveBack;
-import frc.robot.commands.AutoCommands.driveBack2;
-import frc.robot.commands.AutoCommands.driveBackCurved;
-import frc.robot.commands.AutoCommands.driveBackLong;
-import frc.robot.commands.AutoCommands.driveBackRightZone;
-import frc.robot.commands.AutoCommands.driveTurn;
-import frc.robot.commands.AutoCommands.driveTurnOpposite;
+import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
+import frc.robot.commands.AutoCommands.RetractStopIntake;
+import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
-import frc.robot.commands.AutoCommands.turn;
-import frc.robot.commands.AutoCommands.wait2sec;
+import frc.robot.commands.AutoCommands.TurnClockwise;
+import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.IndexerCommands.StopIndexer;
+import frc.robot.commands.IntakeCommands.ExtendRunIntake;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -33,50 +26,33 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class RightZoneThreeBallAuto extends SequentialCommandGroup {
   /** Creates a new RightZoneThreeBallAuto. */
   public RightZoneThreeBallAuto() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    // addCommands(new driveIntakeIndexAuto(), 
-    // new AutoRunIndexer(), 
-    // new driveBackRightZone(), 
-    // new AutoHighShot(), 
-    // new wait2sec(), 
-    // new AutoRunIndexerBelts(), 
-    // new wait2sec(), 
-    // new stopIndexerAuto(), 
-
-    // new driveTurn(), 
-    // new driveIntakeIndexAutoLong(), 
-    // new AutoRunIndexerSingleBall(),
-    // new driveBackLong(), 
-    // new driveTurnOpposite(), 
-    // new driveBack2(),
-    // new AutoHighShot(), 
-    // new wait2sec(),
-    // new AutoRunIndexerBelts(), 
-    // new wait2sec(), 
-    // new StopFlywheel(), 
-    // new stopIndexerAuto());
-
-    addCommands(new driveIntakeIndexAuto(), 
+ 
+    addCommands(
+    new ExtendRunIntakeAuto(),
+    new DriveDistance(2,2), 
     new AutoRunIndexer(), 
-    new driveBackRightZone(), 
+    new DriveDistanceBack(2.5,2), 
     new AutoHighShot(), 
-    new wait2sec(), 
+    new RetractStopIntake(),
+    new wait(1.3), 
     new AutoRunIndexerBelts(), 
-    new wait2sec(), 
-    new stopIndexerAuto(), 
-    new DriveDistance(2),
-    new turn(),
-    new driveIntakeIndexAutoLong(), 
+    new wait(1.3), 
+    new StopFlywheel(), 
+    new stopIndexerAuto(),
+
+    new DriveDistance(1.7,1.7),
+    new TurnClockwise(0.8),
+    new ExtendRunIntakeAuto(),
+    new DriveDistance(6,6), 
     new AutoRunIndexerSingleBall(),
-    new DriveDistanceBack(6), 
-    new TurnOpposite(), 
-    new DriveDistanceBack(2),
+    new DriveDistanceBack(6,6), 
+    new TurnCounterClock(0.8), 
+    new DriveDistanceBack(1.5,1.5),
 
     new AutoHighShot(), 
-    new wait2sec(),
+    new wait(1.3),
     new AutoRunIndexerBelts(), 
-    new wait2sec(), 
+    new wait(1), 
     new StopFlywheel(), 
     new stopIndexerAuto());
   }

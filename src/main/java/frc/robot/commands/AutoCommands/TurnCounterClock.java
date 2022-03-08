@@ -3,19 +3,22 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.AutoCommands;
+import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class TurnOpposite extends CommandBase {
+public class TurnCounterClock extends CommandBase {
   /** Creates a new driveCurved. */
   boolean finished = false;
+  double turnTime;
   Timer timer;
-  public TurnOpposite() {
+  public TurnCounterClock(double time) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
     timer = new Timer();
+    turnTime = time; 
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +30,7 @@ public class TurnOpposite extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>0.8) {
+    if(timer.get()>turnTime) {
       Robot.drivetrain.setMotors(0,0);
       finished = true;
     }

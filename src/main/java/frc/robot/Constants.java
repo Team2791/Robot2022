@@ -50,8 +50,12 @@ public final class Constants {
     public static final double kUpperBackCloseSpeed = -.38; //65 good45 //.33 and .38 sometimes hitting lip
     public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
+
     public static final double autoHighShotFront=0.35;
     public static final double autoHighShotBack=-0.38;
+    public static final double autoMidShotFront=0.35;
+    public static final double autoMidShotBack=-0.55;
+
     public static final double longShotFrontWheel=0.3;
     public static final double longShotBackWheel=-.6;
     public static final double wheelDiameterMeters = Units.inchesToMeters(6);

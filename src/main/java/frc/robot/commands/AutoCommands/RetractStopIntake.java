@@ -5,16 +5,21 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class RetractStopIntake extends CommandBase {
   /** Creates a new RetractStopIntake. */
   public RetractStopIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.intake.setExtended();
+    Robot.intake.setMotor(0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -27,6 +32,6 @@ public class RetractStopIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

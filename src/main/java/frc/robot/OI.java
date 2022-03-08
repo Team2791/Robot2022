@@ -5,18 +5,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.DriveWithJoystick;
-import frc.robot.commands.SetBrakeMode;
-import frc.robot.commands.SetCoastMode;
-import frc.robot.commands.creep;
-import frc.robot.commands.creep2;
 //import frc.robot.commands.IntakeIndexerEnd;
 //import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.ClimberCommands.*;
-import frc.robot.commands.stopMotors;
-import frc.robot.commands.CommandGroups.*;
+import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
+import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
+import frc.robot.commands.DrivetrainCommands.SetCoastMode;
+import frc.robot.commands.DrivetrainCommands.creep;
+import frc.robot.commands.DrivetrainCommands.creep2;
+import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.commands.IndexerCommands.*;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
@@ -91,8 +90,6 @@ public class OI {
         operatorDPadRight.whenHeld(new MoveClimb());
         operatorDPadLeft.whenHeld(new RunClimbDown());
 
-        // operatorDPadRight.whenHeld(new ClimberUp());
-        // operatorDPadLeft.whileHeld(new ClimberDown()); //no timer 
 
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());
