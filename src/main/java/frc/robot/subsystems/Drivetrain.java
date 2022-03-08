@@ -30,9 +30,6 @@ public class Drivetrain extends SubsystemBase{
 
         leftEncoder.setPositionConversionFactor(Constants.conversionFactor);
         rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
-        //setBrakeMode();
-        setCoastMode();
-
     }
 
     public void setMotors(double left, double right){

@@ -189,6 +189,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    Robot.drivetrain.setCoastMode();
     Robot.climber.resetClimberPosition();
 
     SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
