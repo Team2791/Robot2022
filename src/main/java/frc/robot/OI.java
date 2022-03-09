@@ -83,8 +83,8 @@ public class OI {
         operatorLT.whenPressed(new StopFlywheel());
         
 
-        driverRB.whenHeld(new creep());
-        driverLB.whenHeld(new creep2());
+        // driverRB.whenHeld(new creep());
+        // driverLB.whenHeld(new creep2());
         driverB.whenHeld(new SetBrakeMode());
 
         //Climb commands
@@ -119,8 +119,8 @@ public class OI {
             driverDPadUp = new DPadButton(driverStick, DPadButton.kDPadUp);
             driverDPadLeft = new DPadButton(driverStick, DPadButton.kDPadLeft);
             driveButton = new MultiButton(new Button[] {
-                new AnalogButton(driverStick, 3,2,0,0.2)
-        
+                new AnalogButton(driverStick, 3,2,0,0.2),
+                driverRB, driverLB
             });
 
             // driveButton = new MultiButton(new Button[] {

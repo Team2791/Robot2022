@@ -32,7 +32,7 @@ public class DriveWithJoystick extends CommandBase {
         if(stick.getRawButton(6)) {
             thrust = Constants.kCreep;
         }
-        if(stick.getRawButton(5)) {
+        else if(stick.getRawButton(5)) {
             thrust = -Constants.kCreep;
         } 
         else{ 
