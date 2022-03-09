@@ -7,6 +7,7 @@ package frc.robot.commands.AutoCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.Constants;
 
 public class DriveDistance extends CommandBase {
   /** Creates a new DriveDistance. */
@@ -23,6 +24,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public void initialize() {
     Robot.drivetrain.resetEncoders();
+    Robot.drivetrain.setRampUp(Constants.autoRampUp);
     Robot.drivetrain.setMotors(0.4,0.4);
   }
 
@@ -37,7 +39,10 @@ public class DriveDistance extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.drivetrain.setRampUp(0);
+
+  }
 
   // Returns true when the command should end.
   @Override

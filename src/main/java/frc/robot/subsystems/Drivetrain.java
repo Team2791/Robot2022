@@ -86,6 +86,10 @@ public class Drivetrain extends SubsystemBase{
         rightEncoder.setPosition(0);
         leftEncoder.setPosition(0);
     }
+    public void setRampUp(double time) {
+        leftLeader.setOpenLoopRampRate(time);
+        rightLeader.setOpenLoopRampRate(time);
+    }
 
     @Override
     public void periodic() {

@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.AutoCommands;
+import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -23,6 +24,7 @@ public class DriveDistanceBack extends CommandBase {
   @Override
   public void initialize() {
     Robot.drivetrain.resetEncoders();
+    Robot.drivetrain.setRampUp(Constants.autoRampUp);
     Robot.drivetrain.setMotors(-0.4,-0.4);
   }
 
@@ -37,7 +39,9 @@ public class DriveDistanceBack extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.drivetrain.setRampUp(0);
+  }
 
   // Returns true when the command should end.
   @Override

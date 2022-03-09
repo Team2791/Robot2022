@@ -11,8 +11,7 @@ import frc.robot.commands.AutoCommands.AutoRunIndexerSingleBall;
 import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.DriveDistanceBack;
 import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
-import frc.robot.commands.AutoCommands.IndexDrive;
-import frc.robot.commands.AutoCommands.IndexDriveDouble;
+
 import frc.robot.commands.AutoCommands.RetractStopIntake;
 import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
@@ -53,11 +52,11 @@ public class FourBall extends SequentialCommandGroup {
     new DriveDistance(0.2,0.2),
     new Turn(36),
     new ExtendRunIntakeAuto(),
-    new IndexDrive(3,3),
+    //new IndexDrive(3,3),
     new RetractStopIntake(),
     new wait(0.4),
     new ExtendRunIntakeAuto(),
-    new IndexDriveDouble(3,3),
+    //new IndexDriveDouble(3,3),
     new RetractStopIntake(),
     new AutoRunIndexer(),
     new DriveDistanceBack(5.5,5.5), 
