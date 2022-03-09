@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
-import frc.robot.commands.CombinedAutos.RightZoneThreeBallAuto;
+import frc.robot.commands.CombinedAutos.ThreeBall;
 import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
@@ -128,7 +128,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    m_autonomousCommand = new RightZoneThreeBallAuto();
+    m_autonomousCommand = new ThreeBall();
     Robot.drivetrain.resetGyro();
 
     climber.resetClimberPosition();

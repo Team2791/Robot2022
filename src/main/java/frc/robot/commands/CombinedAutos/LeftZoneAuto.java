@@ -5,6 +5,7 @@
 package frc.robot.commands.CombinedAutos;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
@@ -26,9 +27,9 @@ public class LeftZoneAuto extends SequentialCommandGroup {
 
     addCommands(
     new ExtendRunIntakeAuto(),
-    new DriveDistance(2,2), 
+    new DriveDistance(2,2, Constants.autoDriveSpeed), 
     new AutoRunIndexer(), 
-    new DriveDistanceBack(2,2.5), 
+    new DriveDistanceBack(2,2.5,Constants.autoDriveSpeed), 
     new AutoHighShot(), 
     new RetractStopIntake(),
     new wait(1.5), 

@@ -3,46 +3,42 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.AutoCommands;
-import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Timer;
 
-public class DriveDistanceBack extends CommandBase {
-  /** Creates a new DriveDistance. */
-  double leftDistance, rightDistance, motorSpeed;
-  boolean finished;
-  public DriveDistanceBack(double left, double right, double speed) {
+public class AutoIndex extends CommandBase {
+  /** Creates a new DriveIndex. */
+  boolean finished; 
+  public AutoIndex() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.drivetrain);
-    leftDistance = -left;
-    rightDistance = -right;
-    motorSpeed = speed;
+    addRequirements(Robot.indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.drivetrain.resetEncoders();
-    Robot.drivetrain.setRampUp(Constants.autoRampUp);
-    Robot.drivetrain.setMotors(-motorSpeed,-motorSpeed);
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.drivetrain.getLeftPosition()<leftDistance && Robot.drivetrain.getRightPosition()<rightDistance) {
-      Robot.drivetrain.setMotors(0,0);
+    if(Robot.indexer.getUpperLimitSwitch()==false) {
+      Robot.indexer.stopUpperMotor();
+    }
+    if(Robot.indexer.getUpperLimitSwitch()==false && Robot.indexer.getLowerLimitSwitch()==false){
+      Robot.indexer.stopLowerMotor();
       finished = true;
     }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    Robot.drivetrain.setRampUp(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
