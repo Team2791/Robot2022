@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class FourBall extends SequentialCommandGroup {
   /** Creates a new RightZoneThreeBallAuto. */
   public FourBall() {
- 
+    //Syntax for drive commands(left distance, right distance, speed)
     addCommands(
       //2 balls shot (this part should work ) 
       new ExtendRunIntakeAuto(),
@@ -58,16 +58,16 @@ public class FourBall extends SequentialCommandGroup {
 
       //Pick up 3rd nad 4th ball
       new ExtendRunIntakeAuto(),
-      new DriveIndex(5.5,5.5,0.5), 
+      new DriveIndex(5.2, 5.2, 0.5), 
 
       //Drive Back, Line up and shoot
-      new DriveDistanceBack(5,5, 0.5), 
+      new DriveDistanceBack(5, 5, 0.6), 
       new TurnCounterClock(36), 
       new DriveDistanceBack(0.34,0.34,Constants.autoDriveSpeed),
       new AutoHighShot(), 
       new wait(1),
       new AutoRunIndexerBelts(), 
-      new wait(1), 
+      new wait(1.3), 
       new StopFlywheel(), 
       new stopIndexerAuto()); 
   }
