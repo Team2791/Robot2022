@@ -29,7 +29,7 @@ public final class Constants {
     public static final double frontFlySpeed = 0.4;
     public static final double backFlySpeed = -0.3;
     public static final double minPressure = 60;
-    public static final double maxPressure = 100;
+    public static final double maxPressure = 120;
 
     //PID CONSTANTS
     //feedforward (ff): reduces error in PID system (prediction technique); probably won't use this maybe
@@ -51,26 +51,26 @@ public final class Constants {
     public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
 
-    public static final double autoHighShotFront=0.35;
-    public static final double autoHighShotBack=-0.38;
-    public static final double autoMidShotFront=0.35;
-    public static final double autoMidShotBack=-0.55;
-
+    public static final double autoHighShotFront=0.32;
+    public static final double autoHighShotBack=-0.36;
+    public static final double autoMidShotFront=0.38;
+    public static final double autoMidShotBack=-0.50;
+    public static final double autoDriveSpeed = 0.4;
     public static final double longShotFrontWheel=0.3;
     public static final double longShotBackWheel=-.6;
     public static final double wheelDiameterMeters = Units.inchesToMeters(6);
-    ;
+    
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
     public static final double driveTime = 1.4;
-    public static double climberSpeed = 0.1;
+    public static final double climberSpeed = 0.1;
 
     //auto constants
     public static final double waitTime = 1.35;
-    public static final double maxClimbHeight = 385000;
-    public static final double minClimbHeight = -400000;
-    public static final double conversionFactor = wheelDiameterMeters * 0.2 * Math.PI;
+    //max and min should be based on right falcon encoder
+    public static final double maxClimbHeight = 270000; //240,000
+    public static final double minClimbHeight = 0; //-400000;
+    public static final double conversionFactor = wheelDiameterMeters * 0.091659 * Math.PI;
 
 }
-

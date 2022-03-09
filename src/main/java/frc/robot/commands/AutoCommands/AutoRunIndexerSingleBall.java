@@ -5,6 +5,7 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class AutoRunIndexerSingleBall extends CommandBase {
@@ -18,7 +19,10 @@ public class AutoRunIndexerSingleBall extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

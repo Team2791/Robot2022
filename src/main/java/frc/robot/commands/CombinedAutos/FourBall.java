@@ -3,8 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.CombinedAutos;
-
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoMidShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
@@ -24,27 +22,27 @@ import frc.robot.commands.IndexerCommands.StopIndexer;
 import frc.robot.commands.IntakeCommands.ExtendRunIntake;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class RightZoneThreeBallAuto extends SequentialCommandGroup {
-  /** Creates a new RightZoneFourBallAuto. */
-  public RightZoneThreeBallAuto() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
- addCommands(
+public class FourBall extends SequentialCommandGroup {
+  /** Creates a new RightZoneThreeBallAuto. */
+  public FourBall() {
+ 
+    addCommands(
     new ExtendRunIntakeAuto(),
     new wait(0.5),
-    new DriveDistance(0.86,0.86),
+    new DriveDistance(1.05,1.05),
     new wait(0.5), 
     new RetractStopIntake(),
 
     new AutoRunIndexer(), 
-    new DriveDistanceBack(1.55,1.55), 
+    new DriveDistanceBack(1.5,1.5), 
     new Turn(9),
-    new DriveDistanceBack(0.09,0.09),
+    new DriveDistanceBack(0.2,0.2),
     new AutoHighShot(), 
-    new wait(1), 
+    new wait(1.3), 
     new AutoRunIndexerBelts(), 
     new wait(1.3),
     new stopIndexerAuto(),
@@ -52,21 +50,24 @@ public class RightZoneThreeBallAuto extends SequentialCommandGroup {
     new StopFlywheel(), 
     new stopIndexerAuto(),
    
-    new DriveDistance(0.25,0.25),
-    new Turn(33),
+    new DriveDistance(0.2,0.2),
+    new Turn(36),
     new ExtendRunIntakeAuto(),
-    new DriveDistance(2.72,2.72),
+    new IndexDrive(3,3),
     new RetractStopIntake(),
-
-    new AutoRunIndexerSingleBall(), 
-    new DriveDistanceBack(2.24,2.24), 
+    new wait(0.4),
+    new ExtendRunIntakeAuto(),
+    new IndexDriveDouble(3,3),
+    new RetractStopIntake(),
+    new AutoRunIndexer(),
+    new DriveDistanceBack(5.5,5.5), 
     new TurnCounterClock(36), 
-    new DriveDistanceBack(0.34,0.34),
 
     new AutoHighShot(), 
     new wait(1.3),
     new AutoRunIndexerBelts(), 
     new wait(1), 
     new StopFlywheel(), 
-    new stopIndexerAuto());  }
+    new stopIndexerAuto());
+  }
 }

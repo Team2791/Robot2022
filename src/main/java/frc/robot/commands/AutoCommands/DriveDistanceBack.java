@@ -23,7 +23,7 @@ public class DriveDistanceBack extends CommandBase {
   @Override
   public void initialize() {
     Robot.drivetrain.resetEncoders();
-    Robot.drivetrain.setMotors(-0.5,-0.5);
+    Robot.drivetrain.setMotors(-0.4,-0.4);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

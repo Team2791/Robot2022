@@ -12,27 +12,25 @@ import frc.robot.Robot;
 public class TurnCounterClock extends CommandBase {
   /** Creates a new driveCurved. */
   boolean finished = false;
-  double turnTime;
+  double turn;
   Timer timer;
-  public TurnCounterClock(double time) {
+  public TurnCounterClock(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
-    timer = new Timer();
-    turnTime = time; 
+    turn = -angle; 
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.drivetrain.resetGyro();
     Robot.drivetrain.setMotors(0.3,-0.3);
-    timer.reset();
-    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(timer.get()>turnTime) {
+    if(Robot.drivetrain.getAngle()<turn) {
       Robot.drivetrain.setMotors(0,0);
       finished = true;
     }

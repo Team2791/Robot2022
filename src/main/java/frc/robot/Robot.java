@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.commands.CombinedAutos.RightZoneThreeBallAuto;
+import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.subsystems.Climber;
@@ -66,7 +67,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     //m_robotContainer = new RobotContainer();
-
     CameraServer.startAutomaticCapture();
     m_visionThread = 
     new Thread ( 
@@ -129,6 +129,7 @@ public class Robot extends TimedRobot {
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
     m_autonomousCommand = new RightZoneThreeBallAuto();
+    Robot.drivetrain.resetGyro();
 
     climber.resetClimberPosition();
   }
@@ -167,6 +168,8 @@ public class Robot extends TimedRobot {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     Robot.drivetrain.setBrakeMode();
     Robot.drivetrain.resetEncoders();
+    Robot.drivetrain.resetGyro();
+
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
