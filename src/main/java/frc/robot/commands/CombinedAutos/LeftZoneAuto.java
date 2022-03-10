@@ -7,12 +7,14 @@ package frc.robot.commands.CombinedAutos;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.AutoCommands.AutoHighShot;
+import frc.robot.commands.AutoCommands.AutoReverseIntake;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.DriveDistanceBack;
 import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
 import frc.robot.commands.AutoCommands.RetractStopIntake;
+import frc.robot.commands.AutoCommands.Turn;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
 import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.IndexerCommands.StopIndexer;
@@ -37,5 +39,12 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new wait(1.3), 
     new StopFlywheel(), 
     new stopIndexerAuto());
+    //ball spit
+    new DriveDistance(3.05,3.05,Constants.autoDriveSpeed);
+    new Turn(35);
+    new ExtendRunIntakeAuto();
+    new wait(1.5);
+    new AutoReverseIntake();
+    
   }
 }
