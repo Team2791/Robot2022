@@ -88,7 +88,7 @@ public class OI {
         driverB.whenHeld(new SetBrakeMode());
 
         //Climb commands
-        operatorDPadRight.whenHeld(new MoveClimb());
+        operatorDPadRight.whenHeld(new RunClimbUp());
         operatorDPadLeft.whenHeld(new RunClimbDown());
         //stop climb 
         operatorDPadRight.whenReleased(new StopClimb());

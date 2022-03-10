@@ -3,36 +3,42 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.ClimberCommands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class RunClimb extends CommandBase {
-  /** Creates a new RunClimb. */
-  public RunClimb() {
+public class RunClimbUp extends CommandBase {
+  /** Creates a new ClimbUp. */
+  public RunClimbUp() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
-    
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.climber.setExtended();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climber.setMotors(Constants.kClimbSpeedUp);
+    //if(-Robot.climber.getLeftClimbPosition()<Constants.maxClimbHeight && Robot.climber.getRightClimbPosition()<Constants.maxClimbHeight && Robot.climber.getClimbSolenoid()) {
+      if(-Robot.climber.getRightClimbPosition()<Constants.maxClimbHeight && Robot.climber.getClimbSolenoid()) {
+      Robot.climber.setMotors(Constants.climberSpeed);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.climber.setMotors(0);
+    Robot.climber.setRetracted();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return !(-Robot.climber.getRightClimbPosition() < Constants.maxClimbHeight);
   }
 }
