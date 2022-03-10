@@ -88,9 +88,8 @@ public class Robot extends TimedRobot {
       });
       m_visionThread.setDaemon(true);
       m_visionThread.start();
-      CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
 
-      //CameraServer.startAutomaticCapture();
     m_visionThread2 = 
     new Thread ( 
       () -> {
