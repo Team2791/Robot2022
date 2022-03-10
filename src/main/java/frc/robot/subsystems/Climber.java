@@ -26,28 +26,25 @@ public class Climber extends SubsystemBase {
   private Solenoid climbSol;
 
   public Climber() {
-      //order of operations: retracted until motors start moving down. 
-      //when the motors move down, the soleinoids are extended
-      //when the motors stop moving down, the solenoids retract
+      //starts always retracted
+      //when going up or down, extend pistons 
+      //Whenever climber stops, retract pistons 
+      
     super.register();
     climbLeft = new TalonFX(RobotMap.leftClimbID);
     climbRight = new TalonFX(RobotMap.rightClimbID);
-    climbLeft.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
-    climbRight.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
-
     climbSol = new Solenoid(PneumaticsModuleType.REVPH, RobotMap.climb);
 
-    resetClimberPosition(); 
-
+    climbLeft.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
+    climbRight.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 0);
     climbLeft.setNeutralMode(NeutralMode.Brake);
     climbRight.setNeutralMode(NeutralMode.Brake);
+    resetClimberPosition(); 
 
   }
   public void setMotors(double speed) {
     climbLeft.set(TalonFXControlMode.PercentOutput,-speed);
     climbRight.set(TalonFXControlMode.PercentOutput,-speed);
-    
-
   }
   public void setExtended() {
     //pins in (motors can run)
@@ -76,6 +73,6 @@ public class Climber extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Right Climb", climbRight.getSelectedSensorPosition());
     SmartDashboard.putNumber("Left Climb", climbLeft.getSelectedSensorPosition());
-        // // This method will be called once per scheduler run
+    // // This method will be called once per scheduler run
   }
 }

@@ -51,8 +51,6 @@ public class OI {
 
         //MAP JOYSTICK CONTROLS HERE:
 
-        
-
         //Intake commands 
         driverA.whenHeld(new ExtendRunIntake());
 
@@ -95,9 +93,6 @@ public class OI {
         operatorDPadLeft.whenReleased(new StopClimb());    
         pitY.whenHeld(new PitMoveClimb());
         pitX.whenHeld(new PitMoveClimbDown());
-        
-
-
     }
 
     private void initButtons(){

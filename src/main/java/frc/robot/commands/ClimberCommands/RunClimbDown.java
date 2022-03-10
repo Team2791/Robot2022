@@ -25,8 +25,7 @@ public class RunClimbDown extends CommandBase {
   @Override
   public void execute() {
     // if(Robot.climber.getRightClimbPosition()>Constants.minClimbHeight && Robot.climber.getLeftClimbPosition()>Constants.minClimbHeight && Robot.climber.getClimbSolenoid()) {
-      if(-Robot.climber.getRightClimbPosition()>Constants.minClimbHeight && Robot.climber.getClimbSolenoid()) {
-
+    if(-Robot.climber.getRightClimbPosition()>Constants.minClimbHeight && Robot.climber.getClimbSolenoid()) {
       Robot.climber.setMotors(-Constants.climberSpeed);
     }
   }
