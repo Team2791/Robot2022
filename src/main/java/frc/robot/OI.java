@@ -24,14 +24,14 @@ import frc.robot.controller.MultiButton;
 public class OI {
     public static Joystick driverStick;
     public static Joystick operatorStick;
-    public static XboxController pitStick; 
+    public static Joystick pitStick; 
     Button driveButton;
-    private Button driverLB, driverRB;
+    private Button driverLB, driverRB, pitRB, pitLB;
     private Button driverStart, driverBack;
     private Button operatorStart;
     private Button driverA, driverB, driverY;
-    private Button driverDPadDown, driverDPadRight, driverDPadLeft, driverDPadUp;
-    public Button operatorRB, operatorLT, operatorLB, operatorRT;
+    private Button driverDPadDown, driverDPadRight, driverDPadLeft, driverDPadUp, pitDPadUp, pitDPadDown;
+    public Button operatorRB, operatorLT, operatorLB, operatorRT, pitRT, pitLT;
     public Button operatorLS, operatorBack;
     private Button driverX;
     private Button driverRS, driverLS;
@@ -43,9 +43,10 @@ public class OI {
     public OI(){
         driverStick = new Joystick(0);
         operatorStick = new Joystick(1);
-        pitStick = new XboxController(3);
+        pitStick = new Joystick(2);
 
         initButtons();
+        
         
         //initUsed();
 
@@ -86,13 +87,19 @@ public class OI {
         driverB.whenHeld(new SetBrakeMode());
 
         //Climb commands
+        // operatorDPadRight.whenHeld(new PitMoveClimb());
+        // operatorDPadLeft.whenHeld(new PitMoveClimbDown());
+
         operatorDPadRight.whenHeld(new RunClimbUp());
         operatorDPadLeft.whenHeld(new RunClimbDown());
         //stop climb 
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());    
-        pitY.whenHeld(new PitMoveClimb());
-        pitX.whenHeld(new PitMoveClimbDown());
+
+        // pitY.whenHeld(new PitMoveClimb());
+        // pitX.whenHeld(new PitMoveClimbDown());
+        pitDPadUp.whenHeld(new PitMoveClimb());
+        pitDPadDown.whenHeld(new PitMoveClimbDown());
     }
 
     private void initButtons(){
@@ -140,6 +147,23 @@ public class OI {
 
             operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
             operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
+
+             pitA = new JoystickButton(operatorStick, 1);
+             pitB = new JoystickButton(operatorStick, 2);
+            pitX = new JoystickButton(pitStick, 3);
+            pitY = new JoystickButton(pitStick, 4);
+            //  pitBack = new JoystickButton(operatorStick,7);
+            //  pitStart = new JoystickButton(driverStick, 8);
+             pitRB = new JoystickButton(operatorStick, 6);
+             pitLB = new JoystickButton(operatorStick, 5);
+             pitLT = new AnalogButton(operatorStick, 2);
+             pitRT = new AnalogButton(operatorStick, 3);
+             //pitLS = new AnalogButton(operatorStick, 1);
+             pitDPadDown = new DPadButton(operatorStick, DPadButton.kDPadDown);
+             pitDPadUp = new DPadButton(operatorStick, DPadButton.kDPadUp);
+
+            //  pitDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
+            //  pitDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
         }
 
         catch (Exception error){
@@ -147,10 +171,10 @@ public class OI {
             error.printStackTrace();
         }
 //TEMPORARY PIT CONTROLS//
-            pitA = new JoystickButton(pitStick, 1);
-            pitB = new JoystickButton(pitStick, 2); 
-            pitX = new JoystickButton(pitStick, 3); 
-            pitY = new JoystickButton(pitStick, 4); 
+            // pitA = new JoystickButton(pitStick, 1);
+            // pitB = new JoystickButton(pitStick, 2); 
+            // pitX = new JoystickButton(pitStick, 3); 
+            // pitY = new JoystickButton(pitStick, 4); 
     }
     
     // private void initUsed(){

@@ -44,6 +44,7 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new Turn(35);
     new ExtendRunIntakeAuto();
     new wait(1.5);
+    new Turn(-10);
     new AutoReverseIntake();
     
   }
