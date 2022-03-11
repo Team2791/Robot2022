@@ -148,22 +148,22 @@ public class OI {
             operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
             operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
 
-             pitA = new JoystickButton(operatorStick, 1);
-             pitB = new JoystickButton(operatorStick, 2);
+             pitA = new JoystickButton(pitStick, 1);
+             pitB = new JoystickButton(pitStick, 2);
             pitX = new JoystickButton(pitStick, 3);
             pitY = new JoystickButton(pitStick, 4);
-            //  pitBack = new JoystickButton(operatorStick,7);
-            //  pitStart = new JoystickButton(driverStick, 8);
-             pitRB = new JoystickButton(operatorStick, 6);
-             pitLB = new JoystickButton(operatorStick, 5);
-             pitLT = new AnalogButton(operatorStick, 2);
-             pitRT = new AnalogButton(operatorStick, 3);
-             //pitLS = new AnalogButton(operatorStick, 1);
-             pitDPadDown = new DPadButton(operatorStick, DPadButton.kDPadDown);
-             pitDPadUp = new DPadButton(operatorStick, DPadButton.kDPadUp);
+            pitBack = new JoystickButton(pitStick,7);
+            pitStart = new JoystickButton(pitStick, 8);
+             pitRB = new JoystickButton(pitStick, 6);
+             pitLB = new JoystickButton(pitStick, 5);
+             pitLT = new AnalogButton(pitStick, 2);
+             pitRT = new AnalogButton(pitStick, 3);
+             pitLS = new AnalogButton(pitStick, 1);
+             pitDPadDown = new DPadButton(pitStick, DPadButton.kDPadDown);
+             pitDPadUp = new DPadButton(pitStick, DPadButton.kDPadUp);
 
-            //  pitDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
-            //  pitDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
+            pitDPadLeft = new DPadButton(pitStick, DPadButton.kDPadLeft);
+            pitDPadRight = new DPadButton(pitStick, DPadButton.kDPadRight);
         }
 
         catch (Exception error){
