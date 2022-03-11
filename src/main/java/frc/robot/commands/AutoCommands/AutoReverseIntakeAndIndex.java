@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class AutoReverseIntake extends CommandBase {
+public class AutoReverseIntakeAndIndex extends CommandBase {
   public boolean finished=false;
   /** Creates a new AutoReverseIntake. */
-  public AutoReverseIntake() {
+  public AutoReverseIntakeAndIndex() {
     
 
     // Use addRequirements() here to declare subsystem dependencies.
