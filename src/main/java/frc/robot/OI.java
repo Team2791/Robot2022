@@ -32,7 +32,7 @@ public class OI {
     private Button driverA, driverB, driverY;
     private Button driverDPadDown, driverDPadRight, driverDPadLeft, driverDPadUp, pitDPadUp, pitDPadDown;
     public Button operatorRB, operatorLT, operatorLB, operatorRT, pitRT, pitLT;
-    public Button operatorLS, operatorBack;
+    public Button operatorLS, operatorBack, pitLS;
     private Button driverX;
     private Button driverRS, driverLS;
     private Button driverRX;
@@ -131,6 +131,7 @@ public class OI {
             //     driverRB
             // });
 //OPERATOR BUTTONS//
+
             operatorA = new JoystickButton(operatorStick, 1);
             operatorB = new JoystickButton(operatorStick, 2);
             operatorX = new JoystickButton(operatorStick, 3);
@@ -148,12 +149,12 @@ public class OI {
             operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
             operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
 
-             pitA = new JoystickButton(pitStick, 1);
-             pitB = new JoystickButton(pitStick, 2);
+            pitA = new JoystickButton(pitStick, 1);
+            pitB = new JoystickButton(pitStick, 2);
             pitX = new JoystickButton(pitStick, 3);
             pitY = new JoystickButton(pitStick, 4);
-            pitBack = new JoystickButton(pitStick,7);
-            pitStart = new JoystickButton(pitStick, 8);
+            //  pitBack = new JoystickButton(pitStick,7);
+            //  pitStart = new JoystickButton(pitStick, 8);
              pitRB = new JoystickButton(pitStick, 6);
              pitLB = new JoystickButton(pitStick, 5);
              pitLT = new AnalogButton(pitStick, 2);
@@ -161,9 +162,6 @@ public class OI {
              pitLS = new AnalogButton(pitStick, 1);
              pitDPadDown = new DPadButton(pitStick, DPadButton.kDPadDown);
              pitDPadUp = new DPadButton(pitStick, DPadButton.kDPadUp);
-
-            pitDPadLeft = new DPadButton(pitStick, DPadButton.kDPadLeft);
-            pitDPadRight = new DPadButton(pitStick, DPadButton.kDPadRight);
         }
 
         catch (Exception error){
