@@ -11,6 +11,7 @@ import frc.robot.Robot;
 public class ExtendRunIntakeAuto extends CommandBase {
   /** Creates a new ExtendRunIntakeAuto. */
   public ExtendRunIntakeAuto() {
+    addRequirements(Robot.intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
