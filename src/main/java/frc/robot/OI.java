@@ -62,7 +62,24 @@ public class OI {
         //Intake up and down 
         driverY.whenHeld(new ReverseIntake());
 
-        //Indexer
+        //Climber independent
+        if(operatorStick.getRawAxis(1)>0.2)
+        {
+            new RunSingular(1);
+        }
+        if(operatorStick.getRawAxis(5)>0.2)
+        {
+            new RunSingular(2);
+        }
+        if(operatorStick.getRawAxis(1)<-0.2)
+        {
+            new RunSingular(-1);
+        }
+        if(operatorStick.getRawAxis(5)<-0.2)
+        {
+            new RunSingular(-2);
+        }
+        
         operatorDPadDown.whileHeld(new ReverseIndexer());
         operatorDPadDown.whenReleased(new StopIndexer());
 
@@ -143,6 +160,7 @@ public class OI {
             operatorLT = new AnalogButton(operatorStick, 2);
             operatorRT = new AnalogButton(operatorStick, 3);
             operatorLS = new AnalogButton(operatorStick, 1);
+
             operatorDPadDown = new DPadButton(operatorStick, DPadButton.kDPadDown);
             operatorDPadUp = new DPadButton(operatorStick, DPadButton.kDPadUp);
 

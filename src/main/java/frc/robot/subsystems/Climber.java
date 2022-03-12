@@ -42,6 +42,14 @@ public class Climber extends SubsystemBase {
     resetClimberPosition(); 
 
   }
+  public void setLeftMotor(double speed)
+  {
+    climbLeft.set(TalonFXControlMode.PercentOutput,-speed);
+  }
+  public void setRightMotor(double speed)
+  {
+    climbRight.set(TalonFXControlMode.PercentOutput,-speed);
+  }
   public void setMotors(double speed) {
     climbLeft.set(TalonFXControlMode.PercentOutput,-speed);
     climbRight.set(TalonFXControlMode.PercentOutput,-speed);
