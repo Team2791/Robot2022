@@ -49,9 +49,7 @@ public class FourBall extends SequentialCommandGroup {
       new AutoRunIndexerBelts(), 
       new wait(1.3),
       new stopIndexerAuto(),
-      new wait(1.3), 
       new StopFlywheel(), 
-      new stopIndexerAuto(),
       new DriveDistance(0.25,0.25,0.4),
       new Turn(33),
 

@@ -15,7 +15,7 @@ public class DriveGetting34ball extends CommandBase {
   boolean finished, got3rd = false;
   public DriveGetting34ball(double left, double right, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.drivetrain);
+    addRequirements(Robot.drivetrain, Robot.intake);
     distanceLeft = left;
     distanceRight = right;
     motorSpeed = speed;
@@ -50,6 +50,7 @@ public class DriveGetting34ball extends CommandBase {
   public void end(boolean interrupted) {
     Robot.drivetrain.setRampUp(0);
     Robot.intake.setExtended();
+    Robot.intake.setMotor(0);
   }
 
   // Returns true when the command should end.
