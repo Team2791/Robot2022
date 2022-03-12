@@ -15,6 +15,7 @@ import frc.robot.commands.AutoCommands.DriveDistanceBack;
 import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
 import frc.robot.commands.AutoCommands.RetractStopIntake;
 import frc.robot.commands.AutoCommands.Turn;
+import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
 import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.IndexerCommands.StopIndexer;
@@ -28,17 +29,16 @@ public class LeftZoneAuto extends SequentialCommandGroup {
   /** Creates a new LeftZoneAuto. */
   public LeftZoneAuto() {
 
-    addCommands(new ExtendRunIntakeAuto(), new DriveDistance(2, 2, Constants.autoDriveSpeed), new AutoRunIndexer(),
-        new DriveDistanceBack(2, 2.5, Constants.autoDriveSpeed), new AutoHighShot(), new RetractStopIntake(),
+    addCommands(new ExtendRunIntakeAuto(), new DriveDistance(2, 2, Constants.autoDriveSpeed), new RetractStopIntake(), new AutoRunIndexer(),
+        new DriveDistanceBack(2.5, 2.5, Constants.autoDriveSpeed), new TurnCounterClock(5), new AutoHighShot(),
         new wait(1.5), new AutoRunIndexerBelts(), new wait(1.3), new StopFlywheel(), new stopIndexerAuto());
     // ball spit
-    new DriveDistance(3.05, 3.05, Constants.autoDriveSpeed);
-    new Turn(35);
-    new ExtendRunIntakeAuto();
-    new wait(1.5);
-    new Turn(-10);
-    new AutoReverseIntakeAndIndex();
-    new RetractIntake();
-  
+    // new DriveDistance(3.05, 3.05, Constants.autoDriveSpeed);
+    // new Turn(35);
+    // new ExtendRunIntakeAuto();
+    // new wait(1.5);
+    // new Turn(-10);
+    // new AutoReverseIntakeAndIndex();
+    // new RetractIntake();
   }
 }
