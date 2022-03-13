@@ -25,6 +25,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.commands.CombinedAutos.ThreeBall;
 import frc.robot.commands.CombinedAutos.FourBall;
+import frc.robot.commands.CombinedAutos.oneBall;
+import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.subsystems.Climber;

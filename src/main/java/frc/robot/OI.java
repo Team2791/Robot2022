@@ -99,13 +99,9 @@ public class OI {
         operatorLT.whenPressed(new StopFlywheel());
         
 
-        // driverRB.whenHeld(new creep());
-        // driverLB.whenHeld(new creep2());
-        driverB.whenHeld(new SetBrakeMode());
-
         //Climb commands
-        // operatorDPadRight.whenHeld(new PitMoveClimb());
-        // operatorDPadLeft.whenHeld(new PitMoveClimbDown());
+        //operatorDPadRight.whenHeld(new PitMoveClimb());
+        //operatorDPadLeft.whenHeld(new PitMoveClimbDown());
 
         operatorDPadRight.whenHeld(new RunClimbUp());
         operatorDPadLeft.whenHeld(new RunClimbDown());
@@ -113,10 +109,13 @@ public class OI {
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());    
 
-        // pitY.whenHeld(new PitMoveClimb());
-        // pitX.whenHeld(new PitMoveClimbDown());
+ 
         pitDPadUp.whenHeld(new PitMoveClimb());
         pitDPadDown.whenHeld(new PitMoveClimbDown());
+
+        // driverRB.whenHeld(new creep());
+        // driverLB.whenHeld(new creep2());
+        //driverB.whenHeld(new SetBrakeMode());
     }
 
     private void initButtons(){

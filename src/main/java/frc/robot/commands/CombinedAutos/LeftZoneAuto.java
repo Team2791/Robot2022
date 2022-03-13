@@ -29,9 +29,39 @@ public class LeftZoneAuto extends SequentialCommandGroup {
   /** Creates a new LeftZoneAuto. */
   public LeftZoneAuto() {
 
-    addCommands(new ExtendRunIntakeAuto(), new DriveDistance(2, 2, Constants.autoDriveSpeed), new RetractStopIntake(), new AutoRunIndexer(),
-        new DriveDistanceBack(2.5, 2.5, Constants.autoDriveSpeed), new TurnCounterClock(5), new AutoHighShot(),
-        new wait(1.5), new AutoRunIndexerBelts(), new wait(1.3), new StopFlywheel(), new stopIndexerAuto());
+    addCommands(
+    new ExtendRunIntakeAuto(),
+    new wait(0.5),
+    new DriveDistance(0.86,0.86, 0.3),
+    new wait(0.5), 
+    new RetractStopIntake(),
+
+    new AutoRunIndexer(), 
+    new DriveDistanceBack(1.55,1.55,0.3), 
+    new TurnCounterClock(9),
+    new DriveDistanceBack(0.09,0.09,0.3),
+    new AutoHighShot(), 
+    new wait(1.3), 
+    new AutoRunIndexerBelts(), 
+    new wait(1.3),
+    new stopIndexerAuto(), 
+    new StopFlywheel(), 
+    new stopIndexerAuto());
+      
+    
+    
+    // new ExtendRunIntakeAuto(),
+    // new DriveDistance(1, 1, 0.3), 
+    // new RetractStopIntake(), 
+    // new AutoRunIndexer(),
+    // new DriveDistanceBack(1.7, 1.7, 0.3), 
+    // new TurnCounterClock(5), 
+    // new AutoHighShot(),
+    // new wait(1.5), 
+    // new AutoRunIndexerBelts(), 
+    // new wait(1.3), 
+    // new StopFlywheel(), 
+    // new stopIndexerAuto());
     // ball spit
     // new DriveDistance(3.05, 3.05, Constants.autoDriveSpeed);
     // new Turn(35);
@@ -39,6 +69,6 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     // new wait(1.5);
     // new Turn(-10);
     // new AutoReverseIntakeAndIndex();
-    // new RetractIntake();
+    // new RetractIntake();    
   }
 }

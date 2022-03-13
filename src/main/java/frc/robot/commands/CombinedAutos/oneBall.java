@@ -11,6 +11,7 @@ import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
 import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
+import frc.robot.Constants;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -20,6 +21,13 @@ public class oneBall extends SequentialCommandGroup {
   public oneBall() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new AutoLongShot(), new wait(3), new AutoRunIndexerBelts(), new wait(2), new stopIndexerAuto(), new StopFlywheel(),new DriveDistance(1,1, 0.4)); 
+    addCommands(
+      new AutoLongShot(), 
+      new wait(3), 
+      new AutoRunIndexerBelts(), 
+      new wait(3), 
+      new stopIndexerAuto(), 
+      new StopFlywheel(),
+      new DriveDistance(1,1, 0.4)); 
   }
 }
