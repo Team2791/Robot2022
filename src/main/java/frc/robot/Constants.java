@@ -17,7 +17,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     public static final double kCreep = 0.325;
     public static final double TURN_FACTOR = -0.55;
-    public static final double autoRampUp = 0.07;
+    public static final double autoRampUp = 0.06;
     public static final double kClimberTime = 0.1;
     public static final double kClimbSpeedUp = 0.25;
     public static final double kClimbSpeedDown = -0.25;
@@ -46,8 +46,8 @@ public final class Constants {
     public static final double FrontFlywheelkD = 0;
 
 //P values tried 10,5,1 , .1,, .01, .001
-    public static final double kUpperFrontCloseSpeed = .38; //45 good40
-    public static final double kUpperBackCloseSpeed = -.38; //65 good45 //.33 and .38 sometimes hitting lip
+    public static final double kUpperFrontCloseSpeed = .34; //0.38 practice day orig //40
+    public static final double kUpperBackCloseSpeed = -.38; //-.38 practice day orig //.33 and .38 sometimes hitting lip
     public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
 
@@ -72,5 +72,8 @@ public final class Constants {
     public static final double maxClimbHeight = 270000; //240,000
     public static final double minClimbHeight = 0; //-400000;
     public static final double conversionFactor = wheelDiameterMeters * 0.091659 * Math.PI;
+
+
+    public static final double kClimbDelay = 0.5;
 
 }

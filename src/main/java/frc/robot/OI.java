@@ -63,22 +63,34 @@ public class OI {
         driverY.whenHeld(new ReverseIntake());
 
         //Climber independent
-        if(operatorStick.getRawAxis(1)>0.2)
-        {
-            new RunSingular(1);
-        }
-        if(operatorStick.getRawAxis(5)>0.2)
-        {
-            new RunSingular(2);
-        }
-        if(operatorStick.getRawAxis(1)<-0.2)
-        {
-            new RunSingular(-1);
-        }
-        if(operatorStick.getRawAxis(5)<-0.2)
-        {
-            new RunSingular(-2);
-        }
+        // if(operatorStick.getRawAxis(1)>0.2)
+        // {
+        //     new RunSingular(1);
+        // }
+        // else if(operatorStick.getRawAxis(1)<0.2 && operatorStick.getRawAxis(1)>0){
+        //     new StopClimb();
+        // }
+        // if(operatorStick.getRawAxis(5)>0.2)
+        // {
+        //     new RunSingular(2);
+        // }
+        // else if(operatorStick.getRawAxis(5)>0.2&& operatorStick.getRawAxis(5)>0){
+        //     new StopClimb();
+        // }
+        // if(operatorStick.getRawAxis(1)<-0.2)
+        // {
+        //     new RunSingular(-1);
+        // }
+        // else if(operatorStick.getRawAxis(1)<-0.2 && operatorStick.getRawAxis(1)<0){
+        //     new StopClimb();
+        // }
+        // if(operatorStick.getRawAxis(5)<-0.2)
+        // {
+        //     new RunSingular(-2);
+        // }
+        // else if(operatorStick.getRawAxis(5)<-0.2 && operatorStick.getRawAxis(5)<0){
+        //     new StopClimb();
+        // }
         
         operatorDPadDown.whileHeld(new ReverseIndexer());
         operatorDPadDown.whenReleased(new StopIndexer());
@@ -107,15 +119,17 @@ public class OI {
         operatorDPadLeft.whenHeld(new RunClimbDown());
         //stop climb 
         operatorDPadRight.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new StopClimb());    
+        operatorDPadLeft.whenReleased(new StopClimb());   
 
- 
+        driverDPadDown.whenHeld(new LeftClimbDown());
+        driverDPadUp.whenHeld(new LeftClimbUp());
+
+        driverDPadLeft.whenHeld(new RightClimbDown());
+        driverDPadRight.whenHeld(new RightClimbUp());
+
+        //Pit controls 
         pitDPadUp.whenHeld(new PitMoveClimb());
         pitDPadDown.whenHeld(new PitMoveClimbDown());
-
-        // driverRB.whenHeld(new creep());
-        // driverLB.whenHeld(new creep2());
-        //driverB.whenHeld(new SetBrakeMode());
     }
 
     private void initButtons(){

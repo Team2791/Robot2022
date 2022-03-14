@@ -28,6 +28,6 @@ public class oneBall extends SequentialCommandGroup {
       new wait(3), 
       new stopIndexerAuto(), 
       new StopFlywheel(),
-      new DriveDistance(1,1, 0.4)); 
+      new DriveDistance(1.2,1.2, 0.4)); 
   }
 }

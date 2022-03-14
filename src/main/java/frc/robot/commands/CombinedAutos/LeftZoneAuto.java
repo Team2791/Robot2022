@@ -10,16 +10,20 @@ import frc.robot.commands.AutoCommands.AutoHighShot;
 import frc.robot.commands.AutoCommands.AutoReverseIntakeAndIndex;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
+import frc.robot.commands.AutoCommands.AutoRunIndexerSingleBall;
 import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.DriveDistanceBack;
 import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
+import frc.robot.commands.AutoCommands.ExtendRunIntakeReverse;
 import frc.robot.commands.AutoCommands.RetractStopIntake;
+import frc.robot.commands.AutoCommands.ReverseIndexerAuto;
 import frc.robot.commands.AutoCommands.Turn;
 import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.stopIndexerAuto;
 import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.IndexerCommands.StopIndexer;
 import frc.robot.commands.IntakeCommands.RetractIntake;
+import frc.robot.commands.IntakeCommands.ReverseIntake;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -31,9 +35,9 @@ public class LeftZoneAuto extends SequentialCommandGroup {
 
     addCommands(
     new ExtendRunIntakeAuto(),
-    new wait(0.5),
+    new wait(0.7),
     new DriveDistance(0.86,0.86, 0.3),
-    new wait(0.5), 
+    new wait(0.6), 
     new RetractStopIntake(),
 
     new AutoRunIndexer(), 
@@ -46,29 +50,26 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new wait(1.3),
     new stopIndexerAuto(), 
     new StopFlywheel(), 
-    new stopIndexerAuto());
-      
-    
-    
-    // new ExtendRunIntakeAuto(),
-    // new DriveDistance(1, 1, 0.3), 
-    // new RetractStopIntake(), 
-    // new AutoRunIndexer(),
-    // new DriveDistanceBack(1.7, 1.7, 0.3), 
-    // new TurnCounterClock(5), 
-    // new AutoHighShot(),
-    // new wait(1.5), 
-    // new AutoRunIndexerBelts(), 
-    // new wait(1.3), 
-    // new StopFlywheel(), 
-    // new stopIndexerAuto());
-    // ball spit
+    //new stopIndexerAuto(),
+
+    //ball spit (Joe's version)
+    new ExtendRunIntakeAuto(),
+    new DriveDistance(0.13,0.13, 0.1),
+    new Turn(15), 
+    new DriveDistance(1.8,1.8,0.3),
+    new wait(.5),
+    new RetractStopIntake(),
+    new AutoRunIndexerSingleBall(),
+    new TurnCounterClock(18),
+    new ExtendRunIntakeReverse(),
+    new ReverseIndexerAuto());
+  }
+}
+    //ball spit (Eli's Version)
     // new DriveDistance(3.05, 3.05, Constants.autoDriveSpeed);
     // new Turn(35);
     // new ExtendRunIntakeAuto();
     // new wait(1.5);
     // new Turn(-10);
     // new AutoReverseIntakeAndIndex();
-    // new RetractIntake();    
-  }
-}
+    // new RetractIntake();   

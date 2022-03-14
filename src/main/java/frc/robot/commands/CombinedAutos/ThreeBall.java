@@ -34,9 +34,9 @@ public class ThreeBall extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
  addCommands(
     new ExtendRunIntakeAuto(),
-    new wait(0.5),
+    new wait(0.6),
     new DriveDistance(0.86,0.86, Constants.autoDriveSpeed),
-    new wait(0.5), 
+    new wait(0.6), 
     new RetractStopIntake(),
 
     new AutoRunIndexer(), 
@@ -52,7 +52,7 @@ public class ThreeBall extends SequentialCommandGroup {
     new stopIndexerAuto(),
    
     new DriveDistance(0.25,0.25,Constants.autoDriveSpeed),
-    new Turn(33),
+    new Turn(36),
     new ExtendRunIntakeAuto(),
     new DriveDistance(2.62,2.62, Constants.autoDriveSpeed),
     new RetractStopIntake(),
@@ -108,3 +108,4 @@ public class ThreeBall extends SequentialCommandGroup {
 //   new wait(1), 
 //   new StopFlywheel(), 
 //   new stopIndexerAuto()); 
+
