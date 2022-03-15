@@ -42,19 +42,19 @@ public class ThreeBall extends SequentialCommandGroup {
     new AutoRunIndexer(), 
     new DriveDistanceBack(1.55,1.55,Constants.autoDriveSpeed), 
     new Turn(9),
-    new DriveDistanceBack(0.09,0.09,Constants.autoDriveSpeed),
+    new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
     new AutoHighShot(), 
-    new wait(1), 
+    new wait(1.8), 
     new AutoRunIndexerBelts(), 
     new wait(1.3),
     new stopIndexerAuto(), 
     new StopFlywheel(), 
     new stopIndexerAuto(),
    
-    new DriveDistance(0.25,0.25,Constants.autoDriveSpeed),
-    new Turn(36),
+    new DriveDistance(0.28,0.28,Constants.autoDriveSpeed), //.26
+    new Turn(36),  //35
     new ExtendRunIntakeAuto(),
-    new DriveDistance(2.62,2.62, Constants.autoDriveSpeed),
+    new DriveDistance(2.62,2.62, Constants.autoDriveSpeed), 
     new RetractStopIntake(),
 
     new AutoRunIndexerSingleBall(), 

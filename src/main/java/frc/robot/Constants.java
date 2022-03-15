@@ -28,7 +28,7 @@ public final class Constants {
 
     public static final double frontFlySpeed = 0.4;
     public static final double backFlySpeed = -0.3;
-    public static final double minPressure = 60;
+    public static final double minPressure = 60;//110
     public static final double maxPressure = 120;
 
     //PID CONSTANTS
@@ -51,8 +51,8 @@ public final class Constants {
     public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
 
-    public static final double autoHighShotFront=0.32;
-    public static final double autoHighShotBack=-0.36;
+    public static final double autoHighShotFront=0.34;
+    public static final double autoHighShotBack=-0.38;
     public static final double autoMidShotFront=0.38;
     public static final double autoMidShotBack=-0.50;
     public static final double autoDriveSpeed = 0.4;
@@ -71,9 +71,9 @@ public final class Constants {
     //max and min should be based on right falcon encoder
     public static final double maxClimbHeight = 270000; //240,000
     public static final double minClimbHeight = 0; //-400000;
-    public static final double conversionFactor = wheelDiameterMeters * 0.091659 * Math.PI;
+    public static final double conversionFactor = wheelDiameterMeters * 0.1099989 * Math.PI;
+    //previous gear ratio 0.091659
 
-
-    public static final double kClimbDelay = 0.5;
+    public static final double kClimbDelay = 0.25;
 
 }

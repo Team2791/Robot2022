@@ -45,24 +45,24 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new TurnCounterClock(9),
     new DriveDistanceBack(0.09,0.09,0.3),
     new AutoHighShot(), 
-    new wait(1.3), 
+    new wait(1.5), 
     new AutoRunIndexerBelts(), 
     new wait(1.3),
     new stopIndexerAuto(), 
-    new StopFlywheel(), 
+    new StopFlywheel()); 
     //new stopIndexerAuto(),
 
     //ball spit (Joe's version)
-    new ExtendRunIntakeAuto(),
-    new DriveDistance(0.13,0.13, 0.1),
-    new Turn(15), 
-    new DriveDistance(1.8,1.8,0.3),
-    new wait(.5),
-    new RetractStopIntake(),
-    new AutoRunIndexerSingleBall(),
-    new TurnCounterClock(18),
-    new ExtendRunIntakeReverse(),
-    new ReverseIndexerAuto());
+    // new ExtendRunIntakeAuto(),
+    // new DriveDistance(0.13,0.13, 0.1),
+    // new Turn(15), 
+    // new DriveDistance(1.8,1.8,0.3),
+    // new wait(.5),
+    // new RetractStopIntake(),
+    // new AutoRunIndexerSingleBall(),
+    // new TurnCounterClock(18),
+    // new ExtendRunIntakeReverse(),
+    // new ReverseIndexerAuto());
   }
 }
     //ball spit (Eli's Version)

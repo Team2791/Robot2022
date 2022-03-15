@@ -80,9 +80,9 @@ public class Robot extends TimedRobot {
     new Thread ( 
       () -> {
         UsbCamera camera = CameraServer.startAutomaticCapture();
-        camera.setResolution(640, 480);
+        camera.setResolution(480, 360);
         CvSink cvSink = CameraServer.getVideo();
-        CvSource outputStream = CameraServer.putVideo("Rectangle", 640, 480);
+        CvSource outputStream = CameraServer.putVideo("Rectangle", 480, 360);
 
         Mat mat = new Mat();
         while(!Thread.interrupted()) {
@@ -102,9 +102,9 @@ public class Robot extends TimedRobot {
     new Thread ( 
       () -> {
         UsbCamera camera2 = CameraServer.startAutomaticCapture();
-        camera2.setResolution(640, 480);
+        camera2.setResolution(480, 360); 
         CvSink cvSink2 = CameraServer.getVideo();
-        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 640, 480);
+        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 480, 360);
 
         Mat mat2 = new Mat();
         while(!Thread.interrupted()) {
@@ -140,8 +140,8 @@ public class Robot extends TimedRobot {
     oneBallAuto = new oneBall();
     
     autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("Three Ball (Right)", threeBallAuto);
-    autoChooser.addOption("One Ball (Anywhere)", oneBallAuto);
+    autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
+    autoChooser.addOption("Three ball(Right)", threeBallAuto);
     autoChooser.addOption("Two Ball + Spit (Left)", spitBallAuto);
     SmartDashboard.putData(autoChooser);
     m_autonomousCommand = autoChooser.getSelected();

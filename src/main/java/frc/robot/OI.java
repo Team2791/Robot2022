@@ -115,8 +115,8 @@ public class OI {
         //operatorDPadRight.whenHeld(new PitMoveClimb());
         //operatorDPadLeft.whenHeld(new PitMoveClimbDown());
 
-        operatorDPadRight.whenHeld(new RunClimbUp());
-        operatorDPadLeft.whenHeld(new RunClimbDown());
+        operatorDPadRight.whenHeld(new RunClimbUpWithTimer());
+        operatorDPadLeft.whenHeld(new RunClimbDownWithTimer());
         //stop climb 
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());   
