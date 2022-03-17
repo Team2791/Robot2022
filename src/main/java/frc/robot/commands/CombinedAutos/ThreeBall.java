@@ -51,26 +51,27 @@ public class ThreeBall extends SequentialCommandGroup {
     new StopFlywheel(), 
     new stopIndexerAuto(),
    
-    new DriveDistance(0.28,0.28,Constants.autoDriveSpeed), //.26
-    new Turn(36),  //35
     new ExtendRunIntakeAuto(),
+    new DriveDistance(0.26,0.26,Constants.autoDriveSpeed), //.26
+    new Turn(30),  //35
     new DriveDistance(2.62,2.62, Constants.autoDriveSpeed), 
     new RetractStopIntake(),
 
     new AutoRunIndexerSingleBall(), 
-    new DriveDistanceBack(2.14,2.14,Constants.autoDriveSpeed), 
+    new DriveDistanceBack(2.3,2.3,0.5), //0.4
     new TurnCounterClock(36), 
+    new AutoHighShot(), 
     new DriveDistanceBack(0.34,0.34,Constants.autoDriveSpeed),
 
-    new AutoHighShot(), 
-    new wait(1.3),
+    
+    new wait(.5),
     new AutoRunIndexerBelts(), 
     new wait(1), 
     new StopFlywheel(), 
     new stopIndexerAuto());  }
 }
 
-//I copied it in case I accidently delete everythiing or something else stupid 
+//I copied it in case I accidentally delete everythiing or something else stupid 
 // addCommands(
 //   new ExtendRunIntakeAuto(),
 //   new wait(0.5),

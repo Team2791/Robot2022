@@ -36,16 +36,16 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     addCommands(
     new ExtendRunIntakeAuto(),
     new wait(0.7),
-    new DriveDistance(0.86,0.86, 0.3),
+    new DriveDistance(0.9,0.9, Constants.autoDriveSpeed), //.86, .3
     new wait(0.6), 
     new RetractStopIntake(),
 
     new AutoRunIndexer(), 
-    new DriveDistanceBack(1.55,1.55,0.3), 
+    new DriveDistanceBack(1.59,1.59,Constants.autoDriveSpeed), //1.55, .3
     new TurnCounterClock(9),
-    new DriveDistanceBack(0.09,0.09,0.3),
+    new DriveDistanceBack(0.06,0.06, Constants.autoDriveSpeed), //.3
     new AutoHighShot(), 
-    new wait(1.5), 
+    new wait(4), 
     new AutoRunIndexerBelts(), 
     new wait(1.3),
     new stopIndexerAuto(), 

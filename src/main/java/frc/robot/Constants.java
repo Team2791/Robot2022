@@ -17,7 +17,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     public static final double kCreep = 0.325;
     public static final double TURN_FACTOR = -0.55;
-    public static final double autoRampUp = 0.06;
+    public static final double autoRampUp = 0.05;
     public static final double kClimberTime = 0.1;
     public static final double kClimbSpeedUp = 0.25;
     public static final double kClimbSpeedDown = -0.25;
