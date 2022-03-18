@@ -104,19 +104,17 @@ public class OI {
         
 
         //Shooter
-        //operatorB.whileHeld(new ShooterTest());
         operatorA.whenHeld(new UpperHubClose());
         operatorB.whenHeld(new LowerHubClose());
         operatorY.whenHeld(new longShotOuterTarmac());
-        operatorLT.whenPressed(new StopFlywheel());
+        operatorX.whenHeld(new GachLongShot());
+        //operatorLT.whenPressed(new StopFlywheel());
         
 
         //Climb commands
-        //operatorDPadRight.whenHeld(new PitMoveClimb());
-        //operatorDPadLeft.whenHeld(new PitMoveClimbDown());
-
         operatorDPadRight.whenHeld(new RunClimbUpWithTimer());
         operatorDPadLeft.whenHeld(new RunClimbDownWithTimer());
+        
         //stop climb 
         operatorDPadRight.whenReleased(new StopClimb());
         operatorDPadLeft.whenReleased(new StopClimb());   

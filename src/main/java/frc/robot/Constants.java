@@ -48,16 +48,21 @@ public final class Constants {
 //P values tried 10,5,1 , .1,, .01, .001
     public static final double kUpperFrontCloseSpeed = .34; //0.38 practice day orig //40
     public static final double kUpperBackCloseSpeed = -.38; //-.38 practice day orig //.33 and .38 sometimes hitting lip
+
     public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
     public static final double kLowerBackCloseSpeed = -.40;
+
+    public static final double longShotFrontWheel=0.3;
+    public static final double longShotBackWheel=-.6;
+
+    public static final double GachShotFront = 0.35;
+    public static final double GachShotBack = -0.65;
 
     public static final double autoHighShotFront=0.34;
     public static final double autoHighShotBack=-0.38;
     public static final double autoMidShotFront=0.38;
     public static final double autoMidShotBack=-0.50;
     public static final double autoDriveSpeed = 0.4;
-    public static final double longShotFrontWheel=0.3;
-    public static final double longShotBackWheel=-.6;
     public static final double wheelDiameterMeters = Units.inchesToMeters(6);
     
 
