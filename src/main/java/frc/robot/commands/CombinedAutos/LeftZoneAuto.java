@@ -90,7 +90,7 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new wait(.5),
     new RetractStopIntake(),
     new AutoRunIndexerSingleBall(),
-    new TurnCounterClock(90),
+    new Turn(90),
     // new Turn(90),
     // new Turn(90),
     new AutoGachShot(),

@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.commands.CombinedAutos.ThreeBall;
+import frc.robot.commands.CombinedAutos.TwoBallRight;
 import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.CombinedAutos.FourBallTerminal;
 import frc.robot.commands.CombinedAutos.oneBall;
@@ -67,6 +68,7 @@ public class Robot extends TimedRobot {
   private Command spitBallAuto;
   private Command oneBallAuto;
   private Command fourBallAuto;
+  private Command twoBallRightZoneAuto;
   private SendableChooser<Command> autoChooser;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -141,12 +143,13 @@ public class Robot extends TimedRobot {
     spitBallAuto = new LeftZoneAuto();
     oneBallAuto = new oneBall();
     fourBallAuto = new FourBallTerminal();
-    
+    twoBallRightZoneAuto = new TwoBallRight();
     autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
     autoChooser.addOption("Three ball(Right)", threeBallAuto);
     autoChooser.addOption("Two Ball + Spit (Left)", spitBallAuto);
     autoChooser.addOption("Four ball (middle))", fourBallAuto);
+    autoChooser.addOption("Two Ball(Right Zone)", twoBallRightZoneAuto);
 
     SmartDashboard.putData(autoChooser);
     m_autonomousCommand = autoChooser.getSelected();
