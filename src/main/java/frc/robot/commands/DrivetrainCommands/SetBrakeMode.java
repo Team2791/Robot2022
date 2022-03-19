@@ -9,7 +9,8 @@ import frc.robot.Robot;
 
 public class SetBrakeMode extends CommandBase {
   /** Creates a new SetBrakeMode. */
-  public SetBrakeMode() {
+  public 
+  SetBrakeMode() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
   }

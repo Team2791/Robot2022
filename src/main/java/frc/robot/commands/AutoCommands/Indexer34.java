@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class AutoIndex extends CommandBase {
-  /** Creates a new DriveIndex. */
-  boolean finished; 
+public class Indexer34 extends CommandBase {
+  /** Creates a new Indexer34. */
   Timer timer;
-  public AutoIndex() {
+  boolean finished; 
+  public Indexer34() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.indexer);
     timer = new Timer();
@@ -22,30 +22,29 @@ public class AutoIndex extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
-    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
     timer.reset();
     timer.start();
+    Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
+    Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.indexer.getUpperLimitSwitch()==false) {
-      Robot.indexer.stopUpperMotor();
+    if(Robot.indexer.getUpperLimitSwitch()== false) {
+      Robot.indexer.setUpperMotor(0);
     }
-    if(Robot.indexer.getUpperLimitSwitch()==false && Robot.indexer.getLowerLimitSwitch()==false){
-      Robot.indexer.stopLowerMotor();
+    if(Robot.indexer.getLowerLimitSwitch()== false && Robot.indexer.getUpperLimitSwitch()== false) {
+      Robot.indexer.setLowerMotor(0);
       finished = true;
     }
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.indexer.stopUpperMotor();
-    Robot.indexer.stopLowerMotor();
+    Robot.indexer.setUpperMotor(0);
+    Robot.indexer.setLowerMotor(0);
 
   }
 

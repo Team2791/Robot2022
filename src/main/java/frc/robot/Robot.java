@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.commands.CombinedAutos.ThreeBall;
 import frc.robot.commands.CombinedAutos.FourBall;
+import frc.robot.commands.CombinedAutos.FourBallTerminal;
 import frc.robot.commands.CombinedAutos.oneBall;
 import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
@@ -65,6 +66,7 @@ public class Robot extends TimedRobot {
   private Command threeBallAuto;
   private Command spitBallAuto;
   private Command oneBallAuto;
+  private Command fourBallAuto;
   private SendableChooser<Command> autoChooser;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -138,11 +140,14 @@ public class Robot extends TimedRobot {
     threeBallAuto = new ThreeBall();
     spitBallAuto = new LeftZoneAuto();
     oneBallAuto = new oneBall();
+    fourBallAuto = new FourBallTerminal();
     
     autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
     autoChooser.addOption("Three ball(Right)", threeBallAuto);
     autoChooser.addOption("Two Ball + Spit (Left)", spitBallAuto);
+    autoChooser.addOption("Four ball (middle))", fourBallAuto);
+
     SmartDashboard.putData(autoChooser);
     m_autonomousCommand = autoChooser.getSelected();
     Robot.drivetrain.resetGyro();
@@ -184,6 +189,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     Robot.drivetrain.setBrakeMode();
+    //Robot.drivetrain.setCoastMode();
     Robot.drivetrain.resetEncoders();
     Robot.drivetrain.resetGyro();
     
@@ -211,6 +217,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    //Robot.drivetrain.setRampUp(0.07);
     Robot.drivetrain.setCoastMode();
     Robot.climber.resetClimberPosition();
 

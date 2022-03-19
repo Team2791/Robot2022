@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutoCommands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -11,9 +12,11 @@ import frc.robot.Robot;
 public class AutoRunIndexerSingleBall extends CommandBase {
   /** Creates a new RunIndexer2. */
   boolean finished=false;
+  Timer timer;
   public AutoRunIndexerSingleBall() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.indexer);
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
@@ -21,6 +24,8 @@ public class AutoRunIndexerSingleBall extends CommandBase {
   public void initialize() {
     Robot.indexer.setLowerMotor(Constants.bottomindexerSpeed);
     Robot.indexer.setUpperMotor(Constants.topindexerSpeed);
+    timer.reset();
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -43,6 +48,6 @@ public class AutoRunIndexerSingleBall extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return finished || timer.get()>2;
   }
 }

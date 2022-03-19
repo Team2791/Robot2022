@@ -18,8 +18,8 @@ public class AutoGachShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.shooter.setFrontFlywheel(Constants.autoHighShotFront);
-    Robot.shooter.setBackFlywheel(Constants.autoHighShotBack);
+    Robot.shooter.setFrontFlywheel(Constants.kLowerFrontCloseSpeed);
+    Robot.shooter.setBackFlywheel(Constants.kLowerBackCloseSpeed);
   }
   
 

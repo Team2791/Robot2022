@@ -14,6 +14,6 @@ public class DriveIndex extends ParallelCommandGroup {
   public DriveIndex(double left, double right, double speed) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new DriveGetting34ball(left, right, speed), new AutoIndex());
+    addCommands(new DriveDistanceRetract(left, right, speed), new AutoIndex());
   }
 }

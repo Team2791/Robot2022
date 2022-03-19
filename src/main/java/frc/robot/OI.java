@@ -128,6 +128,7 @@ public class OI {
         //Pit controls 
         pitDPadUp.whenHeld(new PitMoveClimb());
         pitDPadDown.whenHeld(new PitMoveClimbDown());
+        operatorLB.whenHeld(new SetBrakeMode());
     }
 
     private void initButtons(){

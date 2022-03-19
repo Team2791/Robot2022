@@ -24,7 +24,7 @@ public class TurnCounterClock extends CommandBase {
   @Override
   public void initialize() {
     Robot.drivetrain.resetGyro();
-    Robot.drivetrain.setMotors(0.3,-0.3);
+    Robot.drivetrain.setMotors(0.2,-0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
