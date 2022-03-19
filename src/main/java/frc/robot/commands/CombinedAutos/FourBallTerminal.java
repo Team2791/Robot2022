@@ -46,7 +46,7 @@ public class FourBallTerminal extends SequentialCommandGroup {
 
       new AutoLongShot(),
       new TurnCounterClock(5),
-      new wait(1.3),
+      new wait(1.25),
       new AutoRunIndexerBelts(),
       new wait(1.3),
       new StopFlywheel(),
@@ -59,9 +59,9 @@ public class FourBallTerminal extends SequentialCommandGroup {
       
       //Drive back and shoot 3rd and 4th 
       new DriveIndex(4.7, 4.7, 0.5),
-      new DriveAndIndex34(4.2, 4.2, 0.5),
+      new DriveAndIndex34(4.2, 4.2, 0.52),
       new AutoLongShot(),
-      new TurnCounterClock(10), //10
+      new TurnCounterClock(13), //10
       new wait(1),
       new AutoRunIndexerBelts(),
       new wait(3),

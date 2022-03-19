@@ -11,6 +11,7 @@ import frc.robot.commands.AutoCommands.AutoMidShot;
 import frc.robot.commands.AutoCommands.AutoRunIndexer;
 import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
 import frc.robot.commands.AutoCommands.AutoRunIndexerSingleBall;
+import frc.robot.commands.AutoCommands.DriveAndIndex;
 import frc.robot.commands.AutoCommands.DriveDistance;
 import frc.robot.commands.AutoCommands.DriveDistanceBack;
 import frc.robot.commands.AutoCommands.ExtendRunIntakeAuto;
@@ -44,7 +45,7 @@ public class ThreeBall extends SequentialCommandGroup {
     new Turn(9),
     new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
     new AutoHighShot(), 
-    new wait(1.8), 
+    new wait(1.7), 
     new AutoRunIndexerBelts(), 
     new wait(1.3),
     new stopIndexerAuto(), 
@@ -56,17 +57,15 @@ public class ThreeBall extends SequentialCommandGroup {
     new Turn(30),  //35
     new DriveDistance(2.62,2.62, Constants.autoDriveSpeed), 
     new RetractStopIntake(),
+    new wait(0.4),
+    new DriveAndIndex(2.3, 2.3, 0.44),
 
-    new AutoRunIndexerSingleBall(), 
-    new DriveDistanceBack(1.7,1.7,0.5), //0.4
     new TurnCounterClock(36), 
-    new AutoHighShot(), 
     new DriveDistanceBack(0.34,0.34,Constants.autoDriveSpeed),
-
-    
-    new wait(.5),
+    new AutoHighShot(),
+    new wait(1),
     new AutoRunIndexerBelts(), 
-    new wait(1), 
+    new wait(2), 
     new StopFlywheel(), 
     new stopIndexerAuto());  }
 }

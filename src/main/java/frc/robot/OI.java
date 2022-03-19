@@ -56,8 +56,8 @@ public class OI {
         driverA.whenHeld(new ExtendRunIntake());
 
         //Drive Commmands
-         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-         driveButton.whenReleased(new stopMotors());
+        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
+        driveButton.whenReleased(new stopMotors());
        
         //Intake up and down 
         driverY.whenHeld(new ReverseIntake());
