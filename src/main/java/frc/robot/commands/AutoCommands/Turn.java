@@ -23,8 +23,8 @@ public class Turn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.drivetrain.resetGyro();
-    Robot.drivetrain.setMotors(-0.3,0.3);
+    //Robot.drivetrain.resetGyro();
+    Robot.drivetrain.setMotors(-0.1,0.1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

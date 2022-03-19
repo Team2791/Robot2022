@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
+import frc.robot.commands.AutoCommands.TurnPID;
 import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
@@ -61,6 +62,8 @@ public class OI {
        
         //Intake up and down 
         driverY.whenHeld(new ReverseIntake());
+
+        driverB.whenHeld(new TurnPID(100));
 
         //Climber independent
         // if(operatorStick.getRawAxis(1)>0.2)
