@@ -63,7 +63,7 @@ public class OI {
         //Intake up and down 
         driverY.whenHeld(new ReverseIntake());
 
-        driverB.whenHeld(new TurnPID(100));
+        driverB.whileHeld(new TurnPID(45));
 
         //Climber independent
         // if(operatorStick.getRawAxis(1)>0.2)

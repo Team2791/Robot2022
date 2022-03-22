@@ -5,6 +5,7 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -13,24 +14,30 @@ public class TurnCounterClockwisePID extends CommandBase {
   /** Creates a new TurnPID. */
   private PIDController pid;
   private double turn;
+  private Timer timer;
+
   public TurnCounterClockwisePID(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
     pid = new PIDController(Constants.GyrokP, Constants.GyrokI, Constants.GyrokD);
     turn = angle;
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     pid.setSetpoint(turn);
-    pid.setTolerance(5);
+    pid.setTolerance(1);
+    timer.reset();
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     double output = pid.calculate(Robot.drivetrain.getAngle());
+    output = Math.min(output, 0.3);
     Robot.drivetrain.setMotors(output, -output);
   }
 
@@ -43,6 +50,6 @@ public class TurnCounterClockwisePID extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pid.atSetpoint();
+    return pid.atSetpoint() || timer.get()>2;
   }
 }
