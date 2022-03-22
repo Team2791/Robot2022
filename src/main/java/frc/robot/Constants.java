@@ -81,4 +81,9 @@ public final class Constants {
 
     public static final double kClimbDelay = 0.25;
 
+    
+    public static final double GyrokP = 0.004;
+    public static final double GyrokI = 0;
+    public static final double GyrokD = 0;
+
 }

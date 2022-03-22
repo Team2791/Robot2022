@@ -28,6 +28,7 @@ import frc.robot.commands.CombinedAutos.ThreeBall;
 import frc.robot.commands.CombinedAutos.TwoBallRight;
 import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.CombinedAutos.FourBallTerminal;
+import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
 import frc.robot.commands.CombinedAutos.oneBall;
 import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
@@ -69,6 +70,7 @@ public class Robot extends TimedRobot {
   private Command oneBallAuto;
   private Command fourBallAuto;
   private Command twoBallRightZoneAuto;
+  private Command fourBallPIDAuto;
   private SendableChooser<Command> autoChooser;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -144,12 +146,14 @@ public class Robot extends TimedRobot {
     oneBallAuto = new oneBall();
     fourBallAuto = new FourBallTerminal();
     twoBallRightZoneAuto = new TwoBallRight();
+    fourBallPIDAuto = new FourBallTerminalPID();
     autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
     autoChooser.addOption("Three ball(Right)", threeBallAuto);
     autoChooser.addOption("Two Ball + Spit (Left)", spitBallAuto);
     autoChooser.addOption("Four ball (middle))", fourBallAuto);
     autoChooser.addOption("Two Ball(Right Zone)", twoBallRightZoneAuto);
+    autoChooser.addOption("Four Ball (middle) (PID)", fourBallPIDAuto);
 
     SmartDashboard.putData(autoChooser);
     m_autonomousCommand = autoChooser.getSelected();
