@@ -179,6 +179,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putData(CommandScheduler.getInstance());
     SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
+    SmartDashboard.putNumber("Compressor Pressure", compressor.getPressure());
     //SmartDashboard.putData(autoChooser); //add to periodic??
   }
 
