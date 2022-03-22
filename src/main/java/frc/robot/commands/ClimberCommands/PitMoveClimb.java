@@ -4,27 +4,32 @@
 
 package frc.robot.commands.ClimberCommands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class PitMoveClimb extends CommandBase {
   /** Creates a new ClimbUp. */
+  Timer timer;
   public PitMoveClimb() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     Robot.climber.setExtended();
+    timer.reset();
+    timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.climber.getClimbSolenoid()) {
+    if(Robot.climber.getClimbSolenoid() && timer.get()>Constants.kClimbDelay) {
       Robot.climber.setMotors(Constants.climberSpeed);
     }
 
