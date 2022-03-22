@@ -26,6 +26,11 @@ public class Drivetrain extends SubsystemBase{
         rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
         rightFollower.follow(rightLeader, false);
 
+        leftLeader.setSmartCurrentLimit(80);
+        leftFollower.setSmartCurrentLimit(80);
+        rightLeader.setSmartCurrentLimit(80);
+        rightFollower.setSmartCurrentLimit(80);
+
         leftEncoder = leftLeader.getEncoder();
         rightEncoder = rightLeader.getEncoder();
 
