@@ -15,21 +15,25 @@ public class TurnPID extends CommandBase {
   private PIDController pid;
   private double turn;
   private Timer timer;
+  private Timer override;
   public TurnPID(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
     pid = new PIDController(Constants.GyrokP, Constants.GyrokI, Constants.GyrokD);
     turn = angle;
     timer = new Timer();
+    override = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     pid.setSetpoint(turn);
-    pid.setTolerance(1);
+    pid.setTolerance(3);
     timer.reset();
-    timer.start();
+    override.reset();
+    override.start();
+    //timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -37,19 +41,25 @@ public class TurnPID extends CommandBase {
   public void execute() {
     double output = pid.calculate(Robot.drivetrain.getAngle());
     output = Math.min(.3, output);
-    Robot.drivetrain.setMotors(-output, output);
+    Robot.drivetrain.setMotors(output, -output);
+    if(pid.atSetpoint()){
+      timer.start();
+    }
+    else{
+      timer.reset();
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Robot.drivetrain.setMotors(0, 0);
-    timer.reset();
+    //timer.reset();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pid.atSetpoint() || timer.get()>2;
+    return pid.atSetpoint() && timer.get()>.25 || override.get()>1;
   }
 }

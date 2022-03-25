@@ -55,6 +55,7 @@ public class AutoRunIndexer extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.indexer.stopLowerMotor();
+    timer.reset();
   }
 
   // Returns true when the command should end.

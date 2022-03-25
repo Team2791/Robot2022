@@ -41,12 +41,12 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       
       //DriveBack, shoot 2
      //new DriveDistanceBack(1, 1, 0.4), //Might not need
-      new DriveAndIndex(1, 1, 0.4),
+      new DriveAndIndex(1.1, 1.1, 0.4), //1
 
       new AutoLongShot(),
       new TurnCounterClockwisePID(-22.34), //TurnCounterClock(5)
-      new TurnCounterClockwisePID(-22.34),
-      new TurnCounterClockwisePID(-22.34),
+      //new TurnCounterClockwisePID(-22.34),
+      //new TurnCounterClockwisePID(-22.34),
       new wait(1.25),
       new AutoRunIndexerBelts(),
       new wait(1.3),
@@ -54,19 +54,19 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       new stopIndexerAuto(),
   
       //Drive back to terminal
-      new TurnPID(10.17),//7 //Turn(5)
-      new TurnPID(10.17),
-      new TurnPID(10.17),
+      //new TurnPID(10.17),//7 //Turn(5)
+      //new TurnPID(10.17),
+      new TurnCounterClockwisePID(8.375), //10.17
       new ExtendRunIntakeAuto(),
 
       
       //Drive back and shoot 3rd and 4th 
-      new DriveIndex(4.7, 4.7, 0.5),
-      new DriveAndIndex34(4.2, 4.2, 0.52),
+      new DriveIndex(4.8, 4.8, 0.5), //4.7
+      new DriveAndIndex34(4.3, 4.3, 0.52), //4.2
       new AutoLongShot(),
-      new TurnCounterClockwisePID(-22.34), //10 //TurnCounterClock(13)
-      new TurnCounterClockwisePID(-22.34),
-      new TurnCounterClockwisePID(-22.34),
+      new TurnCounterClockwisePID(-20.34),//-22.34 //10 //TurnCounterClock(13)
+      //new TurnCounterClockwisePID(-22.34),
+      //new TurnCounterClockwisePID(-22.34),
       new wait(1),
       new AutoRunIndexerBelts(),
       new wait(3),

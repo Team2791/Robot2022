@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.commands.CombinedAutos.ThreeBall;
 import frc.robot.commands.CombinedAutos.TwoBallRight;
+import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
 import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.CombinedAutos.FourBallTerminal;
 import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
   public static Indexer indexer;
   public static Drivetrain drivetrain;
   public static Climber climber;
-  //public static PowerDistribution pdp;
+  public static PowerDistribution pdp;
 
   private static double setpointFront = 0; //for PID testing
   private static double setpointBack = 0; //for PID testing
@@ -137,7 +138,7 @@ public class Robot extends TimedRobot {
     Robot.drivetrain.resetEncoders();
 
     climber = new Climber();
-    //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
+    pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
@@ -180,6 +181,14 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(CommandScheduler.getInstance());
     SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
     SmartDashboard.putNumber("Compressor Pressure", compressor.getPressure());
+    // SmartDashboard.putNumber("Intake Current", pdp.getCurrent(14));
+    // SmartDashboard.putNumber("Front Shooter Current", pdp.getCurrent(13));
+    // SmartDashboard.putNumber("Back Shooter Current", pdp.getCurrent(12));
+    // SmartDashboard.putNumber("(Left) Drivetrain Current", pdp.getCurrent(0));
+    // SmartDashboard.putNumber("Climber Current", pdp.getCurrent(1));
+    SmartDashboard.putNumber("Upper Indexer Current", pdp.getCurrent(8));
+    SmartDashboard.putNumber("Lower Indexer Current", pdp.getCurrent(7));
+
     //SmartDashboard.putData(autoChooser); //add to periodic??
   }
 
@@ -202,7 +211,7 @@ public class Robot extends TimedRobot {
     Robot.drivetrain.resetGyro();
     
     m_autonomousCommand = autoChooser.getSelected();
-
+    //m_autonomousCommand = new TurnCounterClockwisePID(-22.34);
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -229,15 +238,15 @@ public class Robot extends TimedRobot {
     Robot.drivetrain.setCoastMode();
     Robot.climber.resetClimberPosition();
 
-    SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
-    SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
-    SmartDashboard.putNumber("Front Shooter kD", Constants.BackFlywheelkD);
-    SmartDashboard.putNumber("Front Shooter setpoint", 0);
+    // SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
+    // SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
+    // SmartDashboard.putNumber("Front Shooter kD", Constants.BackFlywheelkD);
+    // SmartDashboard.putNumber("Front Shooter setpoint", 0);
 
-    SmartDashboard.putNumber("Back Shooter kP", Constants.FrontFlywheelkP);
-    SmartDashboard.putNumber("Back Shooter kF", Constants.FrontFlywheelkFF);
-    SmartDashboard.putNumber("Back Shooter kD", Constants.FrontFlywheelkD);
-    SmartDashboard.putNumber("Back Shooter setpoint", 0);
+    // SmartDashboard.putNumber("Back Shooter kP", Constants.FrontFlywheelkP);
+    // SmartDashboard.putNumber("Back Shooter kF", Constants.FrontFlywheelkFF);
+    // SmartDashboard.putNumber("Back Shooter kD", Constants.FrontFlywheelkD);
+    // SmartDashboard.putNumber("Back Shooter setpoint", 0);
 
   }
 

@@ -6,6 +6,7 @@ package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -15,6 +16,7 @@ public class TurnCounterClockwisePID extends CommandBase {
   private PIDController pid;
   private double turn;
   private Timer timer;
+  private Timer override;
 
   public TurnCounterClockwisePID(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,15 +24,16 @@ public class TurnCounterClockwisePID extends CommandBase {
     pid = new PIDController(Constants.GyrokP, Constants.GyrokI, Constants.GyrokD);
     turn = angle;
     timer = new Timer();
+    override = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     pid.setSetpoint(turn);
-    pid.setTolerance(1);
+    pid.setTolerance(2);
     timer.reset();
-    timer.start();
+    override.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,7 +41,13 @@ public class TurnCounterClockwisePID extends CommandBase {
   public void execute() {
     double output = pid.calculate(Robot.drivetrain.getAngle());
     output = Math.min(output, 0.3);
-    Robot.drivetrain.setMotors(output, -output);
+    Robot.drivetrain.setMotors(-output, output);
+    if(pid.atSetpoint()){
+      timer.start();
+    }
+    else{
+      timer.reset();
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -50,6 +59,6 @@ public class TurnCounterClockwisePID extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pid.atSetpoint() || timer.get()>2;
+    return pid.atSetpoint() && timer.get()>.25 || override.get()>1;
   }
 }

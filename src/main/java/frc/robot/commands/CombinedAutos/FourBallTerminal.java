@@ -45,7 +45,7 @@ public class FourBallTerminal extends SequentialCommandGroup {
       new DriveAndIndex(1, 1, 0.4),
 
       new AutoLongShot(),
-      new TurnCounterClock(5),
+      new TurnCounterClock(7),
       new wait(1.25),
       new AutoRunIndexerBelts(),
       new wait(1.3),

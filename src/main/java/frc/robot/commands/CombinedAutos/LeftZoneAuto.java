@@ -74,7 +74,7 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new RetractStopIntake(),
 
     new AutoRunIndexer(), 
-    new DriveDistanceBack(0.5,0.5,Constants.autoDriveSpeed), //1.55, .3
+    new DriveDistanceBack(0.6,0.6,Constants.autoDriveSpeed), //1.55, .3
     new TurnCounterClock(8),
     new AutoLongShot(), 
     new wait(2), 
@@ -90,7 +90,7 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     new wait(.5),
     new RetractStopIntake(),
     new AutoRunIndexerSingleBall(),
-    new Turn(90),
+    new Turn(81),
     // new Turn(90),
     // new Turn(90),
     new AutoGachShot(),

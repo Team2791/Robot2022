@@ -29,7 +29,7 @@ public class RobotMap {
     public static final int flyWheelFrontID = 7; 
     public static final int flyWheelBackID = 8; 
     public static final int kPCM = 1;
-    public static final int kPDP = 0;
+    public static final int kPDP = 1;
     
 
 }
