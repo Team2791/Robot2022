@@ -29,7 +29,7 @@ public class ExtendRunIntakeTimer extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   if(timer.get()>.375){
+   if(timer.get()>.2){ //.375
      Robot.intake.setRetracted();
    }
     Robot.intake.setMotor(Constants.intakeSpeed);

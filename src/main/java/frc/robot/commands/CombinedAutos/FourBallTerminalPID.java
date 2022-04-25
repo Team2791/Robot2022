@@ -47,7 +47,7 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       new TurnCounterClockwisePID(-22.34), //TurnCounterClock(5)
       //new TurnCounterClockwisePID(-22.34),
       //new TurnCounterClockwisePID(-22.34),
-      new wait(1.25),
+      new wait(.5), //1.25
       new AutoRunIndexerBelts(),
       new wait(1.3),
       new StopFlywheel(),
@@ -56,13 +56,14 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       //Drive back to terminal
       //new TurnPID(10.17),//7 //Turn(5)
       //new TurnPID(10.17),
-      new TurnCounterClockwisePID(8.375), //10.17
+      new TurnCounterClockwisePID(8.875), //10.17 //8.375
       new ExtendRunIntakeAuto(),
 
       
       //Drive back and shoot 3rd and 4th 
-      new DriveIndex(4.8, 4.8, 0.5), //4.7
-      new DriveAndIndex34(4.3, 4.3, 0.52), //4.2
+      new DriveIndex(4.6, 4.6, 0.5), //4.7
+      new wait(.25),
+      new DriveAndIndex34(4.1, 4.1, 0.52), //4.2
       new AutoLongShot(),
       new TurnCounterClockwisePID(-20.34),//-22.34 //10 //TurnCounterClock(13)
       //new TurnCounterClockwisePID(-22.34),

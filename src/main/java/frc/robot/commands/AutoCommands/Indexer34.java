@@ -51,6 +51,7 @@ public class Indexer34 extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished || timer.get()>3;
+    //return finished || timer.get()>3;
+    return finished;
   }
 }

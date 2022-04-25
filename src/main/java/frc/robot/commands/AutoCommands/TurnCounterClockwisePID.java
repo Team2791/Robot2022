@@ -54,6 +54,9 @@ public class TurnCounterClockwisePID extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.drivetrain.setMotors(0, 0);
+    if(turn == 8.5){
+      SmartDashboard.putNumber("end auto angle hp", Robot.drivetrain.getAngle());
+    }
   }
 
   // Returns true when the command should end.

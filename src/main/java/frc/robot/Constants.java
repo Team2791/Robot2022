@@ -49,8 +49,8 @@ public final class Constants {
     public static final double kUpperFrontCloseSpeed = .34; //0.38 practice day orig //40
     public static final double kUpperBackCloseSpeed = -.39; //-.38 practice day orig //.33 and .38 sometimes hitting lip
 
-    public static final double kLowerFrontCloseSpeed = 0.1; //.07 with firm balls was backdriving the motor.
-    public static final double kLowerBackCloseSpeed = -.40;
+    public static final double kLowerFrontCloseSpeed = .1; //0.111;//0.1; //.07 with firm balls was backdriving the motor.
+    public static final double kLowerBackCloseSpeed = -.40;//-0.42; //-.40;
 
     public static final double longShotFrontWheel=0.3;
     public static final double longShotBackWheel=-.6;
