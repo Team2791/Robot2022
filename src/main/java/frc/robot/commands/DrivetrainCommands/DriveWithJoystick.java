@@ -41,8 +41,11 @@ public class DriveWithJoystick extends CommandBase {
             if(Math.abs(thrust) < deadzone) {
                 thrust = 0;
             }
-            if(thrust>0.75){
-                thrust= 0.75;
+            if(thrust>0.5){
+                thrust= 0.25;
+            }
+            if(thrust<-0.5){
+                thrust= -0.25;
             }
         }
         
