@@ -6,11 +6,19 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -131,4 +139,19 @@ public class Drivetrain extends SubsystemBase{
 
 
     }
-}
+    public Trajectory loadTrajectoryFromFile(String filename) {
+              
+      String t = "C:\\Users\\mdhus\\OneDrive\\Desktop\\ROBOT\\Robot2022\\src\\main\\deploy\\paths\\"+filename+".wpilib.json";
+      Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
+      Trajectory testTrajectory ;
+      try{
+        testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
+        return testTrajectory;
+      }
+      catch (IOException ex){
+        System.out.println("path error");
+      } 
+      return null;
+      }
+    
+    }

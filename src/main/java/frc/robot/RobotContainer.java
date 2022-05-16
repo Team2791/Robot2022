@@ -82,9 +82,10 @@ public class RobotContainer {
           List.of(new Translation2d(2,0)), 
           new Pose2d(4,0, new Rotation2d(0)),
            config);
-           
+      
       String t = "C:\\Users\\mdhus\\OneDrive\\Desktop\\ROBOT\\Robot2022\\src\\main\\deploy\\paths\\goBack.wpilib.json";
       Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
+      
       try{
         testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
 
@@ -92,6 +93,7 @@ public class RobotContainer {
       catch (IOException ex){
         System.out.println("path error");
       } 
+
       RamseteCommand ramseteCommand =
         new RamseteCommand(testTrajectory, 
         m_drive::getPose, 
