@@ -69,7 +69,7 @@ public class RobotContainer {
         Constants.kaVoltSecondsSquaredPerMeter),
       Constants.kDriveKinematics,
       10);  
-
+      
       TrajectoryConfig config = 
         new TrajectoryConfig(
           Constants.kMaxSpeed, Constants.kMaxAcceleration) 

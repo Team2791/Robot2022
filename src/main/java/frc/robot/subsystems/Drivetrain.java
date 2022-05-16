@@ -139,19 +139,22 @@ public class Drivetrain extends SubsystemBase{
 
 
     }
-    public Trajectory loadTrajectoryFromFile(String filename) {
+
+    //THIS IS ME TRYING TO MAKE SOMETHING THAT CHAINS TRAJECTORIES LIKE SOME TEAMS I HAVE SEEN
+    // public Trajectory loadTrajectoryFromFile(String filename) {
               
-      String t = "C:\\Users\\mdhus\\OneDrive\\Desktop\\ROBOT\\Robot2022\\src\\main\\deploy\\paths\\"+filename+".wpilib.json";
-      Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
-      Trajectory testTrajectory ;
-      try{
-        testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
-        return testTrajectory;
-      }
-      catch (IOException ex){
-        System.out.println("path error");
-      } 
-      return null;
-      }
+    //   String t = "C:\\Users\\mdhus\\OneDrive\\Desktop\\ROBOT\\Robot2022\\src\\main\\deploy\\paths\\"+filename+".wpilib.json";
+    //   Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
+    //   Trajectory testTrajectory ;
+    //   try{
+    //     testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
+    //     return testTrajectory;
+    //   }
+    //   catch (IOException ex){
+    //     System.out.println("path error");
+    //   } 
+    //   return null;
+    //   }
     
     }
+    
