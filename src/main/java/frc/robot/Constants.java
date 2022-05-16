@@ -45,6 +45,11 @@ public final class Constants {
     public static final double FrontFlywheelkP = 0;//.01;//.135;
     public static final double FrontFlywheelkD = 0;
 
+    public static final double LimelightkP = .01;
+    public static final double LimelightkI = 0;
+    public static final double LimelightkD = 0;
+
+
 //P values tried 10,5,1 , .1,, .01, .001
     public static final double kUpperFrontCloseSpeed = .34; //0.38 practice day orig //40
     public static final double kUpperBackCloseSpeed = -.39; //-.38 practice day orig //.33 and .38 sometimes hitting lip
@@ -85,5 +90,6 @@ public final class Constants {
     public static final double GyrokP = 0.01; //.004
     public static final double GyrokI = 0;
     public static final double GyrokD = 0;
+    public static final double LimelightSetpoint = 0;
 
 }

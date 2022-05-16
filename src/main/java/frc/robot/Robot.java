@@ -39,6 +39,7 @@ import frc.robot.subsystems.Drivetrain;
  import frc.robot.subsystems.Indexer;
  import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static Climber climber;
   public static PowerDistribution pdp;
+  public static Limelight limelight;
 
   private static double setpointFront = 0; //for PID testing
   private static double setpointBack = 0; //for PID testing
@@ -141,6 +143,7 @@ public class Robot extends TimedRobot {
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
+    limelight = new Limelight();
     //compressor.enableDigital();
     threeBallAuto = new ThreeBall();
     spitBallAuto = new LeftZoneAuto();

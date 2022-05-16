@@ -13,6 +13,7 @@ import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
 import frc.robot.commands.ClimberCommands.*;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
+import frc.robot.commands.DrivetrainCommands.JoeAim;
 import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
 import frc.robot.commands.DrivetrainCommands.SetCoastMode;
 import frc.robot.commands.DrivetrainCommands.creep;
@@ -108,6 +109,7 @@ public class OI {
         
 
         //Shooter
+        operatorLT.whileHeld(new JoeAim());
         operatorA.whenHeld(new UpperHubClose());
         operatorB.whenHeld(new LowerHubClose());
         operatorY.whenHeld(new longShotOuterTarmac());
