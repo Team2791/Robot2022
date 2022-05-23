@@ -46,6 +46,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static Indexer indexer;
   public static Drivetrain drivetrain;
+  public static RobotContainer robotContainer;
   // public static Climber climber;
   //public static PowerDistribution pdp;
 
@@ -89,14 +90,14 @@ public class Robot extends TimedRobot {
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
-
+    robotContainer = new RobotContainer();
     drivetrain = new Drivetrain();
     // climber = new Climber();
     //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    m_autonomousCommand = new ShootIntakeShoot();
+    m_autonomousCommand = robotContainer.getAutonomousCommand();
   }
 
   /**

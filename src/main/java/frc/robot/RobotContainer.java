@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import frc.robot.commands.DriveWithJoystick;
 import frc.robot.subsystems.Drivetrain;
 
 /**
@@ -38,12 +39,14 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final static Drivetrain m_drive = new Drivetrain();
+  // public final static Drivetrain m_drive = new Drivetrain();
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
+    Robot.drivetrain.setDefaultCommand(new DriveWithJoystick(OI.driverStick, 0.1));
+
     configureButtonBindings();
   }
 
@@ -84,35 +87,35 @@ public class RobotContainer {
            config);
       
      //String t is the path json you want to deploy.
-      String t = ""; 
+      // String t = ""; 
 
-      Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
+      // Path trajPath = Filesystem.getDeployDirectory().toPath().resolve(t);
       
-      try{
-        testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
+      // try{
+      //   testTrajectory = TrajectoryUtil.fromPathweaverJson(trajPath);
 
-      }
-      catch (IOException ex){
-        System.out.println("path error");
-      } 
+      // }
+      // catch (IOException ex){
+      //   System.out.println("path error");
+      // } 
 
       RamseteCommand ramseteCommand =
         new RamseteCommand(testTrajectory, 
-        m_drive::getPose, 
+        Robot.drivetrain::getPose, 
         new RamseteController(2.0, .7), 
         new SimpleMotorFeedforward(
             Constants.ksVolts,
             Constants.kWheelDiameterMeters,
             Constants.kaVoltSecondsSquaredPerMeter),
           Constants.kDriveKinematics,
-          m_drive::getWheelSpeeds,
+          Robot.drivetrain::getWheelSpeeds,
           new PIDController(Constants.kPDrive, 0, 0),
           new PIDController(Constants.kPDrive, 0, 0),
-          m_drive::tankDriveVolts,
-          m_drive);
+          Robot.drivetrain::tankDriveVolts,
+          Robot.drivetrain);
 
           
-    m_drive.resetOdometery(testTrajectory.getInitialPose());
-    return ramseteCommand.andThen(() -> m_drive.tankDriveVolts(0, 0));
+          Robot.drivetrain.resetOdometery(testTrajectory.getInitialPose());
+    return ramseteCommand.andThen(() -> Robot.drivetrain.tankDriveVolts(0, 0));
   }
 }

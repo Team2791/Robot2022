@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -17,21 +16,26 @@ import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double kCreep = 0.25;
-    public static final double TURN_FACTOR = -0.55;
+    public static final double GoalHeight = 2.64;
+    public static final double LimeLightHeight = 1.3;
+    public static final double LimeLightAngle = 30;
+    
 
+    public static final double kCreep = 0.325;
+    public static final double TURN_FACTOR = -0.45;
+    public static final double autoRampUp = 0.09;
     public static final double kClimberTime = 0.1;
-    public static final double kClimbSpeedUp = 0.5;
-    public static final double kClimbSpeedDown = -0.5;
+    public static final double kClimbSpeedUp = 0.25;
+    public static final double kClimbSpeedDown = -0.25;
 
-    public static final double bottomindexerSpeed = 1;
+    public static final double bottomindexerSpeed = 0.75;
     public static final double topindexerSpeed = 1;
     public static final double intakeSpeed = 0.9;
 
     public static final double frontFlySpeed = 0.4;
     public static final double backFlySpeed = -0.3;
-    public static final double minPressure = 60;
-    public static final double maxPressure = 100;
+    public static final double minPressure = 60;//110
+    public static final double maxPressure = 120;
 
     //PID CONSTANTS
     //feedforward (ff): reduces error in PID system (prediction technique); probably won't use this maybe
@@ -47,29 +51,64 @@ public final class Constants {
     public static final double FrontFlywheelkP = 0;//.01;//.135;
     public static final double FrontFlywheelkD = 0;
 
+    public static final double LimelightkP = .01;
+    public static final double LimelightkI = 0;
+    public static final double LimelightkD = 0;
+
+
 //P values tried 10,5,1 , .1,, .01, .001
-    public static final double kUpperFrontCloseSpeed = .45; //45 good
-    public static final double kUpperBackCloseSpeed = -.95; //65 good
-    public static final double kLowerFrontCloseSpeed = 0.1;
-    public static final double kLowerBackCloseSpeed = -.5;
+    public static final double kUpperFrontCloseSpeed = .34; //0.38 practice day orig //40
+    public static final double kUpperBackCloseSpeed = -.39; //-.38 practice day orig //.33 and .38 sometimes hitting lip
+
+    public static final double kLowerFrontCloseSpeed = .1; //0.111;//0.1; //.07 with firm balls was backdriving the motor.
+    public static final double kLowerBackCloseSpeed = -.40;//-0.42; //-.40;
+
+    public static final double longShotFrontWheel=0.3;
+    public static final double longShotBackWheel=-.6;
+
+    public static final double GachShotFront = 0.2;
+    public static final double GachShotBack = -0.88;
+
+    public static final double autoHighShotFront=0.34;
+    public static final double autoHighShotBack=-0.38;
+    public static final double autoMidShotFront=0.38;
+    public static final double autoMidShotBack=-0.50;
+    public static final double autoDriveSpeed = 0.4;
+    public static final double wheelDiameterMeters = Units.inchesToMeters(6);
+    
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
-    public static final double driveTime = 1.25;
-    public static final double gearRatio=1/5.9;
+    public static final double driveTime = 1.4;
+    public static final double climberSpeed = 0.7;
 
+    //auto constants
+    public static final double waitTime = 1.35;
+    //max and min should be based on right falcon encoder
+    public static final double maxClimbHeight = 270000; //240,000
+    public static final double minClimbHeight = 0; //-400000;
+    public static final double conversionFactor = wheelDiameterMeters * 0.1099989 * Math.PI;
+    //previous gear ratio 0.091659
 
-    //Odmetery
-    public static final double kWheelDiameterMeters = Units.inchesToMeters(6);
-    public static final double kEncoderPositionConversionFactor = kWheelDiameterMeters * gearRatio *Math.PI;
-    public static final double kEncoderDistancePerPulse=kEncoderPositionConversionFactor/60;
-    public static final double ksVolts = 0;
-    public static final double kvVoltSecondsPerMeter = 0;
-    public static final double kaVoltSecondsSquaredPerMeter = 0;
-    private static final double kTrackWidth = 0.810; //Meters
-    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackWidth);
-    public static final double kMaxSpeed = 0.5;
-    public static final double kMaxAcceleration = 0.5;
-    public static final double kPDrive = 0.5;
+    public static final double kClimbDelay = 0.25;
+
     
+    public static final double GyrokP = 0.01; //.004
+    public static final double GyrokI = 0;
+    public static final double GyrokD = 0;
+    public static final double LimelightSetpoint = 0;
+
+
+    public static final double ksVolts = 0.11179;
+    public static final double kvVoltSecondsPerMeter = 1.3805;
+    public static final double kaVoltSecondsSquaredPerMeter = 0.37224;
+    public static final  double trackwidth  = 1.2735;
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(trackwidth);
+    public static final double kMaxSpeed = 1;
+    public static final double kMaxAcceleration = 0.5;
+    public static final double kWheelDiameterMeters = Units.inchesToMeters(6);
+    public static final double kPDrive = 1.9539;
+    public static final double kEncoderPositionConversionFactor = kWheelDiameterMeters * 0.09165903 * Math.PI;;
+    public static final double kEncoderDistancePerPulse = kEncoderPositionConversionFactor/60;
+
 }

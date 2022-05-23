@@ -8,7 +8,7 @@ public class RobotMap {
     public static final int leftFollowerID = 4;
     public static final int rightFollowerID = 2;
 
-    public static final int lowerindexerID = 6;
+    public static final int lowerindexerID = 20;
     public static final int upperindexerID = 9;
 
     

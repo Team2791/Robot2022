@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.*;
+import frc.robot.commands.DriveWithJoystick;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -58,7 +59,6 @@ public class Drivetrain extends SubsystemBase{
         m_odometry= new DifferentialDriveOdometry(m_gyro.getRotation2d());
         //setBrakeMode();
         setCoastMode();
-
     }
 
     public void setMotors(double left, double right){
