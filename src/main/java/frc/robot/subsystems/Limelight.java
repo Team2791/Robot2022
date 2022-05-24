@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Limelight extends SubsystemBase {
 
@@ -13,6 +14,13 @@ public class Limelight extends SubsystemBase {
 
   private NetworkTableEntry getEntry(String entryName) {
     return getTable().getEntry(entryName);
+  }
+
+  public double getDistance() {
+    return (Constants.GoalHeight - Constants.LimeLightHeight)/Math.sin(Constants.LimeLightAngle + getVerticalOffset());
+  }
+  public double getHorizontalDist(){
+    return (Constants.GoalHeight - Constants.LimeLightHeight)/Math.tan(Constants.LimeLightAngle + getVerticalOffset());
   }
 
   private double getValue(String entryName) {
