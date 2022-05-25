@@ -28,7 +28,7 @@ public class DriveTo extends CommandBase {
   public void initialize() {
     Robot.limelight.setCamMode(CamMode.VISION_CAM);
     Robot.limelight.setLedMode(LedMode.PIPELINE);
-    pid.setSetpoint(Constants.LimelightSetpoint);
+    pid.setSetpoint(Constants.LimelightDistanceSet);
     pid.setTolerance(0.1);
   }
 

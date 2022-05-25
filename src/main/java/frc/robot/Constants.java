@@ -91,5 +91,9 @@ public final class Constants {
     public static final double GyrokI = 0;
     public static final double GyrokD = 0;
     public static final double LimelightSetpoint = 0;
+    public static final double LimelightDistanceSet=2.5;
+    public static final double GoalHeight = .264;
+    public static final double LimeLightHeight = .13;
+    public static final double LimeLightAngle = 30;
 
 }
