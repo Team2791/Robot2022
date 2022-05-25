@@ -55,8 +55,8 @@ public final class Constants {
     public static final double longShotFrontWheel=0.3;
     public static final double longShotBackWheel=-.6;
 
-    public static final double GachShotFront = 0.2;
-    public static final double GachShotBack = -0.88;
+    public static final double GachShotFront = 0.2;//1200
+    public static final double GachShotBack = -0.88;//-2000
 
     public static final double autoHighShotFront=0.34;
     public static final double autoHighShotBack=-0.38;

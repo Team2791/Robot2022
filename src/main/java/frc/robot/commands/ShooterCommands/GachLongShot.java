@@ -21,15 +21,15 @@ public class GachLongShot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.shooter.setBackFlywheel(Constants.GachShotBack);
-    Robot.shooter.setFrontFlywheel(Constants.GachShotFront);
+    Robot.shooter.setBackShooterPID(Constants.GachShotBack);
+    Robot.shooter.setFrontShooterPID(Constants.GachShotFront);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooter.setFrontFlywheel(0);
-    Robot.shooter.setBackFlywheel(0);
+    Robot.shooter.setFrontShooterPID(0);
+    Robot.shooter.setBackShooterPID(0);
   }
 
   // Returns true when the command should end.

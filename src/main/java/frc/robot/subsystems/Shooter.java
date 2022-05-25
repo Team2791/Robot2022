@@ -51,7 +51,7 @@ public class Shooter extends SubsystemBase {
     if (setpoint == 0) {
         setFrontFlywheel(setpoint);
     } else {
-        flyWheelFront.getPIDController().setReference(setpoint, CANSparkMax.ControlType.kDutyCycle);
+        flyWheelFront.getPIDController().setReference(setpoint, CANSparkMax.ControlType.kVelocity);
     }
   }
 
@@ -59,7 +59,7 @@ public class Shooter extends SubsystemBase {
     if (setpoint == 0) {
         setFrontFlywheel(setpoint);
     } else {
-        flyWheelBack.getPIDController().setReference(setpoint, CANSparkMax.ControlType.kDutyCycle);
+        flyWheelBack.getPIDController().setReference(setpoint, CANSparkMax.ControlType.kVelocity);
     }
   }
   
