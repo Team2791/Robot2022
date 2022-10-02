@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import frc.robot.*;
 import frc.robot.commands.DriveWithJoystick;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -19,7 +20,9 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -29,14 +32,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Drivetrain extends SubsystemBase{
     private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower;
     private RelativeEncoder rightEncoder, leftEncoder;
-    private final MotorControllerGroup m_rightMotors =
-        new MotorControllerGroup(rightLeader,rightFollower);
-    private final MotorControllerGroup m_leftMotors =
-        new MotorControllerGroup(leftLeader,leftFollower);
-    private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+    private final MotorControllerGroup m_rightMotors;
+    private final MotorControllerGroup m_leftMotors;
+    private final DifferentialDrive m_drive;
     private final DifferentialDriveOdometry m_odometry;
+    //private CANEncoder leftEncoder;
     
     private final AHRS m_gyro;
+
      public Drivetrain() {
         super.register();
         m_gyro = new AHRS(Port.kMXP);
@@ -49,18 +52,31 @@ public class Drivetrain extends SubsystemBase{
         rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
         rightFollower.follow(rightLeader, false);
 
-        leftEncoder = leftLeader.getEncoder();
-        rightEncoder = rightLeader.getEncoder();
+        m_leftMotors = new MotorControllerGroup(leftLeader,leftFollower);
+        m_rightMotors = new MotorControllerGroup(rightLeader, rightFollower);
+        m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+
+        leftEncoder = leftLeader.getAlternateEncoder(1024);
+        rightEncoder = leftLeader.getAlternateEncoder(1024);
+
+        // leftEncoder = leftLeader.getEncoder();
+        // rightEncoder = rightLeader.getEncoder();
         leftEncoder.setPositionConversionFactor(Constants.kEncoderPositionConversionFactor);
         rightEncoder.setPositionConversionFactor(Constants.kEncoderPositionConversionFactor);
         leftEncoder.setVelocityConversionFactor(Constants.kEncoderDistancePerPulse);
         rightEncoder.setVelocityConversionFactor(Constants.kEncoderDistancePerPulse);
         resetEncoders();
+        
         m_odometry= new DifferentialDriveOdometry(m_gyro.getRotation2d());
         //setBrakeMode();
         setCoastMode();
     }
-
+    public void tankDrive(Joystick joystick) {
+        double left, right;
+        left = Math.max(Math.min(joystick.getRawAxis(3)- joystick.getRawAxis(2) + joystick.getRawAxis(0) * Constants.TURN_FACTOR, 1), -1);
+        right = Math.max(Math.min(joystick.getRawAxis(3)- joystick.getRawAxis(2) - joystick.getRawAxis(0) * Constants.TURN_FACTOR, 1), -1);
+        m_drive.tankDrive(left,right);
+    }
     public void setMotors(double left, double right){
         leftLeader.set(left);
         rightLeader.set(right);
@@ -87,8 +103,6 @@ public class Drivetrain extends SubsystemBase{
         m_leftMotors.setVoltage(leftV);
         m_rightMotors.setVoltage(rightV);
         m_drive.feed();
-
-
     }
     public double getAverageEncoderDistance(){
         return(leftEncoder.getPosition() + rightEncoder.getPosition())/2.0;
@@ -136,7 +150,16 @@ public class Drivetrain extends SubsystemBase{
         SmartDashboard.putNumber("Left Velocity", leftLeader.get());
         SmartDashboard.putNumber("Right Position", getRightPosition());
         SmartDashboard.putNumber("Left Position", getLeftPosition());
+        SmartDashboard.putNumber("X Translation", rightLeader.get());
+        m_drive.feed();
 
+        // m_odometry.update(m_gyro.getRotation2d(), getLeftPosition(), getRightPosition());
+        var translation = m_odometry.getPoseMeters().getTranslation();
+        double x = translation.getX();
+        double y = translation.getY();
+
+        SmartDashboard.putNumber("X Translation", x);
+        SmartDashboard.putNumber("Y Translation", y);
 
     }
 

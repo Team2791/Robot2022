@@ -90,8 +90,8 @@ public class Robot extends TimedRobot {
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
-    robotContainer = new RobotContainer();
     drivetrain = new Drivetrain();
+    robotContainer = new RobotContainer();
     // climber = new Climber();
     //pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kCTRE);
     oi = new OI();

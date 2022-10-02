@@ -26,8 +26,10 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.subsystems.Drivetrain;
 
@@ -45,7 +47,13 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
+    // Robot.drivetrain.setDefaultCommand(
+    //   new RunCommand(
+    //     () ->
+    //       Robot.drivetrain.tankDrive(OI.driverStick),
+    //       Robot.drivetrain));
     Robot.drivetrain.setDefaultCommand(new DriveWithJoystick(OI.driverStick, 0.1));
+      
 
     configureButtonBindings();
   }
@@ -86,6 +94,7 @@ public class RobotContainer {
           new Pose2d(4,0, new Rotation2d(0)),
            config);
       
+      SmartDashboard.putString("Trajectory", testTrajectory.toString());
      //String t is the path json you want to deploy.
       // String t = ""; 
 

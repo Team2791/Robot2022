@@ -109,6 +109,6 @@ public final class Constants {
     public static final double kWheelDiameterMeters = Units.inchesToMeters(6);
     public static final double kPDrive = 1.9539;
     public static final double kEncoderPositionConversionFactor = kWheelDiameterMeters * 0.09165903 * Math.PI;;
-    public static final double kEncoderDistancePerPulse = kEncoderPositionConversionFactor/60;
+    public static final double kEncoderDistancePerPulse = kEncoderPositionConversionFactor / 60;
 
 }
