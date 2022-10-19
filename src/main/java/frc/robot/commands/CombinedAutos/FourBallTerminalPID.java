@@ -5,20 +5,6 @@
 package frc.robot.commands.CombinedAutos;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AutoCommands.AutoGachShot;
-import frc.robot.commands.AutoCommands.AutoIndex;
-import frc.robot.commands.AutoCommands.AutoLongShot;
-import frc.robot.commands.AutoCommands.AutoRunIndexer;
-import frc.robot.commands.AutoCommands.AutoRunIndexerBelts;
-import frc.robot.commands.AutoCommands.DriveAndIndex;
-import frc.robot.commands.AutoCommands.DriveDistance;
-import frc.robot.commands.AutoCommands.DriveDistanceBack;
-import frc.robot.commands.AutoCommands.DriveIndex;
-import frc.robot.commands.AutoCommands.RetractStopIntake;
-import frc.robot.commands.AutoCommands.Turn;
-import frc.robot.commands.AutoCommands.TurnCounterClock;
-import frc.robot.commands.AutoCommands.stopIndexerAuto;
-import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.AutoCommands.*;
 import frc.robot.commands.IntakeCommands.ExtendRunIntake;
 import frc.robot.commands.ShooterCommands.StopFlywheel;
@@ -42,7 +28,7 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       //DriveBack, shoot 2
      //new DriveDistanceBack(1, 1, 0.4), //Might not need
       new DriveAndIndex(1.1, 1.1, 0.4), //1
-
+      new AutoAlign(),
       new AutoLongShot(),
       new TurnCounterClockwisePID(-22.34), //TurnCounterClock(5)
       //new TurnCounterClockwisePID(-22.34),
@@ -64,6 +50,7 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       new DriveIndex(4.6, 4.6, 0.5), //4.7
       new wait(.25),
       new DriveAndIndex34(4.1, 4.1, 0.52), //4.2
+      new AutoAlign(),
       new AutoLongShot(),
       new TurnCounterClockwisePID(-20.34),//-22.34 //10 //TurnCounterClock(13)
       //new TurnCounterClockwisePID(-22.34),
