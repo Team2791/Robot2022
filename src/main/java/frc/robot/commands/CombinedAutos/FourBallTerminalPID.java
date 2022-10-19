@@ -28,7 +28,6 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       //DriveBack, shoot 2
      //new DriveDistanceBack(1, 1, 0.4), //Might not need
       new DriveAndIndex(1.1, 1.1, 0.4), //1
-      new AutoAlign(),
       new AutoLongShot(),
       new TurnCounterClockwisePID(-22.34), //TurnCounterClock(5)
       //new TurnCounterClockwisePID(-22.34),
@@ -50,7 +49,6 @@ public class FourBallTerminalPID extends SequentialCommandGroup {
       new DriveIndex(4.6, 4.6, 0.5), //4.7
       new wait(.25),
       new DriveAndIndex34(4.1, 4.1, 0.52), //4.2
-      new AutoAlign(),
       new AutoLongShot(),
       new TurnCounterClockwisePID(-20.34),//-22.34 //10 //TurnCounterClock(13)
       //new TurnCounterClockwisePID(-22.34),
