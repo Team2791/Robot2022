@@ -19,6 +19,7 @@ public class AutoLongShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
     Robot.shooter.setFrontFlywheel(Constants.longShotFrontWheel);
     Robot.shooter.setBackFlywheel(Constants.longShotBackWheel);
   }
