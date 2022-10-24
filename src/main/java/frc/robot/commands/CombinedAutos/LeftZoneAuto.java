@@ -67,38 +67,25 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     // new ReverseIndexerAuto());
 
     addCommands(
-    new ExtendRunIntakeAuto(),
-    new wait(0.7),
-    new DriveDistance(0.9,0.9, Constants.autoDriveSpeed), //.86, .3
-    new wait(0.6), 
-    new RetractStopIntake(),
-
-    new AutoRunIndexer(), 
-    new DriveDistanceBack(0.6,0.6,Constants.autoDriveSpeed), //1.55, .3
-    new TurnCounterClock(8),
-    new AutoLongShot(), 
-    new wait(2), 
-    new AutoRunIndexerBelts(), 
-    new wait(1.3),
-    new stopIndexerAuto(), 
-    new StopFlywheel(), 
-
-    new ExtendRunIntakeAuto(),
-    new DriveDistance(0.13,0.13, 0.1),
-    new Turn(50), 
-    new DriveDistance(1.8,1.8,0.3),
-    new wait(.5),
-    new RetractStopIntake(),
-    new AutoRunIndexerSingleBall(),
-    new Turn(81),
-    // new Turn(90),
-    // new Turn(90),
-    new AutoGachShot(),
-    new wait(1),
-    new RunIndexerBelts()
+      new ExtendRunIntakeAuto(),
+      new wait(0.6),
+      new DriveDistance(0.86,0.86, Constants.autoDriveSpeed),
+      new wait(0.6), 
+      new RetractStopIntake(),
+  
+      new AutoRunIndexer(), 
+      new DriveDistanceBack(1.55,1.55,Constants.autoDriveSpeed), 
+      new TurnCounterClock(9),
+      new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
+      new AutoHighShot(), 
+      new wait(1.7), 
+      new AutoRunIndexerBelts(), 
+      new wait(1.3),
+      new stopIndexerAuto(), 
+      new StopFlywheel(), 
+      new stopIndexerAuto()
     );
-    //new ExtendRunIntakeReverse(),
-    //new ReverseIndexerAuto());
+  
   }
 }
     //ball spit (Eli's Version)
@@ -108,4 +95,54 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     // new wait(1.5);
     // new Turn(-10);
     // new AutoReverseIntakeAndIndex();
-    // new RetractIntake();   
+    // new RetractIntake();  
+    
+    //joe
+    // new ExtendRunIntakeAuto(),
+    // new wait(0.6),
+    // new DriveDistance(0.86,0.86, Constants.autoDriveSpeed),
+    // new wait(0.6), 
+    // new RetractStopIntake(),
+
+    // new AutoRunIndexer(), 
+    // new DriveDistanceBack(1.55,1.55,Constants.autoDriveSpeed), 
+    // new TurnCounterClock(9),
+    // new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
+    // new AutoHighShot(), 
+    // new wait(1.7), 
+    // new AutoRunIndexerBelts(), 
+    // new wait(1.3),
+    // new stopIndexerAuto(), 
+    // new StopFlywheel(), 
+    // new stopIndexerAuto(),
+
+
+    // new ExtendRunIntakeAuto(),
+    // new wait(0.7),
+    // new DriveDistance(0.9,0.9, Constants.autoDriveSpeed), //.86, .3
+    // new wait(0.6), 
+    // new RetractStopIntake(),
+
+    // new AutoRunIndexer(), 
+    // new DriveDistanceBack(0.6,0.6,Constants.autoDriveSpeed), //1.55, .3
+    // new TurnCounterClock(6),
+    // new AutoLongShot(), 
+    // new wait(2), 
+    // new AutoRunIndexerBelts(), 
+    // new wait(1.3),
+    // new stopIndexerAuto(), 
+    // new StopFlywheel(), 
+
+    // new ExtendRunIntakeAuto(),
+    // new DriveDistance(0.13,0.13, 0.1),
+    // new Turn(50), 
+    // new DriveDistance(1.8,1.8,0.3),
+    // new wait(.5),
+    // new RetractStopIntake(),
+    // new AutoRunIndexerSingleBall(),
+    // new Turn(78),
+    // // new Turn(90),
+    // // new Turn(90),
+    // new AutoGachShot(),
+    // new wait(1),
+    // new RunIndexerBelts()

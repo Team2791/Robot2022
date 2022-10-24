@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
+import frc.robot.commands.AutoCommands.PidTesting;
 import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
 import frc.robot.commands.ClimberCommands.*;
@@ -75,7 +76,7 @@ public class OI {
         operatorRB.whenHeld(new RunIndexer());
 
         operatorRT.whenHeld(new TwoBallManuel());
-        
+        operatorLT.whenPressed(new PidTesting(-20.34));
 
         //Shooter
         operatorA.whenHeld(new UpperHubClose());

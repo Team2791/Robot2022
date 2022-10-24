@@ -41,7 +41,7 @@ public class TwoBallRight extends SequentialCommandGroup {
       new RetractStopIntake(),
 
       new AutoRunIndexer(), 
-      new DriveDistanceBack(1.59,1.59,Constants.autoDriveSpeed), 
+      new DriveDistanceBack(1.56,1.56,Constants.autoDriveSpeed), 
       new Turn(9),
       new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
       new AutoHighShot(), 

@@ -41,12 +41,10 @@ public class DriveWithJoystick extends CommandBase {
             if(Math.abs(thrust) < deadzone) {
                 thrust = 0;
             }
-            if(thrust>0.5){
-                thrust= 0.25;
+            if(thrust>.8 ) {
+                thrust = 0.75;
             }
-            if(thrust<-0.5){
-                thrust= -0.25;
-            }
+          
         }
         
         double turn = stick.getRawAxis(0) * Constants.TURN_FACTOR;
@@ -61,6 +59,7 @@ public class DriveWithJoystick extends CommandBase {
         if(stick.getRawButton(2)) {
             turn /= 3;
         }
+   
 
         // This causes the robot to crash.  It is the ideal solution to wheelies.
         // if(Math.abs(turn) > 0.05) {

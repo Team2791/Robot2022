@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
     new Thread ( 
       () -> {
         UsbCamera camera = CameraServer.startAutomaticCapture();
-        camera.setResolution(480, 360);
+        camera.setResolution(432, 324); //480 360
         CvSink cvSink = CameraServer.getVideo();
         CvSource outputStream = CameraServer.putVideo("Rectangle", 480, 360);
 
@@ -109,9 +109,9 @@ public class Robot extends TimedRobot {
     new Thread ( 
       () -> {
         UsbCamera camera2 = CameraServer.startAutomaticCapture();
-        camera2.setResolution(480, 360); 
+        camera2.setResolution(432, 324); 
         CvSink cvSink2 = CameraServer.getVideo();
-        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 480, 360);
+        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 432, 324);
 
         Mat mat2 = new Mat();
         while(!Thread.interrupted()) {
