@@ -9,10 +9,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.IntakeIndexerStart;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.AutoCommands.PidTesting;
-import frc.robot.commands.AutoCommands.TurnCounterClock;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.ClimberCommands.*;
+
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
 import frc.robot.commands.DrivetrainCommands.SetCoastMode;
@@ -76,7 +73,7 @@ public class OI {
         operatorRB.whenHeld(new RunIndexer());
 
         operatorRT.whenHeld(new TwoBallManuel());
-        operatorLT.whenPressed(new PidTesting(-20.34));
+        
 
         //Shooter
         operatorA.whenHeld(new UpperHubClose());
@@ -87,22 +84,13 @@ public class OI {
         
 
         //Climb commands
-        operatorDPadRight.whenHeld(new RunClimbUpWithTimer());
-        operatorDPadLeft.whenHeld(new RunClimbDownWithTimer());
+       
         
         //stop climb 
-        operatorDPadRight.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new StopClimb());   
-
-        driverDPadDown.whenHeld(new LeftClimbDown());
-        driverDPadUp.whenHeld(new LeftClimbUp());
-
-        driverDPadLeft.whenHeld(new RightClimbDown());
-        driverDPadRight.whenHeld(new RightClimbUp());
+       
 
         //Pit controls 
-        pitDPadUp.whenHeld(new PitMoveClimb());
-        pitDPadDown.whenHeld(new PitMoveClimbDown());
+       
         operatorLB.whenHeld(new SetBrakeMode());
     }
 

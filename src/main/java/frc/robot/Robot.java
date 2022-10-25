@@ -23,15 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.CombinedAutos.LeftZoneAuto;
-import frc.robot.commands.CombinedAutos.ThreeBall;
-import frc.robot.commands.CombinedAutos.TwoBallRight;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.CombinedAutos.FourBall;
-import frc.robot.commands.CombinedAutos.FourBallTerminal;
-import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
-import frc.robot.commands.CombinedAutos.oneBall;
-import frc.robot.commands.CombinedAutos.FourBall;
+import frc.robot.commands.oneBall;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.subsystems.Climber;
@@ -63,16 +55,10 @@ public class Robot extends TimedRobot {
 
   private static double setpointFront = 0; //for PID testing
   private static double setpointBack = 0; //for PID testing
-  private Timer timer, shooterTimer1,shooterTimer2;
-  private boolean firstBallShot;
-
-  private Command threeBallAuto;
-  private Command spitBallAuto;
-  private Command oneBallAuto;
-  private Command fourBallAuto;
-  private Command twoBallRightZoneAuto;
-  private Command fourBallPIDAuto;
-  private SendableChooser<Command> autoChooser;
+  private Timer timer;
+  
+  private Command move;
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -128,8 +114,7 @@ public class Robot extends TimedRobot {
       CameraServer.startAutomaticCapture();
 
     timer = new Timer();
-    shooterTimer1 = new Timer();
-    shooterTimer2 = new Timer(); 
+    
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
@@ -142,22 +127,10 @@ public class Robot extends TimedRobot {
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    threeBallAuto = new ThreeBall();
-    spitBallAuto = new LeftZoneAuto();
-    oneBallAuto = new oneBall();
-    fourBallAuto = new FourBallTerminal();
-    twoBallRightZoneAuto = new TwoBallRight();
-    fourBallPIDAuto = new FourBallTerminalPID();
-    autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
-    autoChooser.addOption("Three ball(Right)", threeBallAuto);
-    autoChooser.addOption("Two Ball + Spit (Left)", spitBallAuto);
-    autoChooser.addOption("Four ball (middle))", fourBallAuto);
-    autoChooser.addOption("Two Ball(Right Zone)", twoBallRightZoneAuto);
-    autoChooser.addOption("Four Ball (middle) (PID)", fourBallPIDAuto);
-
-    SmartDashboard.putData(autoChooser);
-    m_autonomousCommand = autoChooser.getSelected();
+    move= new oneBall();
+    
+    
+    m_autonomousCommand = move;
     Robot.drivetrain.resetGyro();
 
     climber.resetClimberPosition();
@@ -210,7 +183,7 @@ public class Robot extends TimedRobot {
     Robot.drivetrain.resetEncoders();
     Robot.drivetrain.resetGyro();
     
-    m_autonomousCommand = autoChooser.getSelected();
+    
     //m_autonomousCommand = new TurnCounterClockwisePID(-22.34);
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
