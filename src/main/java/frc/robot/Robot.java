@@ -131,7 +131,7 @@ public class Robot extends TimedRobot {
     
     
     m_autonomousCommand = move;
-    Robot.drivetrain.resetGyro();
+
 
   }
 

@@ -42,7 +42,7 @@ public class DriveWithJoystick extends CommandBase {
                 thrust = 0;
             }
             if(thrust>.8 ) {
-                thrust = 0.75;
+                thrust = 0.85;
             }
           
         }
