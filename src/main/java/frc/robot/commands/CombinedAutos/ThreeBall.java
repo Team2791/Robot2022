@@ -41,8 +41,8 @@ public class ThreeBall extends SequentialCommandGroup {
     new RetractStopIntake(),
 
     new AutoRunIndexer(), 
-    new DriveDistanceBack(1.55,1.55,Constants.autoDriveSpeed), 
-    new Turn(9),
+    new DriveDistanceBack(1.45,1.45,Constants.autoDriveSpeed), //1.55
+    new Turn(12),  //9
     new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
     new AutoHighShot(), 
     new wait(1.7), 

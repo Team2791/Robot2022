@@ -36,6 +36,25 @@ public class LeftZoneAuto extends SequentialCommandGroup {
   /** Creates a new LeftZoneAuto. */
   public LeftZoneAuto() {
 
+    addCommands(
+      new ExtendRunIntakeAuto(),
+      new wait(0.6),
+      new DriveDistance(0.86,0.86, 0.3),
+      new wait(0.6), 
+      new RetractStopIntake(),
+  
+      new AutoRunIndexer(), 
+      new DriveDistanceBack(1.55,1.55,0.3), //1.55
+      new TurnCounterClock(9),//9
+      new DriveDistanceBack(0.13,0.13,0.3),//0.06
+      new AutoHighShot(), 
+      new wait(1.7), 
+      new AutoRunIndexerBelts(), 
+      new wait(1.3),
+      new stopIndexerAuto(), 
+      new StopFlywheel(), 
+      new stopIndexerAuto()
+    );
     // addCommands(
     // new ExtendRunIntakeAuto(),
     // new wait(0.7),
@@ -66,25 +85,7 @@ public class LeftZoneAuto extends SequentialCommandGroup {
     // new ExtendRunIntakeReverse(),
     // new ReverseIndexerAuto());
 
-    addCommands(
-      new ExtendRunIntakeAuto(),
-      new wait(0.6),
-      new DriveDistance(0.86,0.86, Constants.autoDriveSpeed),
-      new wait(0.6), 
-      new RetractStopIntake(),
-  
-      new AutoRunIndexer(), 
-      new DriveDistanceBack(1.55,1.55,Constants.autoDriveSpeed), 
-      new TurnCounterClock(9),
-      new DriveDistanceBack(0.06,0.06,Constants.autoDriveSpeed),
-      new AutoHighShot(), 
-      new wait(1.7), 
-      new AutoRunIndexerBelts(), 
-      new wait(1.3),
-      new stopIndexerAuto(), 
-      new StopFlywheel(), 
-      new stopIndexerAuto()
-    );
+    
   
   }
 }

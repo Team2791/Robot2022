@@ -13,6 +13,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSource;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static Climber climber;
   public static PowerDistribution pdp;
+ 
 
   private static double setpointFront = 0; //for PID testing
   private static double setpointBack = 0; //for PID testing
@@ -82,30 +84,30 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     //m_robotContainer = new RobotContainer();
-    CameraServer.startAutomaticCapture();
-    m_visionThread = 
-    new Thread ( 
-      () -> {
-        UsbCamera camera = CameraServer.startAutomaticCapture();
-        camera.setResolution(432, 324); //480 360
-        CvSink cvSink = CameraServer.getVideo();
-        CvSource outputStream = CameraServer.putVideo("Rectangle", 480, 360);
+    //CameraServer.startAutomaticCapture();
+    // m_visionThread = 
+    // new Thread ( 
+    //   () -> {
+    //     UsbCamera camera = CameraServer.startAutomaticCapture();
+    //     camera.setResolution(432, 324); //480 360
+    //     CvSink cvSink = CameraServer.getVideo();
+    //     CvSource outputStream = CameraServer.putVideo("Rectangle", 480, 360);
 
-        Mat mat = new Mat();
-        while(!Thread.interrupted()) {
-          if(cvSink.grabFrame(mat) == 0) {
-            outputStream.notifyError(cvSink.getError());
-            continue;
-          }
-          Imgproc.rectangle(mat, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
-          outputStream.putFrame(mat);
-        }
-      });
-      m_visionThread.setDaemon(true);
-      m_visionThread.start();
-    CameraServer.startAutomaticCapture();
+    //     Mat mat = new Mat();
+    //     while(!Thread.interrupted()) {
+    //       if(cvSink.grabFrame(mat) == 0) {
+    //         outputStream.notifyError(cvSink.getError());
+    //         continue;
+    //       }
+    //       Imgproc.rectangle(mat, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
+    //       outputStream.putFrame(mat);
+    //     }
+    //   });
+    //  m_visionThread.setDaemon(true);
+      //m_visionThread.start();
 
-    m_visionThread2 = 
+
+    /*m_visionThread2 = 
     new Thread ( 
       () -> {
         UsbCamera camera2 = CameraServer.startAutomaticCapture();
@@ -125,8 +127,11 @@ public class Robot extends TimedRobot {
       });
       m_visionThread2.setDaemon(true);
       m_visionThread2.start();
-      CameraServer.startAutomaticCapture();
+      CameraServer.startAutomaticCapture();*/
 
+    
+    CameraServer.startAutomaticCapture(0);
+    CameraServer.startAutomaticCapture(1);
     timer = new Timer();
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
