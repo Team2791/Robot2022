@@ -30,6 +30,7 @@ public final class Constants {
     public static final double backFlySpeed = -0.3;
     public static final double minPressure = 60;//110
     public static final double maxPressure = 120;
+    public static final double joe = 1.0;
 
     //PID CONSTANTS
     //feedforward (ff): reduces error in PID system (prediction technique); probably won't use this maybe
