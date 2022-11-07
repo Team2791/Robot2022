@@ -21,6 +21,7 @@ public final class Constants {
     public static final double kClimberTime = 0.1;
     public static final double kClimbSpeedUp = 0.25;
     public static final double kClimbSpeedDown = -0.25;
+    public static final double joe = 0;
 
     public static final double bottomindexerSpeed = 0.75;
     public static final double topindexerSpeed = 1;
