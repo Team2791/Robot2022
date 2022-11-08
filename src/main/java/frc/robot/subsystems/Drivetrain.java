@@ -42,8 +42,7 @@ public class Drivetrain extends SubsystemBase{
         rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
         // gyro = new AHRS(Port.kMXP);
     }
-    public void setFlagm(double speedf)
-    {
+    public void setFlagm(double speedf) {
         flagm.set(speedf);
         
     }

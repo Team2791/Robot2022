@@ -134,7 +134,8 @@ public class Robot extends TimedRobot {
     
     
     m_autonomousCommand = move;
-
+      // Robot.drivetrain.setMotors(0.2,0.2);
+      // timer.start();
 
   }
 
@@ -163,6 +164,9 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putNumber("Climber Current", pdp.getCurrent(1));
     SmartDashboard.putNumber("Upper Indexer Current", pdp.getCurrent(8));
     SmartDashboard.putNumber("Lower Indexer Current", pdp.getCurrent(7));
+    // if(timer.get() > 6) {
+    //   Robot.drivetrain.setMotors(-0.5,0.5);
+    // }
 
     //SmartDashboard.putData(autoChooser); //add to periodic??
   }
