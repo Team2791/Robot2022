@@ -9,6 +9,8 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -26,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.subsystems.Drivetrain;
+
 
 // import frc.robot.subsystems.Climber;
 // import frc.robot.subsystems.Drivetrain;
@@ -179,7 +182,7 @@ public class Robot extends TimedRobot {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     
     timer.start();
-    Robot.drivetrain.setMotors(0.5, 0.5);
+    Robot.drivetrain.setMotors(0.3, 0.3);
     
     //m_autonomousCommand = new TurnCounterClockwisePID(-22.34);
     // schedule the autonomous command (example)
@@ -192,7 +195,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    if(timer.get()>1.5) {
+    if(timer.get()>1.4) {
       Robot.drivetrain.setMotors(0, 0);
     }
   }
@@ -228,7 +231,7 @@ public class Robot extends TimedRobot {
     //double kpF = SmartDashboard.getNumber("Front Shooter kP", 0);
     //double kf = SmartDashboard.getNumber("Shooter kF", 0);
     //double kd = SmartDashboard.getNumber("Shooter kD", 0);
-    
+   
     //PID testing for back flywheel
     //double kpB = SmartDashboard.getNumber("Front Shooter kP", 0);
     //double kf = SmartDashboard.getNumber("Shooter kF", 0);

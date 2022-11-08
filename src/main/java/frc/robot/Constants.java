@@ -15,7 +15,7 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double kCreep = 0.225;
+    public static final double kCreep = .225  ;//.225
     public static final double TURN_FACTOR = -0.4;
     public static final double autoRampUp = 0.09;
     public static final double kClimberTime = 0.1;
@@ -80,7 +80,7 @@ public final class Constants {
     //previous gear ratio 0.091659
 
     public static final double kClimbDelay = 0.25;
-
+    
     
     public static final double GyrokP = 0.01; //.01
     public static final double GyrokI = 0;

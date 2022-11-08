@@ -8,13 +8,15 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase{
-    private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower;
+    private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower,flagm;
     private RelativeEncoder rightEncoder, leftEncoder;
+    
     // private final AHRS gyro;
      public Drivetrain() {
         super.register();
@@ -25,7 +27,9 @@ public class Drivetrain extends SubsystemBase{
         leftFollower.follow(leftLeader, false);
         rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
         rightFollower.follow(rightLeader, false);
-
+        flagm = new CANSparkMax(RobotMap.flagmID, MotorType.kBrushless);
+        //flagp = new Solenoid(Robot.,Solenoid.AHRS,1);
+    
         leftLeader.setSmartCurrentLimit(80);
         leftFollower.setSmartCurrentLimit(80);
         rightLeader.setSmartCurrentLimit(80);
@@ -38,7 +42,11 @@ public class Drivetrain extends SubsystemBase{
         rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
         // gyro = new AHRS(Port.kMXP);
     }
-  
+    public void setFlagm(double speedf)
+    {
+        flagm.set(speedf);
+        
+    }
     public void setMotors(double left, double right){
         leftLeader.set(left);
         rightLeader.set(right);

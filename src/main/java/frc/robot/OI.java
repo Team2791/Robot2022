@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,15 +15,20 @@ import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
 import frc.robot.commands.DrivetrainCommands.SetCoastMode;
 import frc.robot.commands.DrivetrainCommands.creep;
 import frc.robot.commands.DrivetrainCommands.creep2;
+import frc.robot.commands.DrivetrainCommands.flagSpin;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
 
+
 public class OI {
     public static Joystick driverStick;
     public static Joystick operatorStick;
     public static Joystick pitStick; 
+
+public CANSparkMax spin;
+
      Button driveButton;
     private Button driverLB, driverRB, pitRB, pitLB;
     private Button driverStart, driverBack;
@@ -35,17 +43,20 @@ public class OI {
     protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadUp, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
     private Button operatorA, operatorB, operatorX, operatorY;
     private Button pitA, pitB, pitX, pitY; 
-
+  
     public OI(){
         driverStick = new Joystick(0);
-        driverRB = new JoystickButton(driverStick, 6);
-        driverLB = new JoystickButton(driverStick, 5);
-        driveButton = new MultiButton(new Button[] {
-            new AnalogButton(driverStick, 3,2,0,0.2),
-            driverRB, driverLB
-        });
-
+        operatorStick = new Joystick(1);
+        // driverRB = new JoystickButton(driverStick, 6);
+        // driverLB = new JoystickButton(driverStick, 5);
+        // driveButton = new MultiButton(new Button[] {
+        //     new AnalogButton(driverStick, 3,2,0,0.2),
+        //     driverRB, driverLB
+        // });
+        initButtons();
+        
         //Drive Commmands
+        operatorLS.whileHeld(new flagSpin());
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
        
@@ -80,9 +91,8 @@ public class OI {
             //     driverRB
             // });
 //OPERATOR BUTTONS//
-
-          
-        }
+               operatorLS = new JoystickButton(operatorStick,1);
+                }
 
         catch (Exception error){
             System.out.println("Error Init With Buttons");
@@ -95,6 +105,7 @@ public class OI {
             // pitY = new JoystickButton(pitStick, 4); 
     }
     
+
     // private void initUsed(){
     //     operatorLeftJoystickUsed = new Button() {
 	// 		@Override
