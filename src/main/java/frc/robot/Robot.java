@@ -29,13 +29,6 @@ import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.subsystems.Drivetrain;
 
-
-// import frc.robot.subsystems.Climber;
-// import frc.robot.subsystems.Drivetrain;
-//  import frc.robot.subsystems.Indexer;
-//  import frc.robot.subsystems.Shooter;
-// import frc.robot.subsystems.Intake;
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -49,12 +42,8 @@ public class Robot extends TimedRobot {
   
   //private RobotContainer m_robotContainer;
   public static OI oi;
-  // public static Intake intake;
   public static Compressor compressor;
-  // public static Shooter shooter;
-  // public static Indexer indexer;
   public static Drivetrain drivetrain;
-  // public static Climber climber;
   public static PowerDistribution pdp;
 
   private static double setpointFront = 0; //for PID testing
@@ -118,25 +107,11 @@ public class Robot extends TimedRobot {
       CameraServer.startAutomaticCapture();
 
     timer = new Timer();
-    
-    // intake = new Intake();
-    // shooter = new Shooter();
-    // indexer = new Indexer();
-
     drivetrain = new Drivetrain();
-    Robot.drivetrain.resetEncoders();
-
-    // climber = new Climber();
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    
-    
-    m_autonomousCommand = move;
-      // Robot.drivetrain.setMotors(0.2,0.2);
-      // timer.start();
-
   }
 
   /**
@@ -157,24 +132,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(CommandScheduler.getInstance());
     SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
     SmartDashboard.putNumber("Compressor Pressure", compressor.getPressure());
-    // SmartDashboard.putNumber("Intake Current", pdp.getCurrent(14));
-    // SmartDashboard.putNumber("Front Shooter Current", pdp.getCurrent(13));
-    // SmartDashboard.putNumber("Back Shooter Current", pdp.getCurrent(12));
-    // SmartDashboard.putNumber("(Left) Drivetrain Current", pdp.getCurrent(0));
-    // SmartDashboard.putNumber("Climber Current", pdp.getCurrent(1));
-    SmartDashboard.putNumber("Upper Indexer Current", pdp.getCurrent(8));
-    SmartDashboard.putNumber("Lower Indexer Current", pdp.getCurrent(7));
-    // if(timer.get() > 6) {
-    //   Robot.drivetrain.setMotors(-0.5,0.5);
-    // }
-
-    //SmartDashboard.putData(autoChooser); //add to periodic??
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    Robot.drivetrain.setCoastMode();
   }
 
   @Override
@@ -206,41 +168,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    //Robot.drivetrain.setRampUp(0.07);
-    Robot.drivetrain.setCoastMode();
-
-    // SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
-    // SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
-    // SmartDashboard.putNumber("Front Shooter kD", Constants.BackFlywheelkD);
-    // SmartDashboard.putNumber("Front Shooter setpoint", 0);
-
-    // SmartDashboard.putNumber("Back Shooter kP", Constants.FrontFlywheelkP);
-    // SmartDashboard.putNumber("Back Shooter kF", Constants.FrontFlywheelkFF);
-    // SmartDashboard.putNumber("Back Shooter kD", Constants.FrontFlywheelkD);
-    // SmartDashboard.putNumber("Back Shooter setpoint", 0);
-
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    //PID testing for front flywheel
-    //double kpF = SmartDashboard.getNumber("Front Shooter kP", 0);
-    //double kf = SmartDashboard.getNumber("Shooter kF", 0);
-    //double kd = SmartDashboard.getNumber("Shooter kD", 0);
-   
-    //PID testing for back flywheel
-    //double kpB = SmartDashboard.getNumber("Front Shooter kP", 0);
-    //double kf = SmartDashboard.getNumber("Shooter kF", 0);
-    //double kd = SmartDashboard.getNumber("Shooter kD", 0);
- 
 
   }
 

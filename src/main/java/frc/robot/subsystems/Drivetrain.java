@@ -17,7 +17,6 @@ public class Drivetrain extends SubsystemBase{
     private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower,flagm;
     private RelativeEncoder rightEncoder, leftEncoder;
     
-    // private final AHRS gyro;
      public Drivetrain() {
         super.register();
         leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
@@ -37,9 +36,6 @@ public class Drivetrain extends SubsystemBase{
 
         leftEncoder = leftLeader.getEncoder();
         rightEncoder = rightLeader.getEncoder();
-
-        leftEncoder.setPositionConversionFactor(Constants.conversionFactor);
-        rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
         // gyro = new AHRS(Port.kMXP);
     }
     public void setFlagm(double speedf) {
@@ -51,21 +47,6 @@ public class Drivetrain extends SubsystemBase{
         rightLeader.set(right);
     }
 
-    public void setBrakeMode() {
-        leftLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        rightLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        leftFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        rightFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
-
-    }
-  
-    public void setCoastMode() {
-        leftLeader.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        rightLeader.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        leftFollower.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        rightFollower.setIdleMode(CANSparkMax.IdleMode.kCoast);
-
-    }
 
     public CANSparkMax getLeftMotor(){
         return leftLeader;
@@ -101,12 +82,7 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void periodic() {
-        // SmartDashboard.putNumber("Right Velocity", rightLeader.get());
-        // SmartDashboard.putNumber("Left Velocity", leftLeader.get());
         SmartDashboard.putNumber("Right Position", getRightPosition());
         SmartDashboard.putNumber("Left Position", getLeftPosition());
-
-
-
     }
 }

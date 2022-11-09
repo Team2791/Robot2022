@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.LearningDay;
-import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
-import frc.robot.commands.DrivetrainCommands.SetCoastMode;
 import frc.robot.commands.DrivetrainCommands.creep;
 import frc.robot.commands.DrivetrainCommands.creep2;
 import frc.robot.commands.DrivetrainCommands.flagSpin;
@@ -48,16 +46,10 @@ public CANSparkMax spin;
     public OI(){
         driverStick = new Joystick(0);
         operatorStick = new Joystick(1);
-        // driverRB = new JoystickButton(driverStick, 6);
-        // driverLB = new JoystickButton(driverStick, 5);
-        // driveButton = new MultiButton(new Button[] {
-        //     new AnalogButton(driverStick, 3,2,0,0.2),
-        //     driverRB, driverLB
-        // });
         initButtons();
         
         //Drive Commmands
-        operatorLS.whileHeld(new flagSpin());
+        operatorA.whileHeld(new flagSpin());
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
         driverY.whenPressed(new LearningDay());
@@ -76,7 +68,7 @@ public CANSparkMax spin;
             driverRB = new JoystickButton(driverStick, 6);
             driverLB = new JoystickButton(driverStick, 5);
             driverLS = new JoystickButton(driverStick,9);
-            // driverRS = new JoystickButton(driverStick,10);
+            driverRS = new JoystickButton(driverStick,10);
             driverRX = new AnalogButton(driverStick, 4);
             driverDPadDown = new DPadButton(driverStick, DPadButton.kDPadDown);
             driverDPadRight = new DPadButton(driverStick, DPadButton.kDPadRight);
@@ -87,33 +79,33 @@ public CANSparkMax spin;
                 driverRB, driverLB
             });
 
-            // driveButton = new MultiButton(new Button[] {
-            //     new AnalogButton(driverStick, 0),
-            //     driverLB,
-            //     driverRB
-            // });
 //OPERATOR BUTTONS//
-               operatorLS = new JoystickButton(operatorStick,1);
-                }
+            operatorA = new JoystickButton(operatorStick, 1);
+            operatorB = new JoystickButton(operatorStick, 2);
+            operatorX = new JoystickButton(operatorStick, 3);
+            operatorY = new JoystickButton(operatorStick, 4);
+            operatorBack = new JoystickButton(operatorStick,7);
+            operatorStart = new JoystickButton(driverStick, 8);
+            operatorRB = new JoystickButton(operatorStick, 6);
+            operatorLB = new JoystickButton(operatorStick, 5);
+            operatorLT = new AnalogButton(operatorStick, 2);
+            operatorRT = new AnalogButton(operatorStick, 3);
+            operatorLS = new AnalogButton(operatorStick, 1);
+
+            operatorDPadDown = new DPadButton(operatorStick, DPadButton.kDPadDown);
+            operatorDPadUp = new DPadButton(operatorStick, DPadButton.kDPadUp);
+
+            operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
+            operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
+
+        }
 
         catch (Exception error){
             System.out.println("Error Init With Buttons");
             error.printStackTrace();
         }
-//TEMPORARY PIT CONTROLS//
-            // pitA = new JoystickButton(pitStick, 1);
-            // pitB = new JoystickButton(pitStick, 2); 
-            // pitX = new JoystickButton(pitStick, 3); 
-            // pitY = new JoystickButton(pitStick, 4); 
+
     }
     
 
-    // private void initUsed(){
-    //     operatorLeftJoystickUsed = new Button() {
-	// 		@Override
-	// 		public boolean get() {
-	// 			return Math.abs(Util.deadzone(Constants.DEADZONE, operatorStick.getRawAxis(1), 1.0)) > 0.08;
-	// 		}
-	// 	};
-    // }
 }
