@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.LearningDay;
-import frc.robot.commands.DrivetrainCommands.creep;
-import frc.robot.commands.DrivetrainCommands.creep2;
 import frc.robot.commands.DrivetrainCommands.flagSpin;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.controller.AnalogButton;
@@ -52,7 +50,7 @@ public CANSparkMax spin;
         operatorA.whileHeld(new flagSpin());
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
         driveButton.whenReleased(new stopMotors());
-        driverY.whenPressed(new LearningDay());
+        operatorY.whenPressed(new LearningDay());
        
     }
 
