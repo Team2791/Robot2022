@@ -18,7 +18,7 @@ public class JoeAim extends CommandBase {
   
   public JoeAim() {
     addRequirements(Robot.drivetrain);
-    addRequirements(Robot.limelight);
+    // addRequirements(Robot.limelight);
     pid = new PIDController(Constants.LimelightkP, Constants.LimelightkI, Constants.LimelightkD);
     // Use addRequirements() here to declare subsystem dependencies.
   }

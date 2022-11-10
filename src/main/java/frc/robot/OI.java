@@ -64,38 +64,6 @@ public class OI {
        
         //Intake up and down 
         driverY.whenHeld(new ReverseIntake());
-
-        // driverB.whenHeld(new TurnCounterClockwisePID(-22.34));
-
-        //Climber independent
-        // if(operatorStick.getRawAxis(1)>0.2)
-        // {
-        //     new RunSingular(1);
-        // }
-        // else if(operatorStick.getRawAxis(1)<0.2 && operatorStick.getRawAxis(1)>0){
-        //     new StopClimb();
-        // }
-        // if(operatorStick.getRawAxis(5)>0.2)
-        // {
-        //     new RunSingular(2);
-        // }
-        // else if(operatorStick.getRawAxis(5)>0.2&& operatorStick.getRawAxis(5)>0){
-        //     new StopClimb();
-        // }
-        // if(operatorStick.getRawAxis(1)<-0.2)
-        // {
-        //     new RunSingular(-1);
-        // }
-        // else if(operatorStick.getRawAxis(1)<-0.2 && operatorStick.getRawAxis(1)<0){
-        //     new StopClimb();
-        // }
-        // if(operatorStick.getRawAxis(5)<-0.2)
-        // {
-        //     new RunSingular(-2);
-        // }
-        // else if(operatorStick.getRawAxis(5)<-0.2 && operatorStick.getRawAxis(5)<0){
-        //     new StopClimb();
-        // }
         
         operatorDPadDown.whileHeld(new ReverseIndexer());
         operatorDPadDown.whenReleased(new StopIndexer());
