@@ -85,6 +85,6 @@ public final class Constants {
     
     public static final double GyrokP = 0.01; //.01
     public static final double GyrokI = 0;
-    public static final double GyrokD = 0;
+    // public static final double GyrokD = 0;
 
 }

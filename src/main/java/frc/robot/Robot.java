@@ -9,6 +9,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import Subsystem.Indexer;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -40,6 +41,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //  import frc.robot.subsystems.Indexer;
 //  import frc.robot.subsystems.Shooter;
 // import frc.robot.subsystems.Intake;
+import frc.robot.subsystem.Intake;
+import frc.robot.subsystem.shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -54,10 +57,10 @@ public class Robot extends TimedRobot {
   
   //private RobotContainer m_robotContainer;
   public static OI oi;
-  // public static Intake intake;
+public static Intake intake;
   public static Compressor compressor;
-  // public static Shooter shooter;
-  // public static Indexer indexer;
+  public static shooter shooter;
+  public static Indexer indexer;
   // public static Drivetrain drivetrain;
   // public static Climber climber;
   public static PowerDistribution pdp;
@@ -135,9 +138,9 @@ public class Robot extends TimedRobot {
     timer = new Timer();
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
-    // intake = new Intake();
-    // shooter = new Shooter();
-    // indexer = new Indexer();
+    intake = new Intake();
+    shooter = new shooter();
+    indexer = new Indexer();
 
     // drivetrain = new Drivetrain();
     // Robot.drivetrain.resetEncoders();
@@ -146,7 +149,7 @@ public class Robot extends TimedRobot {
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
-    //compressor.enableDigital();
+    compressor.enableDigital();
     // threeBallAuto = new ThreeBall();
     // spitBallAuto = new LeftZoneAuto();
     // oneBallAuto = new oneBall();
@@ -166,6 +169,7 @@ public class Robot extends TimedRobot {
     // Robot.drivetrain.resetGyro();
 
     // climber.resetClimberPosition();
+     
   }
 
   /**
