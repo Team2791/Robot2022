@@ -7,19 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.IntakeIndexerEnd;
 //import frc.robot.commands.IntakeIndexerStart;
-import frc.robot.commands.IntakeCommands.*;
-import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.AutoCommands.PidTesting;
-import frc.robot.commands.AutoCommands.TurnCounterClock;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.ClimberCommands.*;
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
-import frc.robot.commands.DrivetrainCommands.SetCoastMode;
-import frc.robot.commands.DrivetrainCommands.creep;
-import frc.robot.commands.DrivetrainCommands.creep2;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
-import frc.robot.commands.IndexerCommands.*;
+
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -51,59 +39,8 @@ public class OI {
         initButtons();
         
         
-        //initUsed();
-
-        //MAP JOYSTICK CONTROLS HERE:
-
-        //Intake commands 
-        driverA.whenHeld(new ExtendRunIntake());
-
-        //Drive Commmands
-        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-        driveButton.whenReleased(new stopMotors());
+  
        
-        //Intake up and down 
-        driverY.whenHeld(new ReverseIntake());
-
-        // driverB.whenHeld(new TurnCounterClockwisePID(-22.34));
-        
-        operatorDPadDown.whileHeld(new ReverseIndexer());
-        operatorDPadDown.whenReleased(new StopIndexer());
-
-        operatorDPadUp.whileHeld(new RunIndexerBelts());
-        operatorDPadUp.whenReleased(new StopIndexer());
-
-        operatorRB.whenHeld(new RunIndexer());
-
-        operatorRT.whenHeld(new TwoBallManuel());
-        operatorLT.whenPressed(new PidTesting(-20.34));
-
-        //Shooter
-        operatorA.whenHeld(new UpperHubClose());
-        operatorB.whenHeld(new LowerHubClose());
-        operatorY.whenHeld(new longShotOuterTarmac());
-        operatorX.whenHeld(new GachLongShot());
-        //operatorLT.whenPressed(new StopFlywheel());
-        
-
-        //Climb commands
-        operatorDPadRight.whenHeld(new RunClimbUpWithTimer());
-        operatorDPadLeft.whenHeld(new RunClimbDownWithTimer());
-        
-        //stop climb 
-        operatorDPadRight.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new StopClimb());   
-
-        driverDPadDown.whenHeld(new LeftClimbDown());
-        driverDPadUp.whenHeld(new LeftClimbUp());
-
-        driverDPadLeft.whenHeld(new RightClimbDown());
-        driverDPadRight.whenHeld(new RightClimbUp());
-
-        //Pit controls 
-        pitDPadUp.whenHeld(new PitMoveClimb());
-        pitDPadDown.whenHeld(new PitMoveClimbDown());
-        operatorLB.whenHeld(new SetBrakeMode());
     }
 
     private void initButtons(){

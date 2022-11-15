@@ -24,22 +24,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.CombinedAutos.LeftZoneAuto;
-import frc.robot.commands.CombinedAutos.ThreeBall;
-import frc.robot.commands.CombinedAutos.TwoBallRight;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.CombinedAutos.FourBall;
-import frc.robot.commands.CombinedAutos.FourBallTerminal;
-import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
-import frc.robot.commands.CombinedAutos.oneBall;
-import frc.robot.commands.CombinedAutos.FourBall;
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
-import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.Drivetrain;
- import frc.robot.subsystems.Indexer;
- import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Intake;
+// import frc.robot.commands.CombinedAutos.LeftZoneAuto;
+// import frc.robot.commands.CombinedAutos.ThreeBall;
+// import frc.robot.commands.CombinedAutos.TwoBallRight;
+// import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
+// import frc.robot.commands.CombinedAutos.FourBall;
+// import frc.robot.commands.CombinedAutos.FourBallTerminal;
+// import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
+// import frc.robot.commands.CombinedAutos.oneBall;
+// import frc.robot.commands.CombinedAutos.FourBall;
+// import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
+// import frc.robot.commands.DrivetrainCommands.stopMotors;
+// import frc.robot.subsystems.Climber;
+// import frc.robot.subsystems.Drivetrain;
+//  import frc.robot.subsystems.Indexer;
+//  import frc.robot.subsystems.Shooter;
+// import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -54,12 +54,12 @@ public class Robot extends TimedRobot {
   
   //private RobotContainer m_robotContainer;
   public static OI oi;
-  public static Intake intake;
+  // public static Intake intake;
   public static Compressor compressor;
-  public static Shooter shooter;
-  public static Indexer indexer;
-  public static Drivetrain drivetrain;
-  public static Climber climber;
+  // public static Shooter shooter;
+  // public static Indexer indexer;
+  // public static Drivetrain drivetrain;
+  // public static Climber climber;
   public static PowerDistribution pdp;
  
 
@@ -135,24 +135,24 @@ public class Robot extends TimedRobot {
     timer = new Timer();
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
-    intake = new Intake();
-    shooter = new Shooter();
-    indexer = new Indexer();
+    // intake = new Intake();
+    // shooter = new Shooter();
+    // indexer = new Indexer();
 
-    drivetrain = new Drivetrain();
-    Robot.drivetrain.resetEncoders();
+    // drivetrain = new Drivetrain();
+    // Robot.drivetrain.resetEncoders();
 
-    climber = new Climber();
+    // climber = new Climber();
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    threeBallAuto = new ThreeBall();
-    spitBallAuto = new LeftZoneAuto();
-    oneBallAuto = new oneBall();
-    fourBallAuto = new FourBallTerminal();
-    twoBallRightZoneAuto = new TwoBallRight();
-    fourBallPIDAuto = new FourBallTerminalPID();
+    // threeBallAuto = new ThreeBall();
+    // spitBallAuto = new LeftZoneAuto();
+    // oneBallAuto = new oneBall();
+    // fourBallAuto = new FourBallTerminal();
+    // twoBallRightZoneAuto = new TwoBallRight();
+    // fourBallPIDAuto = new FourBallTerminalPID();
     autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
     autoChooser.addOption("Three ball(Right)", threeBallAuto);
@@ -163,9 +163,9 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putData(autoChooser);
     m_autonomousCommand = autoChooser.getSelected();
-    Robot.drivetrain.resetGyro();
+    // Robot.drivetrain.resetGyro();
 
-    climber.resetClimberPosition();
+    // climber.resetClimberPosition();
   }
 
   /**
@@ -200,7 +200,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    Robot.drivetrain.setCoastMode();
+    // Robot.drivetrain.setCoastMode();
   }
 
   @Override
@@ -210,10 +210,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    Robot.drivetrain.setBrakeMode();
-    //Robot.drivetrain.setCoastMode();
-    Robot.drivetrain.resetEncoders();
-    Robot.drivetrain.resetGyro();
+    // Robot.drivetrain.setBrakeMode();
+    // //Robot.drivetrain.setCoastMode();
+    // Robot.drivetrain.resetEncoders();
+    // Robot.drivetrain.resetGyro();
     
     m_autonomousCommand = autoChooser.getSelected();
     //m_autonomousCommand = new TurnCounterClockwisePID(-22.34);
@@ -240,8 +240,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     //Robot.drivetrain.setRampUp(0.07);
-    Robot.drivetrain.setCoastMode();
-    Robot.climber.resetClimberPosition();
+    // Robot.drivetrain.setCoastMode();
+    // Robot.climber.resetClimberPosition();
 
     // SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
     // SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
@@ -264,25 +264,23 @@ public class Robot extends TimedRobot {
     //double kd = SmartDashboard.getNumber("Shooter kD", 0);
     double lastFrontSetpoint = setpointFront;
     setpointFront = SmartDashboard.getNumber("Shooter setpoint", 0);
-    if (setpointFront == 0)
-        shooter.setFrontFlywheel(0);
-    else {
-        if(setpointFront!=lastFrontSetpoint)
-            shooter.setFrontShooterPID(setpointFront);
+    // if (setpointFront == 0)
+    //     shooter.setFrontFlywheel(0);
+    // else {
+    //     if(setpointFront!=lastFrontSetpoint)
+    //         shooter.setFrontShooterPID(setpointFront);
     }
     //PID testing for back flywheel
     //double kpB = SmartDashboard.getNumber("Front Shooter kP", 0);
     //double kf = SmartDashboard.getNumber("Shooter kF", 0);
     //double kd = SmartDashboard.getNumber("Shooter kD", 0);
-    double lastBackSetpoint = setpointBack;
-    setpointBack = SmartDashboard.getNumber("Shooter setpoint", 0);
-    if (setpointBack == 0)
-        shooter.setBackFlywheel(0);
-    else {
-        if(setpointBack!=lastBackSetpoint)
-            shooter.setBackShooterPID(setpointBack);
-    }    
-  }
+    // if (setpointBack == 0)
+    //     shooter.setBackFlywheel(0);
+    // else {
+    //     if(setpointBack!=lastBackSetpoint)
+    //         shooter.setBackShooterPID(setpointBack);
+    // }    
+  
 
   @Override
   public void testInit() {
