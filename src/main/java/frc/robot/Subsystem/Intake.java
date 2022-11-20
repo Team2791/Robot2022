@@ -26,7 +26,6 @@ public class Intake extends SubsystemBase {
   public void setIntake(boolean state)
   {
     piston1.set(state);
-
     piston2.set(state);
   }
 
