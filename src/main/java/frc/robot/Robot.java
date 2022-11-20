@@ -9,7 +9,6 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-import Subsystem.Indexer;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -25,24 +24,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-// import frc.robot.commands.CombinedAutos.LeftZoneAuto;
-// import frc.robot.commands.CombinedAutos.ThreeBall;
-// import frc.robot.commands.CombinedAutos.TwoBallRight;
-// import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-// import frc.robot.commands.CombinedAutos.FourBall;
-// import frc.robot.commands.CombinedAutos.FourBallTerminal;
-// import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
-// import frc.robot.commands.CombinedAutos.oneBall;
-// import frc.robot.commands.CombinedAutos.FourBall;
-// import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-// import frc.robot.commands.DrivetrainCommands.stopMotors;
-// import frc.robot.subsystems.Climber;
 // import frc.robot.subsystems.Drivetrain;
-//  import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Indexer;
 //  import frc.robot.subsystems.Shooter;
 // import frc.robot.subsystems.Intake;
 import frc.robot.subsystem.Intake;
-import frc.robot.subsystem.shooter;
+import frc.robot.subsystem.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -57,9 +44,9 @@ public class Robot extends TimedRobot {
   
   //private RobotContainer m_robotContainer;
   public static OI oi;
-public static Intake intake;
+  public static Intake intake;
   public static Compressor compressor;
-  public static shooter shooter;
+  public static Shooter shooter;
   public static Indexer indexer;
   // public static Drivetrain drivetrain;
   // public static Climber climber;
@@ -139,7 +126,7 @@ public static Intake intake;
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
     intake = new Intake();
-    shooter = new shooter();
+    shooter = new Shooter();
     indexer = new Indexer();
 
     // drivetrain = new Drivetrain();

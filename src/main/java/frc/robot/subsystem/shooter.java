@@ -2,19 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystem;
+package frc.robot.Subsystem;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
-public class shooter extends SubsystemBase {
+public class Shooter extends SubsystemBase {
   private CANSparkMax left,right;
   /** Creates a new shooter. */
-  public shooter() {
-      left= new CANSparkMax (7, MotorType.kBrushless);
-      right = new CANSparkMax (8,MotorType.kBrushless);
+  public Shooter() {
+      left= new CANSparkMax (RobotMap.flyWheelBackID, MotorType.kBrushless);
+      right = new CANSparkMax (RobotMap.flyWheelFrontID,MotorType.kBrushless);
   }
   public void setspeedl(double s){
     left.set(s); 
