@@ -35,12 +35,15 @@ public class Indexer extends SubsystemBase {
   public boolean getUpperLimitSwitch(){
     return upperLimitSwitch.get();
   }
+
   public boolean getLowerLimitSwitch(){
     return lowerLimitSwitch.get();
   }
+
   public void setLowerMotor(double lowerSpeed){
     lowerMotor.set(lowerSpeed);
   }
+
   public void setUpperMotor(double upperSpeed){
     upperMotor.set(upperSpeed);
   }
@@ -48,6 +51,7 @@ public class Indexer extends SubsystemBase {
   public void stopUpperMotor(){
     upperMotor.set(0);
   }
+  
   public void stopLowerMotor(){
     lowerMotor.set(0);
   }
@@ -59,3 +63,5 @@ public class Indexer extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 }
+
+
