@@ -10,10 +10,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-public class Shooter extends SubsystemBase {
+public class shooter extends SubsystemBase {
   private CANSparkMax left,right;
   /** Creates a new shooter. */
-  public Shooter() {
+  public shooter() {
       left= new CANSparkMax (RobotMap.flyWheelBackID, MotorType.kBrushless);
       right = new CANSparkMax (RobotMap.flyWheelFrontID,MotorType.kBrushless);
   }

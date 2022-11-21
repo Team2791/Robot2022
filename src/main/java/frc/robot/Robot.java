@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Subsystem.Drivetrain;
 import frc.robot.Subsystem.Indexer;
 import frc.robot.Subsystem.Intake;
-import frc.robot.Subsystem.Shooter;
+import frc.robot.Subsystem.shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Intake intake;
   public static Compressor compressor;
-  public static Shooter shooter;
+  public static shooter shooter;
   public static Indexer indexer;
   public static Drivetrain drivetrain;
   // public static Climber climber;
@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
     CameraServer.startAutomaticCapture(1);
     timer = new Timer();
     intake = new Intake();
-    shooter = new Shooter();
+    shooter = new shooter();
     indexer = new Indexer();
     drivetrain = new Drivetrain();
     oi = new OI();

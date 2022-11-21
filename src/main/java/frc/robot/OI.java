@@ -5,12 +5,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Commands.DriveWithJoystick;
 import frc.robot.Commands.ExtendRunIntake;
 import frc.robot.Commands.RetractStopIntake;
-import frc.robot.Commands.ShootIndex;
-import frc.robot.Commands.Stop;
-import frc.robot.Commands.poopball;
-import frc.robot.Commands.stopIntake;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -39,14 +36,13 @@ public class OI {
         operatorStick = new Joystick(1);
         pitStick = new Joystick(2);
 
+
         initButtons();
-        
+        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
+
         driverA.whenHeld(new ExtendRunIntake());
         driverA.whenReleased(new RetractStopIntake());
-        driverB.whenHeld(new ShootIndex());
-        driverB.whenReleased(new Stop());
-        driverX.whenPressed(new poopball());
-        driverY.whenPressed(new stopIntake());
+ 
     }
 
     private void initButtons(){
