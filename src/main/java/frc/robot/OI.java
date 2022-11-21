@@ -1,13 +1,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Commands.DriveWithJoystick;
-import frc.robot.Commands.ExtendRunIntake;
-import frc.robot.Commands.RetractStopIntake;
+import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.ExtendRunIntake;
+import frc.robot.commands.RetractStopIntake;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;

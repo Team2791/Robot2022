@@ -2,14 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.Commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ExtendRunIntake extends CommandBase {
-  /** Creates a new ExtendRunIntake. */
-  public ExtendRunIntake() {
+public class RetractStopIntake extends CommandBase {
+  /** Creates a new RetractStopIntake. */
+  public RetractStopIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.intake);
   }
@@ -17,8 +17,8 @@ public class ExtendRunIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.intake.setIntake(true);
-    Robot.intake.setMotor(0.5);
+    Robot.intake.setMotor(0);
+    Robot.intake.setIntake(false);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
