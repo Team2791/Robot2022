@@ -18,7 +18,7 @@ public class LowShot extends CommandBase {
   @Override
   public void initialize() {
     Robot.shooter.setspeedr(0.3);
-    Robot.shooter.setspeedl(-0.3);
+    Robot.shooter.setspeedl(-0.20);
   }
   // Called every time the scheduler runs while the command is scheduled.
   @Override

@@ -12,12 +12,14 @@ public class Shoot extends CommandBase {
 
 	@Override
 	public void initialize() {
-		Robot.shooter.setspeedr(0.5);
-		Robot.shooter.setspeedl(0.5);
+		Robot.indexer.setLowerMotor(0.6);
+		Robot.indexer.setUpperMotor(0.6);
+
 	}
 
 	@Override
 	public void execute() {
+		
 
 	}
 
@@ -29,6 +31,7 @@ public class Shoot extends CommandBase {
 
 	@Override
 	public void end(boolean interrupted) {
-
+		Robot.indexer.stopLowerMotor();
+		Robot.indexer.stopUpperMotor();
 	}
 }

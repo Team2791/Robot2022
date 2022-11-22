@@ -5,7 +5,13 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.ExtendRunIntake;
+import frc.robot.commands.Highshot;
+import frc.robot.commands.LoadBall;
+import frc.robot.commands.LowShot;
 import frc.robot.commands.RetractStopIntake;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.StopDrive;
+import frc.robot.commands.ongod;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -37,10 +43,20 @@ public class OI {
 
         initButtons();
         driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-
+		driveButton.whenReleased(new StopDrive());
+		
         driverA.whenHeld(new ExtendRunIntake());
         driverA.whenReleased(new RetractStopIntake());
  
+		operatorLB.whenHeld(new LoadBall());
+		operatorB.whenHeld(new LowShot());
+		operatorA.whenHeld(new Highshot());
+
+		operatorLT.whenHeld(new Shoot());
+		driverY.whenHeld(new ongod());
+
+
+
     }
 
     private void initButtons(){

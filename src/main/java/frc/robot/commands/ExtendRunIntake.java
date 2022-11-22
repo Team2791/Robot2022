@@ -18,7 +18,7 @@ public class ExtendRunIntake extends CommandBase {
   @Override
   public void initialize() {
     Robot.intake.setIntake(true);
-    Robot.intake.setMotor(0.5);
+    Robot.intake.setMotor(0.65);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

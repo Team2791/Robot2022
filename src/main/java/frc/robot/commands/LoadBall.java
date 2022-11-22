@@ -7,30 +7,39 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ongod extends CommandBase {
-  /** Creates a new ongod. */
-  public ongod() {
+public class LoadBall extends CommandBase {
+  /** Creates a new LoadBall. */
+  public LoadBall() {
     // Use addRequirements() here to declare subsystem dependencies.
-	addRequirements(Robot.intake);
+	addRequirements(Robot.indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-	  Robot.intake.setMotor(-0.5);
-	  Robot.indexer.setLowerMotor(-0.5);
-	  Robot.indexer.setUpperMotor(-0.5);
-
-  }
-
+   	if(Robot.indexer.getUpperLimitSwitch()) {
+		Robot.indexer.setLowerMotor(0.65);
+		Robot.indexer.setUpperMotor(0.65);
+  	}
+  
+}
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
-
+  public void execute()  {
+  	if(Robot.indexer.getLowerLimitSwitch()&&!Robot.indexer.getUpperLimitSwitch())
+  	{
+		Robot.indexer.setLowerMotor(0.65);
+		Robot.indexer.setUpperMotor(0);
+  	}
+  	else if(!Robot.indexer.getUpperLimitSwitch()&&!Robot.indexer.getLowerLimitSwitch())
+  	{
+		Robot.indexer.setLowerMotor(0);
+		Robot.indexer.setUpperMotor(0);
+  	}
+}
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-	Robot.intake.setMotor(0);
 	Robot.indexer.setLowerMotor(0);
 	Robot.indexer.setUpperMotor(0);
   }
