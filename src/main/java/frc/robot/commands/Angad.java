@@ -7,19 +7,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class StopDrive extends CommandBase {
+public class Angad extends CommandBase {
 	/**
-	 * Creates a new StopDrive.
+	 * Creates a new ongod.
 	 */
-	public StopDrive() {
+	public Angad() {
 		// Use addRequirements() here to declare subsystem dependencies.
-		addRequirements(Robot.drivetrain);
+		addRequirements(Robot.intake);
 	}
 
 	// Called when the command is initially scheduled.
 	@Override
 	public void initialize() {
-		Robot.drivetrain.setMotors(0, 0);
+		Robot.intake.setMotor(-0.5);
+		Robot.indexer.setLowerMotor(-0.5);
+		Robot.indexer.setUpperMotor(-0.5);
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.
@@ -30,6 +32,9 @@ public class StopDrive extends CommandBase {
 	// Called once the command ends or is interrupted.
 	@Override
 	public void end(boolean interrupted) {
+		Robot.intake.setMotor(0);
+		Robot.indexer.setLowerMotor(0);
+		Robot.indexer.setUpperMotor(0);
 	}
 
 	// Returns true when the command should end.
