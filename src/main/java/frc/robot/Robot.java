@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoCommands.AutoLoadBall;
 import frc.robot.subsystem.Drivetrain;
 import frc.robot.subsystem.Indexer;
 import frc.robot.subsystem.Intake;
@@ -47,7 +48,7 @@ public class Robot extends TimedRobot {
   private Timer timer;
   private boolean firstBallShot;
 
-  private Command threeBallAuto;
+  private Command AutoLoadBall;
 
   private SendableChooser<Command> autoChooser;
   /**
@@ -70,6 +71,7 @@ public class Robot extends TimedRobot {
     compressor.enableDigital();
     Robot.drivetrain.resetGyro();
     Robot.drivetrain.resetEncoders();
+	AutoLoadBall = new AutoLoadBall();
   }
 
   /**
@@ -114,6 +116,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }  
+	AutoLoadBall.schedule();
   }
 
   /** This function is called periodically during autonomous. */
