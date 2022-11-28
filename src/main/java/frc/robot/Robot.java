@@ -48,11 +48,7 @@ public class Robot extends TimedRobot {
   private boolean firstBallShot;
 
   private Command threeBallAuto;
-  private Command spitBallAuto;
-  private Command oneBallAuto;
-  private Command fourBallAuto;
-  private Command twoBallRightZoneAuto;
-  private Command fourBallPIDAuto;
+
   private SendableChooser<Command> autoChooser;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -115,9 +111,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     Robot.drivetrain.resetEncoders();
     Robot.drivetrain.resetGyro();
-    
-    //m_autonomousCommand = autoChooser.getSelected();
-    // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }  
