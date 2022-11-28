@@ -46,9 +46,9 @@ public final class Constants {
     public static final double FrontFlywheelkP = 0;//.01;//.135;
     public static final double FrontFlywheelkD = 0;
 
-    public static final double LimelightkP = .01;
+    public static final double LimelightkP = .009;
     public static final double LimelightkI = 0;
-    public static final double LimelightkD = 0;
+    public static final double LimelightkD = 0.0005;
 
 
 //P values tried 10,5,1 , .1,, .01, .001

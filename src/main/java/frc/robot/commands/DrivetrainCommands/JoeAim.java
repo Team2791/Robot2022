@@ -36,7 +36,7 @@ public class JoeAim extends CommandBase {
   @Override
   public void execute() {
     double output = pid.calculate(Robot.limelight.getHorizontalOffset());
-    Robot.drivetrain.setMotors(-output, output);
+    Robot.drivetrain.setMotors(output, -output);
     SmartDashboard.putBoolean("Drivetrain Align Complete", false);
   }
 
