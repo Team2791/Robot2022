@@ -26,14 +26,14 @@ public class AutoDrive extends CommandBase {
 	@Override
 	public void initialize() {
 		preLeftPos = Robot.drivetrain.getLeftPosition();
-		Robot.drivetrain.setMotors(0.5, 0.5);
+		Robot.drivetrain.setMotors(0.2, 0.2);
 
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.
 	@Override
 	public void execute() {
-		if (Robot.drivetrain.getLeftPosition() >= preLeftPos+3) {
+		if (Robot.drivetrain.getLeftPosition() >= preLeftPos+2) {
 			finished = true;
 
 		}

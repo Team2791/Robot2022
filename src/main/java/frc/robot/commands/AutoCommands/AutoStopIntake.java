@@ -5,16 +5,21 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class AutoStopIntake extends CommandBase {
   /** Creates a new AutoStopIntake. */
   public AutoStopIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
+	addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+	  Robot.intake.setMotor(0);
+	  Robot.intake.setIntake(false);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -22,11 +27,12 @@ public class AutoStopIntake extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
