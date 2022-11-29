@@ -26,18 +26,24 @@ public class AutoDrive extends CommandBase {
 	@Override
 	public void initialize() {
 		preLeftPos = Robot.drivetrain.getLeftPosition();
+		Robot.drivetrain.setMotors(0.5, 0.5);
+
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.
 	@Override
 	public void execute() {
-		if (Robot.drivetrain.getLeftPosition() >= preLeftPos+3) finished = true;
-		Robot.drivetrain.setMotors(0.5, 0.5);
+		if (Robot.drivetrain.getLeftPosition() >= preLeftPos+3) {
+			finished = true;
+
+		}
 	}
 
 	// Called once the command ends or is interrupted.
 	@Override
 	public void end(boolean interrupted) {
+		Robot.drivetrain.setMotors(0, 0);
+
 	}
 
 	// Returns true when the command should end.

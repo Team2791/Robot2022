@@ -21,7 +21,8 @@ public class AutoShoot extends CommandBase {
   @Override
   public void initialize() {
 	useless.start();
-	Robot.shooter.setspeedb(0.2);
+	Robot.shooter.setspeedl(0.2);
+	Robot.shooter.setspeedr(-0.3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

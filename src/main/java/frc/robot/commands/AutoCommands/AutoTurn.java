@@ -5,25 +5,28 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
-public class AutoCommands extends CommandBase {
+public class AutoTurn extends CommandBase {
   /** Creates a new AutoCommands. */
-  public AutoCommands() {
+  private boolean Finished = false;
+  public AutoTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-	Robot.drivetrain.setMotors(-.2,.2);
+	Robot.drivetrain.setMotors(.1,-.1);
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-	if(drivetrain.getAngle()>90){
-		Robot.setMotors(0,0);
+	if(Robot.drivetrain.getAngle()>90){
+		Robot.drivetrain.setMotors(0,0);
+		Finished = true;
 	}
 
   }
@@ -35,6 +38,6 @@ public class AutoCommands extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Finished;
   }
 }
