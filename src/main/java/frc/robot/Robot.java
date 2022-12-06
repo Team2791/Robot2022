@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Spin;
 import frc.robot.commands.AutoCommands.AutoLoadBall;
 import frc.robot.commands.AutoCommands.RealAuto;
+import frc.robot.commands.AutoCommands.autotwo;
 import frc.robot.subsystem.Drivetrain;
 import frc.robot.subsystem.Indexer;
 import frc.robot.subsystem.Intake;
@@ -66,7 +68,7 @@ public class Robot extends TimedRobot {
     compressor.enableDigital();
     Robot.drivetrain.resetGyro();
     Robot.drivetrain.resetEncoders();
-	Auto = new RealAuto();
+	Auto = new Spin();
   }
 
 	/**

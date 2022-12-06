@@ -32,7 +32,7 @@ public class AutoShoot extends CommandBase {
 		Robot.indexer.setUpperMotor(0.7);
 		Robot.indexer.setLowerMotor(0.7);
 	}
-	if (useless.get()>=5){
+	if (useless.get()>=4){
 		elijah=true;
 	}
   }

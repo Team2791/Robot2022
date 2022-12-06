@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Wait extends CommandBase {
 	private Timer t;
-	private int time1;
+	private double time1;
   /** Creates a new Wait. */
-  public Wait(int time) {
+  public Wait(double time) {
 	addRequirements();
     t=new Timer();
 	time1=time;

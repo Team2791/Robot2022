@@ -4,14 +4,16 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 
 public class Spin extends CommandBase {
   /** Creates a new Spin. */
   Timer timer;
   public Spin() {
-    addRequirements(Robot.drivetrain)
+    addRequirements(Robot.drivetrain);
   }
 
   // Called when the command is initially scheduled.

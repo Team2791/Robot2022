@@ -15,7 +15,7 @@ public class autotwo extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-		new AutoShoot(), new AutoIntake(), new AutoDrive(), new AutoLoadBall(), new AutoShoot()
+		new AutoShoot(), new AutoIntake(), new AutoDrive(), new AutoLoadBall(), new Wait(3), new Turn(90), new AutoShoot()
 	);
   }
 }
