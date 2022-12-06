@@ -12,10 +12,12 @@ import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.AutoCommands.TurnCounterClock;
 import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
 import frc.robot.commands.ClimberCommands.*;
+import frc.robot.commands.DrivetrainCommands.DriveTo;
 import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
 import frc.robot.commands.DrivetrainCommands.JoeAim;
 import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
 import frc.robot.commands.DrivetrainCommands.SetCoastMode;
+// import frc.robot.commands.DrivetrainCommands.both;
 import frc.robot.commands.DrivetrainCommands.creep;
 import frc.robot.commands.DrivetrainCommands.creep2;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
@@ -73,11 +75,13 @@ public class OI {
 
         operatorRB.whenHeld(new RunIndexer());
 
-        operatorRT.whenHeld(new TwoBallManuel());
+        // operatorRT.whenHeld(new TwoBallManuel());
         
 
         //Shooter
         operatorLT.whileHeld(new JoeAim());
+        // operatorLB.whileHeld(new DriveTo());
+        // operatorRT.whileHeld(new both());
         operatorA.whenHeld(new UpperHubClose());
         operatorB.whenHeld(new LowerHubClose());
         operatorY.whenHeld(new longShotOuterTarmac());
