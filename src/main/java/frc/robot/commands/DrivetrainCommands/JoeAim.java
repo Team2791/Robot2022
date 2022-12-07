@@ -29,7 +29,7 @@ public class JoeAim extends CommandBase {
     Robot.limelight.setCamMode(CamMode.VISION_CAM);
     Robot.limelight.setLedMode(LedMode.PIPELINE);
     pid.setSetpoint(Constants.LimelightSetpoint);
-    pid.setTolerance(0.1);
+    pid.setTolerance(0.01);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
