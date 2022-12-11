@@ -45,10 +45,6 @@ public class Robot extends TimedRobot {
   public static Compressor compressor;
   public static Drivetrain drivetrain;
   public static PowerDistribution pdp;
-
-  private static double setpointFront = 0; //for PID testing
-  private static double setpointBack = 0; //for PID testing
-  private Timer timer;
   
   private Command move;
   
@@ -61,52 +57,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     //m_robotContainer = new RobotContainer();
-    CameraServer.startAutomaticCapture();
-    m_visionThread = 
-    new Thread ( 
-      () -> {
-        UsbCamera camera = CameraServer.startAutomaticCapture();
-        camera.setResolution(432, 324); //480 360
-        CvSink cvSink = CameraServer.getVideo();
-        CvSource outputStream = CameraServer.putVideo("Rectangle", 480, 360);
-
-        Mat mat = new Mat();
-        while(!Thread.interrupted()) {
-          if(cvSink.grabFrame(mat) == 0) {
-            outputStream.notifyError(cvSink.getError());
-            continue;
-          }
-          Imgproc.rectangle(mat, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
-          outputStream.putFrame(mat);
-        }
-      });
-      m_visionThread.setDaemon(true);
-      m_visionThread.start();
-    CameraServer.startAutomaticCapture();
-
-    m_visionThread2 = 
-    new Thread ( 
-      () -> {
-        UsbCamera camera2 = CameraServer.startAutomaticCapture();
-        camera2.setResolution(432, 324); 
-        CvSink cvSink2 = CameraServer.getVideo();
-        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 432, 324);
-
-        Mat mat2 = new Mat();
-        while(!Thread.interrupted()) {
-          if(cvSink2.grabFrame(mat2) == 0) {
-            outputStream2.notifyError(cvSink2.getError());
-            continue;
-          }
-          Imgproc.rectangle(mat2, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
-          outputStream2.putFrame(mat2);
-        }
-      });
-      m_visionThread2.setDaemon(true);
-      m_visionThread2.start();
-      CameraServer.startAutomaticCapture();
-
-    timer = new Timer();
+    
+    CameraServer.startAutomaticCapture(0);
+    CameraServer.startAutomaticCapture(1);
     drivetrain = new Drivetrain();
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
@@ -145,25 +98,14 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     
-    timer.start();
-    Robot.drivetrain.setMotors(0.3, 0.3);
-    
-    //m_autonomousCommand = new TurnCounterClockwisePID(-22.34);
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }  
 
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    if(timer.get()>1.4) {
-      Robot.drivetrain.setMotors(0, 0);
-    }
+
   }
 
   @Override
