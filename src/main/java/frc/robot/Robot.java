@@ -25,9 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
-import frc.robot.subsystems.Drivetrain;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -43,7 +41,6 @@ public class Robot extends TimedRobot {
   //private RobotContainer m_robotContainer;
   public static OI oi;
   public static Compressor compressor;
-  public static Drivetrain drivetrain;
   public static PowerDistribution pdp;
   
   private Command move;
@@ -60,7 +57,6 @@ public class Robot extends TimedRobot {
     
     CameraServer.startAutomaticCapture(0);
     CameraServer.startAutomaticCapture(1);
-    drivetrain = new Drivetrain();
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);

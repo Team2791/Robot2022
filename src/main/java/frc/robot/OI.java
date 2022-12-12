@@ -8,12 +8,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.LearningDay;
-import frc.robot.commands.DrivetrainCommands.flagSpin;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -47,10 +41,7 @@ public CANSparkMax spin;
         initButtons();
         
         //Drive Commmands
-        operatorA.whileHeld(new flagSpin());
-        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-        driveButton.whenReleased(new stopMotors());
-        operatorY.whenPressed(new LearningDay());
+      
        
     }
 
