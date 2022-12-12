@@ -30,22 +30,25 @@ public class DriveWithJoystick extends CommandBase {
         // }
         double thrust = 0;
         if(stick.getRawButton(6)) {
-            thrust = Constants.kCreep;
-        }
+             thrust = Constants.kCreep;
+     }
         else if(stick.getRawButton(5)) {
-            thrust = -Constants.kCreep;
-        } 
-        else{ 
+             thrust = -Constants.kCreep;
+         } 
+        // else{ 
 
-            thrust = stick.getRawAxis(3) - stick.getRawAxis(2);
-            if(Math.abs(thrust) < deadzone) {
-                thrust = 0;
-            }
-            if(thrust>.8 ) {
-                thrust = 0.75;
-            }
+        //     thrust = stick.getRawAxis(3) - stick.getRawAxis(2);
+        //     if(Math.abs(thrust) < deadzone) {
+        //         thrust = 0;
+        //     }
+        //     if(thrust>.5 ) {
+        //         thrust = 0.35;
+        //     }
+        //     if(thrust<-.5){
+        //         thrust =-.35;
+        //     }
           
-        }
+        // }
         
         double turn = stick.getRawAxis(0) * Constants.TURN_FACTOR;
         if(turn < deadzone && turn > -deadzone) {
@@ -68,7 +71,12 @@ public class DriveWithJoystick extends CommandBase {
         // else {
         //     Robot.drivetrain.setLimit(Constants.kNeoAmpLimit);
         // }
-
+        if(thrust>.5 ) {
+            thrust = 0.35;
+        }
+        if(thrust<-.5){
+            thrust =-.35;
+        }
         double left = Math.max(Math.min(thrust + turn, 1), -1);
         double right = Math.max(Math.min(thrust - turn, 1), -1);
         

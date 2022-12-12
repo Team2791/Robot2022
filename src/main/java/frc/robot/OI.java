@@ -79,10 +79,10 @@ public class OI {
         operatorLT.whenPressed(new PidTesting(-20.34));
 
         //Shooter
-        operatorA.whenHeld(new UpperHubClose());
+        // operatorA.whenHeld(new UpperHubClose());
         operatorB.whenHeld(new LowerHubClose());
-        operatorY.whenHeld(new longShotOuterTarmac());
-        operatorX.whenHeld(new GachLongShot());
+        // operatorY.whenHeld(new longShotOuterTarmac());
+        // operatorX.whenHeld(new GachLongShot());
         //operatorLT.whenPressed(new StopFlywheel());
         
 

@@ -15,7 +15,7 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double kCreep = 0.225;
+    public static final double kCreep = 0.1;
     public static final double TURN_FACTOR = -0.40;
     public static final double autoRampUp = 0.09;
     public static final double kClimberTime = 0.1;
