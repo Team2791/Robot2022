@@ -25,6 +25,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Subsystem.indexer;
+import frc.robot.Subsystem.shooter;
+import frc.robot.Subsystem.Drivetrain;
 
 
 /**
@@ -37,7 +40,9 @@ public class Robot extends TimedRobot {
   Thread m_visionThread;
   Thread m_visionThread2;
   private Command m_autonomousCommand;
-  
+  public static Drivetrain drivetrain;
+  public static shooter Shooter;
+  public static indexer Indexer;
   //private RobotContainer m_robotContainer;
   public static OI oi;
   public static Compressor compressor;
@@ -59,6 +64,9 @@ public class Robot extends TimedRobot {
     CameraServer.startAutomaticCapture(1);
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
+    drivetrain = new Drivetrain();
+    Shooter = new shooter();
+    Indexer = new indexer();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
   }
