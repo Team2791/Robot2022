@@ -13,8 +13,8 @@ public class shooter extends SubsystemBase {
   /** Creates a new shooter. */
   private CANSparkMax motor1,motor2;
   public shooter() {
-    motor1= new CANSparkMax(0, MotorType.kBrushless);
-    motor2= new CANSparkMax(1, MotorType.kBrushless); 
+    motor1= new CANSparkMax(31, MotorType.kBrushless);
+    motor2= new CANSparkMax(32, MotorType.kBrushless); 
   }
   public void kill(double speed){
     motor1.set(speed);

@@ -11,6 +11,7 @@ public class ShootTime extends CommandBase {
   /** Creates a new ShootTime. */
   public ShootTime() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.Shooter);
   }
 
   // Called when the command is initially scheduled.

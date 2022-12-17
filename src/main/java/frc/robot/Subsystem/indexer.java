@@ -16,15 +16,16 @@ private CANSparkMax motor1,motor2;
 
 
   public indexer() {
-    motor1= new CANSparkMax(0, MotorType.kBrushless);
-    motor2= new CANSparkMax(1, MotorType.kBrushless);
+    motor1= new CANSparkMax(42, MotorType.kBrushless);
+    motor2= new CANSparkMax(41, MotorType.kBrushless);
 
   }
-  public void setMotors(double speed){
+  public void setMotor1(double speed){
     motor1.set(speed);
+  }
+  public void setMotor2(double speed){
     motor2.set(speed);
   }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

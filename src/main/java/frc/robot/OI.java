@@ -6,12 +6,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.CommandTime.DriveTime;
 import frc.robot.CommandTime.IndexTime;
+import frc.robot.CommandTime.NoDriveTime;
 import frc.robot.CommandTime.ShootTime;
-import frc.robot.Subsystem.FlagTime;
+import frc.robot.CommandTime.FlagTime;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -46,10 +48,12 @@ public CANSparkMax spin;
         
         driverA.whenHeld(new IndexTime());
         driverB.whenHeld(new ShootTime());
-        driverX.whenHeld(new DriveTime(null, 0));
         driverY.whenHeld(new FlagTime());
+
+        
         //Drive Commmands
-      
+        driveButton.whileHeld(new DriveTime(driverStick, 0));
+        driveButton.whenReleased(new NoDriveTime());
        
     }
 
