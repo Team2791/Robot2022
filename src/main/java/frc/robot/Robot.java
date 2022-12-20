@@ -46,9 +46,9 @@ public class Robot extends TimedRobot {
 	public static Compressor compressor;
 	public static PowerDistribution pdp;
 
-	public Drivetrain drivetrain;
-	public Indexer indexer;
-	public Shooter shooter;
+	public static Drivetrain drivetrain = new Drivetrain();
+	public static Indexer indexer = new Indexer();
+	public static Shooter shooter = new Shooter();
 
 	private Command move;
 
@@ -70,10 +70,6 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		compressor = new Compressor(RobotMap.kPCM, PneumaticsModuleType.REVPH);
 		// compressor.enableDigital();
-
-		drivetrain = new Drivetrain();
-		indexer = new Indexer();
-		shooter = new Shooter();
 	}
 
 	/**
