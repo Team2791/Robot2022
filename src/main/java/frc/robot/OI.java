@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.Index;
+import frc.robot.commands.Shoot;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -41,7 +43,8 @@ public class OI {
 		initButtons();
 
 		// Drive Commmands
-
+		driverA.whenHeld(new Index());
+		driverB.whenHeld(new Shoot());
 	}
 
 	private void initButtons() {
