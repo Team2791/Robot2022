@@ -118,6 +118,10 @@ public class Drivetrain extends SubsystemBase {
         return rightEncoder.getPosition();
     }
 
+    public DifferentialDriveKinematics getKinematics() {
+        return kinematics;
+    }
+
     public void resetEncoders() {
         rightEncoder.setPosition(0);
         leftEncoder.setPosition(0);

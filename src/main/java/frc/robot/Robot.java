@@ -74,6 +74,9 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static PowerDistribution pdp;
 
+  public static Trajectory parkGo;
+  public static Trajectory parkReturn;
+
   private static double setpointFront = 0; // for PID testing
   private static double setpointBack = 0; // for PID testing
   private Timer timer, shooterTimer1, shooterTimer2;
@@ -189,7 +192,7 @@ public class Robot extends TimedRobot {
     TrajectoryConfig fwdConfig = new TrajectoryConfig(1.0, 1.0);
     fwdConfig.setKinematics(drivetrain.getKinematics());
 
-    Trajectory parkGo = TrajectoryGenerator.generateTrajectory(
+    parkGo = TrajectoryGenerator.generateTrajectory(
         Arrays.asList(
             new Pose2d(),
             poseFeetCompass(10.0, -2.0, 0),
@@ -200,7 +203,7 @@ public class Robot extends TimedRobot {
     revConfig.setKinematics(drivetrain.getKinematics());
     revConfig.setReversed(true);
 
-    Trajectory parkReturn = TrajectoryGenerator.generateTrajectory(
+    parkReturn = TrajectoryGenerator.generateTrajectory(
         Arrays.asList(
             poseFeetCompass(13.0, 2.0, 270),
             poseFeetCompass(10.0, -2.0, 0),
