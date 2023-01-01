@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.AutoCommands;
+
 import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -14,6 +15,7 @@ public class Turn extends CommandBase {
   boolean finished = false;
   double turn;
   Timer timer;
+
   public Turn(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
@@ -24,21 +26,22 @@ public class Turn extends CommandBase {
   @Override
   public void initialize() {
     Robot.drivetrain.resetGyro();
-    Robot.drivetrain.setMotors(-0.2,0.2);
+    Robot.drivetrain.setMotors(-0.2, 0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.drivetrain.getAngle() > turn) {
-      Robot.drivetrain.setMotors(0,0);
+    if (Robot.drivetrain.getAngle() > turn) {
+      Robot.drivetrain.setMotors(0, 0);
       finished = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
