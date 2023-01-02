@@ -7,6 +7,8 @@ package frc.robot.commands.CombinedAutos;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.AutoCommands.wait;
+import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
+import frc.robot.commands.DrivetrainCommands.SetCoastMode;
 import frc.robot.commands.DrivetrainCommands.stopMotors;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -18,10 +20,16 @@ public class ParkReturn extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+        new SetCoastMode(),
         Robot.drivetrain.followTrajectory(Robot.parkGo),
         new stopMotors(),
+        new SetBrakeMode(),
+
         new wait(2.0),
+
+        new SetCoastMode(),
         Robot.drivetrain.followTrajectory(Robot.parkReturn),
-        new stopMotors());
+        new stopMotors(),
+        new SetBrakeMode());
   }
 }
