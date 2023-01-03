@@ -1,34 +1,29 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+
+import org.photonvision.PhotonCamera;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import frc.robot.commands.IntakeIndexerEnd;
-//import frc.robot.commands.IntakeIndexerStart;
-import frc.robot.commands.IntakeCommands.*;
-import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.AutoCommands.PidTesting;
-import frc.robot.commands.AutoCommands.TurnCounterClock;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.ClimberCommands.*;
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
-import frc.robot.commands.DrivetrainCommands.SetCoastMode;
-import frc.robot.commands.DrivetrainCommands.creep;
-import frc.robot.commands.DrivetrainCommands.creep2;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
-import frc.robot.commands.IndexerCommands.*;
+import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
+// import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
+
 
 public class OI {
     public static Joystick driverStick;
     public static Joystick operatorStick;
     public static Joystick pitStick; 
-    Button driveButton;
+
+public CANSparkMax spin;
+
+     Button driveButton;
     private Button driverLB, driverRB, pitRB, pitLB;
     private Button driverStart, driverBack;
     private Button operatorStart;
@@ -42,69 +37,31 @@ public class OI {
     protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadUp, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
     private Button operatorA, operatorB, operatorX, operatorY;
     private Button pitA, pitB, pitX, pitY; 
-
+    private PIDController pid;
+    private double output = 0;
+  
     public OI(){
         driverStick = new Joystick(0);
         operatorStick = new Joystick(1);
-        pitStick = new Joystick(2);
-
         initButtons();
-        
-        
-        //initUsed();
+        // PhotonCamera camera = new PhotonCamera("photonvision");
+        // pid = new PIDController(Constants.photonp, Constants.photoni, Constants.photond);
+        // pid.setSetpoint(0);
+        // pid.setTolerance(0.05);
+        // SmartDashboard.putBoolean("DRIVER A", driverA.getAsBoolean());
 
-        //MAP JOYSTICK CONTROLS HERE:
-
-        //Intake commands 
-        driverA.whenHeld(new ExtendRunIntake());
-
-        //Drive Commmands
-        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-        driveButton.whenReleased(new stopMotors());
-       
-        //Intake up and down 
-        driverY.whenHeld(new ReverseIntake());
-
-        // driverB.whenHeld(new TurnCounterClockwisePID(-22.34));
-        
-        operatorDPadDown.whileHeld(new ReverseIndexer());
-        operatorDPadDown.whenReleased(new StopIndexer());
-
-        operatorDPadUp.whileHeld(new RunIndexerBelts());
-        operatorDPadUp.whenReleased(new StopIndexer());
-
-        operatorRB.whenHeld(new RunIndexer());
-
-        operatorRT.whenHeld(new TwoBallManuel());
-        operatorLT.whenPressed(new PidTesting(-20.34));
-
-        //Shooter
-        operatorA.whenHeld(new UpperHubClose());
-        operatorB.whenHeld(new LowerHubClose());
-        operatorY.whenHeld(new longShotOuterTarmac());
-        operatorX.whenHeld(new GachLongShot());
-        //operatorLT.whenPressed(new StopFlywheel());
-        
-
-        //Climb commands
-        operatorDPadRight.whenHeld(new RunClimbUpWithTimer());
-        operatorDPadLeft.whenHeld(new RunClimbDownWithTimer());
-        
-        //stop climb 
-        operatorDPadRight.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new StopClimb());   
-
-        driverDPadDown.whenHeld(new LeftClimbDown());
-        driverDPadUp.whenHeld(new LeftClimbUp());
-
-        driverDPadLeft.whenHeld(new RightClimbDown());
-        driverDPadRight.whenHeld(new RightClimbUp());
-
-        //Pit controls 
-        pitDPadUp.whenHeld(new PitMoveClimb());
-        pitDPadDown.whenHeld(new PitMoveClimbDown());
-        operatorLB.whenHeld(new SetBrakeMode());
+        // if(driverA.getAsBoolean())  {
+        //     var result = camera.getLatestResult();
+        //     if(result.hasTargets()) {
+        //         output = pid.calculate(result.getBestTarget().getYaw());
+        //         SmartDashboard.putNumber("YAW",result.getBestTarget().getYaw() );
+        //     }
+        //     Robot.drivetrain.setMotors(-output,output); 
+        // }
+        operatorLT.whenHeld(new JoeJoeAim());
     }
+       
+
 
     private void initButtons(){
         try{
@@ -118,7 +75,7 @@ public class OI {
             driverRB = new JoystickButton(driverStick, 6);
             driverLB = new JoystickButton(driverStick, 5);
             driverLS = new JoystickButton(driverStick,9);
-            // driverRS = new JoystickButton(driverStick,10);
+            driverRS = new JoystickButton(driverStick,10);
             driverRX = new AnalogButton(driverStick, 4);
             driverDPadDown = new DPadButton(driverStick, DPadButton.kDPadDown);
             driverDPadRight = new DPadButton(driverStick, DPadButton.kDPadRight);
@@ -129,13 +86,7 @@ public class OI {
                 driverRB, driverLB
             });
 
-            // driveButton = new MultiButton(new Button[] {
-            //     new AnalogButton(driverStick, 0),
-            //     driverLB,
-            //     driverRB
-            // });
 //OPERATOR BUTTONS//
-
             operatorA = new JoystickButton(operatorStick, 1);
             operatorB = new JoystickButton(operatorStick, 2);
             operatorX = new JoystickButton(operatorStick, 3);
@@ -154,38 +105,14 @@ public class OI {
             operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
             operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
 
-            pitA = new JoystickButton(pitStick, 1);
-            pitB = new JoystickButton(pitStick, 2);
-            pitX = new JoystickButton(pitStick, 3);
-            pitY = new JoystickButton(pitStick, 4);
-            //  pitBack = new JoystickButton(pitStick,7);
-            //  pitStart = new JoystickButton(pitStick, 8);
-             pitRB = new JoystickButton(pitStick, 6);
-             pitLB = new JoystickButton(pitStick, 5);
-             pitLT = new AnalogButton(pitStick, 2);
-             pitRT = new AnalogButton(pitStick, 3);
-             pitLS = new AnalogButton(pitStick, 1);
-             pitDPadDown = new DPadButton(pitStick, DPadButton.kDPadDown);
-             pitDPadUp = new DPadButton(pitStick, DPadButton.kDPadUp);
         }
 
         catch (Exception error){
             System.out.println("Error Init With Buttons");
             error.printStackTrace();
         }
-//TEMPORARY PIT CONTROLS//
-            // pitA = new JoystickButton(pitStick, 1);
-            // pitB = new JoystickButton(pitStick, 2); 
-            // pitX = new JoystickButton(pitStick, 3); 
-            // pitY = new JoystickButton(pitStick, 4); 
+
     }
     
-    // private void initUsed(){
-    //     operatorLeftJoystickUsed = new Button() {
-	// 		@Override
-	// 		public boolean get() {
-	// 			return Math.abs(Util.deadzone(Constants.DEADZONE, operatorStick.getRawAxis(1), 1.0)) > 0.08;
-	// 		}
-	// 	};
-    // }
+
 }

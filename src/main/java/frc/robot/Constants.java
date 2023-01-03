@@ -65,7 +65,11 @@ public final class Constants {
     public static final double autoMidShotBack=-0.50;
     public static final double autoDriveSpeed = 0.4;
     public static final double wheelDiameterMeters = Units.inchesToMeters(6);
-    
+    public static double photonp = 0.5;
+    public static double photond = 0;
+    public static double photoni = 0;
+
+
 
     public static final double kUpperFrontCloseVelocity = 2350;
     public static final double kUpperBackCloseVelocity = -3455;
