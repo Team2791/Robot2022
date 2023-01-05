@@ -201,6 +201,19 @@ public class Robot extends TimedRobot {
     climber.resetClimberPosition();
   }
 
+  /**
+   * This is a utility function for simplified creation of a Pose
+   * Converts feet to meters and converts from integer compass heading:
+   * 0 to 179, 180 to 360
+   * to internal heading representation (-180 to 180):
+   * 0 to -179, 180 to 0
+   * and converts to Rotation2d
+   * 
+   * @param xFeet   The x coordinate of position in feet
+   * @param yFeet   The y coordinate of positoin in feet
+   * @param compass The heading as a on a compass, 0 - 360 degrees
+   * @return A Pose2d object in internal units
+   */
   Pose2d poseFeetCompass(double xFeet, double yFeet, int compass) {
     int angle = (compass + 180) % 360;
     if (angle < 0) {

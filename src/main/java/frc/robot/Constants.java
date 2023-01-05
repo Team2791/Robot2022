@@ -96,7 +96,8 @@ public final class Constants {
     public static final double GyrokD = 0;
 
     // new constants used by Ramsete/odometry/kinematics
-    public static final double TrackWidthMeters = Units.inchesToMeters(28);
+    // track width measured 25" on robot
+    public static final double TrackWidthMeters = Units.inchesToMeters(25);
     // Characterization
     public static final double kS = 0.2;
     public static final double kV = 1.9;
