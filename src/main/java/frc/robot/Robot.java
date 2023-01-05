@@ -6,16 +6,7 @@ package frc.robot;
 
 import java.util.Arrays;
 
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
-import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.cscore.VideoSource;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
@@ -26,7 +17,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,14 +26,9 @@ import frc.robot.commands.CombinedAutos.ParkReturn;
 import frc.robot.commands.CombinedAutos.LeftZoneAuto;
 import frc.robot.commands.CombinedAutos.ThreeBall;
 import frc.robot.commands.CombinedAutos.TwoBallRight;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.CombinedAutos.FourBall;
 import frc.robot.commands.CombinedAutos.FourBallTerminal;
 import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
 import frc.robot.commands.CombinedAutos.oneBall;
-import frc.robot.commands.CombinedAutos.FourBall;
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
@@ -79,8 +64,8 @@ public class Robot extends TimedRobot {
 
   private static double setpointFront = 0; // for PID testing
   private static double setpointBack = 0; // for PID testing
-  private Timer timer, shooterTimer1, shooterTimer2;
-  private boolean firstBallShot;
+  // private Timer timer, shooterTimer1, shooterTimer2;
+  // private boolean firstBallShot;
 
   private Command parkReturnAuto;
   private Command threeBallAuto;
@@ -152,9 +137,9 @@ public class Robot extends TimedRobot {
 
     CameraServer.startAutomaticCapture(0);
     CameraServer.startAutomaticCapture(1);
-    timer = new Timer();
-    shooterTimer1 = new Timer();
-    shooterTimer2 = new Timer();
+    // timer = new Timer();
+    // shooterTimer1 = new Timer();
+    // shooterTimer2 = new Timer();
     intake = new Intake();
     shooter = new Shooter();
     indexer = new Indexer();
@@ -167,6 +152,32 @@ public class Robot extends TimedRobot {
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM, PneumaticsModuleType.REVPH);
     // compressor.enableDigital();
+
+    // a forward trajectory config
+    TrajectoryConfig fwdConfig = new TrajectoryConfig(1.0, 1.0);
+    fwdConfig.setKinematics(drivetrain.getKinematics());
+
+    // move out to the right, swing into a "parking space" on the left
+    parkGo = TrajectoryGenerator.generateTrajectory(
+        Arrays.asList(
+            new Pose2d(),
+            poseFeetCompass(10.0, -2.0, 0),
+            poseFeetCompass(13.0, 2.0, 270)),
+        fwdConfig);
+
+    // a reverse trajectory config (robot moves backward)
+    TrajectoryConfig revConfig = new TrajectoryConfig(0.7, 0.7);
+    revConfig.setKinematics(drivetrain.getKinematics());
+    revConfig.setReversed(true);
+
+    // reverse of the parkGo trajectory, robot should return to starting pose
+    parkReturn = TrajectoryGenerator.generateTrajectory(
+        Arrays.asList(
+            poseFeetCompass(13.0, 2.0, 270),
+            poseFeetCompass(10.0, -2.0, 0),
+            new Pose2d()),
+        revConfig);
+
     parkReturnAuto = new ParkReturn();
     threeBallAuto = new ThreeBall();
     spitBallAuto = new LeftZoneAuto();
@@ -188,27 +199,6 @@ public class Robot extends TimedRobot {
     Robot.drivetrain.resetGyro();
 
     climber.resetClimberPosition();
-
-    TrajectoryConfig fwdConfig = new TrajectoryConfig(1.0, 1.0);
-    fwdConfig.setKinematics(drivetrain.getKinematics());
-
-    parkGo = TrajectoryGenerator.generateTrajectory(
-        Arrays.asList(
-            new Pose2d(),
-            poseFeetCompass(10.0, -2.0, 0),
-            poseFeetCompass(13.0, 2.0, 270)),
-        fwdConfig);
-
-    TrajectoryConfig revConfig = new TrajectoryConfig(0.7, 0.7);
-    revConfig.setKinematics(drivetrain.getKinematics());
-    revConfig.setReversed(true);
-
-    parkReturn = TrajectoryGenerator.generateTrajectory(
-        Arrays.asList(
-            poseFeetCompass(13.0, 2.0, 270),
-            poseFeetCompass(10.0, -2.0, 0),
-            new Pose2d()),
-        revConfig);
   }
 
   Pose2d poseFeetCompass(double xFeet, double yFeet, int compass) {

@@ -15,7 +15,7 @@ import frc.robot.commands.DrivetrainCommands.stopMotors;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ParkReturn extends SequentialCommandGroup {
-  /** Creates a new RightZoneFourBallAuto. */
+  /** Creates a new ParkReturn command group. */
   public ParkReturn() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
