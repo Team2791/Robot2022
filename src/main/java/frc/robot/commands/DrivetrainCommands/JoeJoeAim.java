@@ -17,6 +17,7 @@ import frc.robot.Robot;
 public class JoeJoeAim extends CommandBase {
   PIDController pid;
   Command thing;
+  double output;
   /** Creates a new JoeAim. */
   PhotonCamera camera = new PhotonCamera("2791photonvision");
   public JoeJoeAim() {
@@ -31,7 +32,7 @@ public class JoeJoeAim extends CommandBase {
   public void initialize() {
     
     pid.setSetpoint(0);
-    pid.setTolerance(0.02);
+    pid.setTolerance(3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -39,17 +40,12 @@ public class JoeJoeAim extends CommandBase {
   public void execute() {
     var result = camera.getLatestResult();
     if(result!=null && result.hasTargets()) {
-        // output = pid.calculate(result.getBestTarget().getYaw());
+        output = pid.calculate(result.getBestTarget().getYaw());
+        output = Math.min(output, 0.3);
         SmartDashboard.putNumber("YAW", result.getBestTarget().getYaw());
-
-        if(result.getBestTarget().getYaw() > 0 ) {
-        }
-    }
-    if(result == null) {
-      output = 0;
     }
     Robot.drivetrain.setMotors(output, -output);
-    SmartDashboard.putBoolean("Drivetrain Align false", false);
+    SmartDashboard.putBoolean("JOEJOE Align false", false);
 
 
   }
@@ -58,7 +54,7 @@ public class JoeJoeAim extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putBoolean("Drivetrain Align Complete", true);
+    SmartDashboard.putBoolean("JOEJOE Align Complete", true);
     Robot.drivetrain.setMotors(0, 0);
   }
 

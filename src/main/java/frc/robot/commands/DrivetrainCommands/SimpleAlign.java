@@ -7,6 +7,7 @@ package frc.robot.commands.DrivetrainCommands;
 import org.photonvision.PhotonCamera;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -14,15 +15,18 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 
 
-public class JoeJoeAim extends CommandBase {
-  PIDController pid;
-  Command thing;
+public class SimpleAlign extends CommandBase {
+  PIDController simpid;
+  private Timer timer;
+  private Timer override;
   double angle;
   /** Creates a new JoeAim. */
   PhotonCamera camera = new PhotonCamera("2791photonvision");
-  public JoeJoeAim() {
+  public SimpleAlign() {
     addRequirements(Robot.drivetrain);
-    pid = new PIDController(0.01, 0, 0);
+    simpid = new PIDController(0.01, 0, 0);
+    timer = new Timer();
+    override = new Timer();
   }
 
   // Called when the command is initially scheduled.
@@ -31,21 +35,28 @@ public class JoeJoeAim extends CommandBase {
     var result = camera.getLatestResult();
     if(result!=null && result.hasTargets()) {
        angle = result.getYaw();
+       SmartDashboard.putNumber("Simple Target Angle", angle);
     }
-    pid.setSetpoint(0);
-    pid.setTolerance(0.02);
+    simpid.setSetpoint(angle);
+    simpid.setTolerance(0.2);
+    timer.reset();
+    override.start();
+
+    SmartDashboard.putBoolean("Turn start", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    if(result == null) {
-      output = 0;
+    double output = simpid.calculate(Robot.drivetrain.getAngle());
+    output = Math.min(output, 0.3);
+    Robot.drivetrain.setMotors(-output, output);
+    if(simpid.atSetpoint()){
+      timer.start();
     }
-    Robot.drivetrain.setMotors(output, -output);
-    SmartDashboard.putBoolean("Drivetrain Align false", false);
-
+    else{
+      timer.reset();
+    }
 
   }
 
@@ -53,14 +64,14 @@ public class JoeJoeAim extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putBoolean("Drivetrain Align Complete", true);
+    SmartDashboard.putBoolean("Turn complete", true);
     Robot.drivetrain.setMotors(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pid.atSetpoint();
+    return simpid.atSetpoint() && timer.get()>.25 || override.get()>1;
     
   }
 }

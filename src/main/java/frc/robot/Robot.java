@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    camera = new PhotonCamera("2791photonvision");
+    PhotonCamera camera = new PhotonCamera("2791photonvision");
 
     
     CameraServer.startAutomaticCapture(0);
@@ -137,7 +137,7 @@ public class Robot extends TimedRobot {
     Constants.photoni = SmartDashboard.getNumber("PID i value", 0);
 
     CommandScheduler.getInstance().run();
-
+   
     var result = camera.getLatestResult();
 
     if(result!=null&&result.hasTargets()) {
