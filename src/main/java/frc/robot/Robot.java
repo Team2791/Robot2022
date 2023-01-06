@@ -54,6 +54,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   
   //private RobotContainer m_robotContainer;
+  public static PhotonCamera camera;
   public static OI oi;
   public static Intake intake;
   public static Compressor compressor;
@@ -82,7 +83,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-  
+    camera = new PhotonCamera("2791photonvision");
+
     
     CameraServer.startAutomaticCapture(0);
     CameraServer.startAutomaticCapture(1);
@@ -136,6 +138,12 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
+    var result = camera.getLatestResult();
+
+    if(result!=null&&result.hasTargets()) {
+      SmartDashboard.putNumber("PHOTON YAW ANGLE", result.getYaw());
+    }
+
   ;
 
     //SmartDashboard.putData(autoChooser); //add to periodic??
@@ -187,15 +195,7 @@ public class Robot extends TimedRobot {
     Robot.drivetrain.setCoastMode();
     Robot.climber.resetClimberPosition();
 
-    // SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
-    // SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
-    // SmartDashboard.putNumber("Front Shooter kD", Constants.BackFlywheelkD);
-    // SmartDashboard.putNumber("Front Shooter setpoint", 0);
-
-    // SmartDashboard.putNumber("Back Shooter kP", Constants.FrontFlywheelkP);
-    // SmartDashboard.putNumber("Back Shooter kF", Constants.FrontFlywheelkFF);
-    // SmartDashboard.putNumber("Back Shooter kD", Constants.FrontFlywheelkD);
-    // SmartDashboard.putNumber("Back Shooter setpoint", 0);
+ 
 
   }
 
