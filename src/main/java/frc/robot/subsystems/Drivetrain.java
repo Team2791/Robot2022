@@ -9,11 +9,15 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase{
     private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower;
+    MotorControllerGroup left, right;
+    DifferentialDrive drive;
     private RelativeEncoder rightEncoder, leftEncoder;
     private final AHRS gyro;
      public Drivetrain() {
@@ -37,6 +41,9 @@ public class Drivetrain extends SubsystemBase{
         leftEncoder.setPositionConversionFactor(Constants.conversionFactor);
         rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
         gyro = new AHRS(Port.kMXP);
+        left = new MotorControllerGroup(leftFollower,leftLeader);
+        right = new MotorControllerGroup(rightFollower, rightLeader);
+        drive = new DifferentialDrive(left, right);
     }
     public void resetGyro() {
         gyro.reset();    
@@ -45,6 +52,9 @@ public class Drivetrain extends SubsystemBase{
         leftLeader.set(left);
         rightLeader.set(right);
     }
+     public void arcadeDrive(double thurst, double turn) {
+        drive.arcadeDrive(thurst, turn);
+     }
 
     public void setBrakeMode() {
         leftLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
