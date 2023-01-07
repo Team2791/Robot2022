@@ -22,7 +22,7 @@ public class ArcadeDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.drivetrain.arcadeDrive(-stick.getRawAxis(0), stick.getRawAxis(1));
+    Robot.drivetrain.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(0));
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -41,8 +41,10 @@ public class Drivetrain extends SubsystemBase{
         leftEncoder.setPositionConversionFactor(Constants.conversionFactor);
         rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
         gyro = new AHRS(Port.kMXP);
+        
         left = new MotorControllerGroup(leftFollower,leftLeader);
         right = new MotorControllerGroup(rightFollower, rightLeader);
+        left.setInverted(true);
         drive = new DifferentialDrive(left, right);
     }
     public void resetGyro() {
