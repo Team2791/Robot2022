@@ -23,7 +23,7 @@ public class JoeJoeAim extends CommandBase {
   public JoeJoeAim() {
     addRequirements(Robot.drivetrain);
     // addRequirements(Robot.limelight);
-    pid = new PIDController(Constants.photonp, Constants.photoni, Constants.photond);
+    // pid = new PIDController(Constants.photonp, Constants.photoni, Constants.photond);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   
   //private RobotContainer m_robotContainer;
-  public static PhotonCamera camera;
+  // public static PhotonCamera camera;
   public static OI oi;
   public static Intake intake;
   public static Compressor compressor;
@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    PhotonCamera camera = new PhotonCamera("2791photonvision");
+    // PhotonCamera camera = new PhotonCamera("2791photonvision");
 
     
     CameraServer.startAutomaticCapture(0);
@@ -138,11 +138,11 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
    
-    var result = camera.getLatestResult();
+    // var result = camera.getLatestResult();
 
-    if(result!=null&&result.hasTargets()) {
-      SmartDashboard.putNumber("PHOTON YAW ANGLE", result.getYaw());
-    }
+    // if(result!=null&&result.hasTargets()) {
+    //   SmartDashboard.putNumber("PHOTON YAW ANGLE", result.getYaw());
+    // }
 
   ;
 

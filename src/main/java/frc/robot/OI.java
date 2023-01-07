@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.DrivetrainCommands.ArcadeAim;
 import frc.robot.commands.DrivetrainCommands.ArcadeDrive;
 import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
-import frc.robot.commands.DrivetrainCommands.SimpleAlign;
-import frc.robot.commands.DrivetrainCommands.VerySimpleAim;
+// import frc.robot.commands.DrivetrainCommands.ArcadeAim;
+// import frc.robot.commands.DrivetrainCommands.ArcadeDrive;
+// import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
+// import frc.robot.commands.DrivetrainCommands.SimpleAlign;
+// import frc.robot.commands.DrivetrainCommands.VerySimpleAim;
 // import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
@@ -49,13 +51,13 @@ public CANSparkMax spin;
         operatorStick = new Joystick(1);
         initButtons();
 
-        Robot.drivetrain.arcadeDrive(-driverStick.getRawAxis(0), driverStick.getRawAxis(1));
+        // Robot.drivetrain.arcadeDrive(-driverStick.getRawAxis(0), driverStick.getRawAxis(1));
         // driveButton.whenHeld(new ArcadeDrive(driverStick));
       
         operatorLT.whenHeld(new JoeJoeAim());
-        operatorRT.whenHeld(new SimpleAlign());
-        operatorA.whenHeld(new ArcadeAim());
-        operatorY.whenHeld(new VerySimpleAim());
+        // // operatorRT.whenHeld(new SimpleAlign());
+        // operatorA.whenHeld(new ArcadeAim());
+        //operatorY.whenHeld(new VerySimpleAim());
     }
        
 
