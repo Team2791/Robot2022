@@ -2,109 +2,99 @@ package frc.robot.subsystems;
 
 import frc.robot.*;
 
+import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase{
     private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower;
-    private RelativeEncoder rightEncoder, leftEncoder;
-    private final AHRS gyro;
-     public Drivetrain() {
+    private AHRS gyro;
+
+    DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(1.2735); 
+    DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
+    SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.ks,Constants.kv,Constants.ka);  
+
+    PIDController leftPIDController = new PIDController(0,0,0);
+    PIDController rightPIDController = new PIDController(0,0,0);
+
+
+    Pose2d pose;
+
+    public Drivetrain() {
         super.register();
         leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
         rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
-        rightLeader.setInverted(true);
         leftFollower = new CANSparkMax(RobotMap.leftFollowerID, MotorType.kBrushless);
-        leftFollower.follow(leftLeader, false);
         rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
-        rightFollower.follow(rightLeader, false);
+        
+        leftFollower.follow(leftLeader);
+        rightFollower.follow(rightLeader);
 
-        leftLeader.setSmartCurrentLimit(80);
-        leftFollower.setSmartCurrentLimit(80);
-        rightLeader.setSmartCurrentLimit(80);
-        rightFollower.setSmartCurrentLimit(80);
-
-        leftEncoder = leftLeader.getEncoder();
-        rightEncoder = rightLeader.getEncoder();
-
-        leftEncoder.setPositionConversionFactor(Constants.conversionFactor);
-        rightEncoder.setPositionConversionFactor(Constants.conversionFactor);
+        leftLeader.setInverted(true);
+        rightLeader.setInverted(false);
         gyro = new AHRS(Port.kMXP);
     }
-    public void resetGyro() {
-        gyro.reset();    
-    }
-    public void setMotors(double left, double right){
-        leftLeader.set(left);
-        rightLeader.set(right);
+    public Rotation2d getHeading() {
+        return Rotation2d.fromDegrees(-gyro.getAngle());
     }
 
-    public void setBrakeMode() {
-        leftLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        rightLeader.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        leftFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
-        rightFollower.setIdleMode(CANSparkMax.IdleMode.kBrake);
-
-    }
-    public double getAngle() {
-        return gyro.getYaw();
-    }
-    public void setCoastMode() {
-        leftLeader.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        rightLeader.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        leftFollower.setIdleMode(CANSparkMax.IdleMode.kCoast);
-        rightFollower.setIdleMode(CANSparkMax.IdleMode.kCoast);
-
+    public DifferentialDriveWheelSpeeds getSpeeds() {
+        return new DifferentialDriveWheelSpeeds(
+            leftLeader.getEncoder().getVelocity() / Constants.gearRatio * Math.PI * Constants.wheelDiameterMeters / 60, 
+            rightLeader.getEncoder().getVelocity() / Constants.gearRatio * Math.PI * Constants.wheelDiameterMeters / 60);
     }
 
-    public CANSparkMax getLeftMotor(){
-        return leftLeader;
+    public SimpleMotorFeedforward getFeedforward() {
+        return feedforward;
     }
 
-    public CANSparkMax getRightMotor(){
-        return rightLeader;
+
+    public PIDController getLeftPidController() {
+        return leftPIDController;
+    }
+  
+    public PIDController getRightPidController() {
+        return rightPIDController;
+    }
+
+    public Pose2d getPose() {
+        return pose;
+    }
+    public DifferentialDriveKinematics getKinematics() {
+        return kinematics;
+    }
+    public void setOutput(double leftVolts, double rightVolts) {
+        leftLeader.set(leftVolts/12);
+        rightLeader.set(rightVolts/12);
+    }
+  
+    public double getleftPos() {
+        return leftLeader.getEncoder().getPosition() * Math.PI * Constants.wheelDiameterMeters;
+    }
+    public double getrightPos() {
+        return rightLeader.getEncoder().getPosition() * Math.PI * Constants.wheelDiameterMeters;
     }
     
-    public RelativeEncoder getLeftEncoder(){
-        return leftEncoder;
-    }
-
-    public RelativeEncoder getRightEncoder(){
-        return rightEncoder;
-    }
-
-    public double getLeftPosition(){
-        return leftEncoder.getPosition();
-    }
-
-    public double getRightPosition(){
-        return rightEncoder.getPosition();
-    }
-    public void resetEncoders() {
-        rightEncoder.setPosition(0);
-        leftEncoder.setPosition(0);
-    }
-    public void setRampUp(double time) {
-        leftLeader.setOpenLoopRampRate(time);
-        rightLeader.setOpenLoopRampRate(time);
-    }
 
     @Override
     public void periodic() {
-        // SmartDashboard.putNumber("Right Velocity", rightLeader.get());
-        // SmartDashboard.putNumber("Left Velocity", leftLeader.get());
-        SmartDashboard.putNumber("Right Position", getRightPosition());
-        SmartDashboard.putNumber("Left Position", getLeftPosition());
-        SmartDashboard.putNumber("angle", getAngle());
-
-
-
+        SmartDashboard.putNumber("left pos", getleftPos());
+        SmartDashboard.putNumber("Right pos", getrightPos());
+        pose = odometry.update(getHeading(), getleftPos(), getrightPos());
     }
 }

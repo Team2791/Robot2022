@@ -24,22 +24,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.CombinedAutos.LeftZoneAuto;
-import frc.robot.commands.CombinedAutos.ThreeBall;
-import frc.robot.commands.CombinedAutos.TwoBallRight;
-import frc.robot.commands.AutoCommands.TurnCounterClockwisePID;
-import frc.robot.commands.CombinedAutos.FourBall;
-import frc.robot.commands.CombinedAutos.FourBallTerminal;
-import frc.robot.commands.CombinedAutos.FourBallTerminalPID;
-import frc.robot.commands.CombinedAutos.oneBall;
-import frc.robot.commands.CombinedAutos.FourBall;
-import frc.robot.commands.DrivetrainCommands.DriveWithJoystick;
-import frc.robot.commands.DrivetrainCommands.stopMotors;
-import frc.robot.subsystems.Climber;
+
 import frc.robot.subsystems.Drivetrain;
- import frc.robot.subsystems.Indexer;
- import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Intake;
+ 
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -54,12 +41,10 @@ public class Robot extends TimedRobot {
   
   //private RobotContainer m_robotContainer;
   public static OI oi;
-  public static Intake intake;
   public static Compressor compressor;
-  public static Shooter shooter;
-  public static Indexer indexer;
+
   public static Drivetrain drivetrain;
-  public static Climber climber;
+  public static RobotContainer container;
   public static PowerDistribution pdp;
  
 
@@ -81,53 +66,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    //m_robotContainer = new RobotContainer();
-    //CameraServer.startAutomaticCapture();
-    // m_visionThread = 
-    // new Thread ( 
-    //   () -> {
-    //     UsbCamera camera = CameraServer.startAutomaticCapture();
-    //     camera.setResolution(432, 324); //480 360
-    //     CvSink cvSink = CameraServer.getVideo();
-    //     CvSource outputStream = CameraServer.putVideo("Rectangle", 480, 360);
-
-    //     Mat mat = new Mat();
-    //     while(!Thread.interrupted()) {
-    //       if(cvSink.grabFrame(mat) == 0) {
-    //         outputStream.notifyError(cvSink.getError());
-    //         continue;
-    //       }
-    //       Imgproc.rectangle(mat, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
-    //       outputStream.putFrame(mat);
-    //     }
-    //   });
-    //  m_visionThread.setDaemon(true);
-      //m_visionThread.start();
-
-
-    /*m_visionThread2 = 
-    new Thread ( 
-      () -> {
-        UsbCamera camera2 = CameraServer.startAutomaticCapture();
-        camera2.setResolution(432, 324); 
-        CvSink cvSink2 = CameraServer.getVideo();
-        CvSource outputStream2 = CameraServer.putVideo("Rectangle", 432, 324);
-
-        Mat mat2 = new Mat();
-        while(!Thread.interrupted()) {
-          if(cvSink2.grabFrame(mat2) == 0) {
-            outputStream2.notifyError(cvSink2.getError());
-            continue;
-          }
-          Imgproc.rectangle(mat2, new Point(100,100), new Point(400,400), new Scalar(255,255,255),5);
-          outputStream2.putFrame(mat2);
-        }
-      });
-      m_visionThread2.setDaemon(true);
-      m_visionThread2.start();
-      CameraServer.startAutomaticCapture();*/
+  
 
     
     CameraServer.startAutomaticCapture(0);
@@ -135,37 +74,19 @@ public class Robot extends TimedRobot {
     timer = new Timer();
     shooterTimer1 = new Timer();
     shooterTimer2 = new Timer(); 
-    intake = new Intake();
-    shooter = new Shooter();
-    indexer = new Indexer();
-
+    
+    container = new RobotContainer();
     drivetrain = new Drivetrain();
-    Robot.drivetrain.resetEncoders();
 
-    climber = new Climber();
     pdp = new PowerDistribution(RobotMap.kPDP, ModuleType.kRev);
     oi = new OI();
     compressor = new Compressor(RobotMap.kPCM,PneumaticsModuleType.REVPH);
     //compressor.enableDigital();
-    threeBallAuto = new ThreeBall();
-    spitBallAuto = new LeftZoneAuto();
-    oneBallAuto = new oneBall();
-    fourBallAuto = new FourBallTerminal();
-    twoBallRightZoneAuto = new TwoBallRight();
-    fourBallPIDAuto = new FourBallTerminalPID();
-    autoChooser = new SendableChooser<>();
-    autoChooser.setDefaultOption("One Ball(Anywhere)", oneBallAuto);
-    autoChooser.addOption("Three ball(Right)", threeBallAuto);
-    autoChooser.addOption("Two Ball + Spit (Left)", spitBallAuto);
-    autoChooser.addOption("Four ball (middle))", fourBallAuto);
-    autoChooser.addOption("Two Ball(Right Zone)", twoBallRightZoneAuto);
-    autoChooser.addOption("Four Ball (middle) (PID)", fourBallPIDAuto);
+  
+
 
     SmartDashboard.putData(autoChooser);
     m_autonomousCommand = autoChooser.getSelected();
-    Robot.drivetrain.resetGyro();
-
-    climber.resetClimberPosition();
   }
 
   /**
@@ -183,16 +104,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     compressor.enableAnalog(Constants.minPressure, Constants.maxPressure);
     CommandScheduler.getInstance().run();
-    SmartDashboard.putData(CommandScheduler.getInstance());
-    SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
-    SmartDashboard.putNumber("Compressor Pressure", compressor.getPressure());
-    // SmartDashboard.putNumber("Intake Current", pdp.getCurrent(14));
-    // SmartDashboard.putNumber("Front Shooter Current", pdp.getCurrent(13));
-    // SmartDashboard.putNumber("Back Shooter Current", pdp.getCurrent(12));
-    // SmartDashboard.putNumber("(Left) Drivetrain Current", pdp.getCurrent(0));
-    // SmartDashboard.putNumber("Climber Current", pdp.getCurrent(1));
-    SmartDashboard.putNumber("Upper Indexer Current", pdp.getCurrent(8));
-    SmartDashboard.putNumber("Lower Indexer Current", pdp.getCurrent(7));
+   
 
     //SmartDashboard.putData(autoChooser); //add to periodic??
   }
@@ -200,7 +112,6 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    Robot.drivetrain.setCoastMode();
   }
 
   @Override
@@ -209,14 +120,9 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    Robot.drivetrain.setBrakeMode();
-    //Robot.drivetrain.setCoastMode();
-    Robot.drivetrain.resetEncoders();
-    Robot.drivetrain.resetGyro();
-    
+    m_autonomousCommand = container.getAutonomousCommand();
+
     m_autonomousCommand = autoChooser.getSelected();
-    //m_autonomousCommand = new TurnCounterClockwisePID(-22.34);
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -239,49 +145,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    //Robot.drivetrain.setRampUp(0.07);
-    Robot.drivetrain.setCoastMode();
-    Robot.climber.resetClimberPosition();
-
-    // SmartDashboard.putNumber("Front Shooter kP", Constants.BackFlywheelkP);
-    // SmartDashboard.putNumber("Front Shooter kF", Constants.BackFlywheelkFF);
-    // SmartDashboard.putNumber("Front Shooter kD", Constants.BackFlywheelkD);
-    // SmartDashboard.putNumber("Front Shooter setpoint", 0);
-
-    // SmartDashboard.putNumber("Back Shooter kP", Constants.FrontFlywheelkP);
-    // SmartDashboard.putNumber("Back Shooter kF", Constants.FrontFlywheelkFF);
-    // SmartDashboard.putNumber("Back Shooter kD", Constants.FrontFlywheelkD);
-    // SmartDashboard.putNumber("Back Shooter setpoint", 0);
+  
 
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    //PID testing for front flywheel
-    //double kpF = SmartDashboard.getNumber("Front Shooter kP", 0);
-    //double kf = SmartDashboard.getNumber("Shooter kF", 0);
-    //double kd = SmartDashboard.getNumber("Shooter kD", 0);
-    double lastFrontSetpoint = setpointFront;
-    setpointFront = SmartDashboard.getNumber("Shooter setpoint", 0);
-    if (setpointFront == 0)
-        shooter.setFrontFlywheel(0);
-    else {
-        if(setpointFront!=lastFrontSetpoint)
-            shooter.setFrontShooterPID(setpointFront);
-    }
-    //PID testing for back flywheel
-    //double kpB = SmartDashboard.getNumber("Front Shooter kP", 0);
-    //double kf = SmartDashboard.getNumber("Shooter kF", 0);
-    //double kd = SmartDashboard.getNumber("Shooter kD", 0);
-    double lastBackSetpoint = setpointBack;
-    setpointBack = SmartDashboard.getNumber("Shooter setpoint", 0);
-    if (setpointBack == 0)
-        shooter.setBackFlywheel(0);
-    else {
-        if(setpointBack!=lastBackSetpoint)
-            shooter.setBackShooterPID(setpointBack);
-    }    
+  
+   
   }
 
   @Override
