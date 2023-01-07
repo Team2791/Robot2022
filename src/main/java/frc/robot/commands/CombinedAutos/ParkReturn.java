@@ -6,6 +6,7 @@ package frc.robot.commands.CombinedAutos;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.commands.AutoCommands.PhotonAim;
 import frc.robot.commands.AutoCommands.wait;
 import frc.robot.commands.DrivetrainCommands.SetBrakeMode;
 import frc.robot.commands.DrivetrainCommands.SetCoastMode;
@@ -30,6 +31,8 @@ public class ParkReturn extends SequentialCommandGroup {
         new SetCoastMode(),
         Robot.drivetrain.followTrajectory(Robot.parkReturn),
         new stopMotors(),
+
+        new PhotonAim(),
         new SetBrakeMode());
   }
 }
