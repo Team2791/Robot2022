@@ -12,6 +12,8 @@ import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.Index;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.hood;
+import frc.robot.commands.AutoCommands.AutoDrive;
+// import frc.robot.commands.AutoCommands.AutoDrive;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
@@ -48,7 +50,7 @@ public CANSparkMax spin;
         //Drive Commmands
         driverDPadUp.whenHeld(new hood());
       
-       
+      driverY.whenHeld(new AutoDrive());
     }
 
     private void initButtons(){

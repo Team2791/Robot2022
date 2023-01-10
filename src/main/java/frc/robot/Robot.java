@@ -68,7 +68,7 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
     shooter = new Shooter();
     indexer = new Indexer();
-    compressor = new Compressor(8,PneumaticsModuleType.REVPH);
+    // compressor = new Compressor(8,PneumaticsModuleType.REVPH);
   }
 
   /**
@@ -84,11 +84,12 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
-    compressor.enableAnalog(Constants.minPressure, Constants.maxPressure);
+    // compressor.enableAnalog(Constants.minPressure, Constants.maxPressure);
     CommandScheduler.getInstance().run();
-    SmartDashboard.putData(CommandScheduler.getInstance());
-    SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
-    SmartDashboard.putNumber("Compressor Pressure", compressor.getPressure());
+    // SmartDashboard.putData(CommandScheduler.getInstance());
+    // SmartDashboard.putBoolean("Compressor enabled", compressor.enabled());
+    // SmartDashboard.putNumber("Compressor Pressure", compressor.getPressure());
+    Constants.pid = SmartDashboard.getNumber("PID Constant", 0);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
