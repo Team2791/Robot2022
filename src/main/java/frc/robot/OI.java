@@ -1,23 +1,33 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import frc.robot.commands.IntakeIndexerEnd;
-//import frc.robot.commands.IntakeIndexerStart;
-
-
+// import frc.robot.commands.DrivetrainCommands.ArcadeDrive;
+// import frc.robot.commands.DrivetrainCommands.ArcadeAim;
+// import frc.robot.commands.DrivetrainCommands.ArcadeDrive;
+// import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
+// import frc.robot.commands.DrivetrainCommands.SimpleAlign;
+// import frc.robot.commands.DrivetrainCommands.VerySimpleAim;
+// import frc.robot.commands.DrivetrainCommands.JoeJoeAim;
 import frc.robot.controller.AnalogButton;
 import frc.robot.controller.DPadButton;
 import frc.robot.controller.MultiButton;
+
 
 public class OI {
     public static Joystick driverStick;
     public static Joystick operatorStick;
     public static Joystick pitStick; 
-    Button driveButton;
+
+public CANSparkMax spin;
+
+     Button driveButton;
     private Button driverLB, driverRB, pitRB, pitLB;
     private Button driverStart, driverBack;
     private Button operatorStart;
@@ -31,18 +41,23 @@ public class OI {
     protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadUp, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
     private Button operatorA, operatorB, operatorX, operatorY;
     private Button pitA, pitB, pitX, pitY; 
-
+    private PIDController pid;
+    private double output = 0;
+  
     public OI(){
         driverStick = new Joystick(0);
         operatorStick = new Joystick(1);
-        pitStick = new Joystick(2);
-
         initButtons();
-        
-        
-       
-     
+
+        // Robot.drivetrain.arcadeDrive(-driverStick.getRawAxis(0), driverStick.getRawAxis(1));
+        // driveButton.whenHeld(new ArcadeDrive(driverStick));
+      
+        // // operatorRT.whenHeld(new SimpleAlign());
+        // operatorA.whenHeld(new ArcadeAim());
+        //operatorY.whenHeld(new VerySimpleAim());
     }
+       
+
 
     private void initButtons(){
         try{
@@ -56,7 +71,7 @@ public class OI {
             driverRB = new JoystickButton(driverStick, 6);
             driverLB = new JoystickButton(driverStick, 5);
             driverLS = new JoystickButton(driverStick,9);
-            // driverRS = new JoystickButton(driverStick,10);
+            driverRS = new JoystickButton(driverStick,10);
             driverRX = new AnalogButton(driverStick, 4);
             driverDPadDown = new DPadButton(driverStick, DPadButton.kDPadDown);
             driverDPadRight = new DPadButton(driverStick, DPadButton.kDPadRight);
@@ -67,13 +82,7 @@ public class OI {
                 driverRB, driverLB
             });
 
-            // driveButton = new MultiButton(new Button[] {
-            //     new AnalogButton(driverStick, 0),
-            //     driverLB,
-            //     driverRB
-            // });
 //OPERATOR BUTTONS//
-
             operatorA = new JoystickButton(operatorStick, 1);
             operatorB = new JoystickButton(operatorStick, 2);
             operatorX = new JoystickButton(operatorStick, 3);
@@ -92,38 +101,14 @@ public class OI {
             operatorDPadLeft = new DPadButton(operatorStick, DPadButton.kDPadLeft);
             operatorDPadRight = new DPadButton(operatorStick, DPadButton.kDPadRight);
 
-            pitA = new JoystickButton(pitStick, 1);
-            pitB = new JoystickButton(pitStick, 2);
-            pitX = new JoystickButton(pitStick, 3);
-            pitY = new JoystickButton(pitStick, 4);
-            //  pitBack = new JoystickButton(pitStick,7);
-            //  pitStart = new JoystickButton(pitStick, 8);
-             pitRB = new JoystickButton(pitStick, 6);
-             pitLB = new JoystickButton(pitStick, 5);
-             pitLT = new AnalogButton(pitStick, 2);
-             pitRT = new AnalogButton(pitStick, 3);
-             pitLS = new AnalogButton(pitStick, 1);
-             pitDPadDown = new DPadButton(pitStick, DPadButton.kDPadDown);
-             pitDPadUp = new DPadButton(pitStick, DPadButton.kDPadUp);
         }
 
         catch (Exception error){
             System.out.println("Error Init With Buttons");
             error.printStackTrace();
         }
-//TEMPORARY PIT CONTROLS//
-            // pitA = new JoystickButton(pitStick, 1);
-            // pitB = new JoystickButton(pitStick, 2); 
-            // pitX = new JoystickButton(pitStick, 3); 
-            // pitY = new JoystickButton(pitStick, 4); 
+
     }
     
-    // private void initUsed(){
-    //     operatorLeftJoystickUsed = new Button() {
-	// 		@Override
-	// 		public boolean get() {
-	// 			return Math.abs(Util.deadzone(Constants.DEADZONE, operatorStick.getRawAxis(1), 1.0)) > 0.08;
-	// 		}
-	// 	};
-    // }
+
 }

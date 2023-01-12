@@ -56,6 +56,6 @@ public final class Constants {
     public static final double ka = 0;
     public static final double kv = 0;
     public static final double ks = 0;
-    public static final double gearRatio = 0;
+    public static final double gearRatio = 7.95;
 
 }

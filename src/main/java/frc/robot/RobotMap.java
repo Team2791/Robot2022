@@ -3,12 +3,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class RobotMap {
-    public static final int leftLeaderID = 3;
-    public static final int rightLeaderID = 1;
-    public static final int leftFollowerID = 4;
-    public static final int rightFollowerID = 2;
+    public static final int leftLeaderID=20;
+    public static final int rightLeaderID = 22;
+    public static final int leftFollowerID = 21;
+    public static final int rightFollowerID = 23;
 
-    public static final int lowerindexerID = 20; //old 6
+    // public static final int lowerindexerID = 20; //old 6
     public static final int upperindexerID = 9;
 
     

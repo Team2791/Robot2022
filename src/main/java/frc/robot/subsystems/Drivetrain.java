@@ -17,41 +17,38 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase{
-    private CANSparkMax leftLeader, rightLeader, leftFollower, rightFollower;
-    private AHRS gyro;
+   
 
-    DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(1.2735); 
-    DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
+    DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(27.5)); 
+    // DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
     SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.ks,Constants.kv,Constants.ka);  
-
+    CANSparkMax leftLeader = new CANSparkMax(20, MotorType.kBrushless);
+    CANSparkMax rightLeader = new CANSparkMax(22, MotorType.kBrushless);
+    CANSparkMax leftFollower = new CANSparkMax(21, MotorType.kBrushless);
+    CANSparkMax rightFollower = new CANSparkMax(23,MotorType.kBrushless);
+     
     PIDController leftPIDController = new PIDController(0,0,0);
     PIDController rightPIDController = new PIDController(0,0,0);
-
-
+    AHRS gyro = new AHRS(SPI.Port.kMXP);
     Pose2d pose;
 
     public Drivetrain() {
         super.register();
-        leftLeader = new CANSparkMax(RobotMap.leftLeaderID, MotorType.kBrushless);
-        rightLeader = new CANSparkMax(RobotMap.rightLeaderID, MotorType.kBrushless);
-        leftFollower = new CANSparkMax(RobotMap.leftFollowerID, MotorType.kBrushless);
-        rightFollower = new CANSparkMax(RobotMap.rightFollowerID, MotorType.kBrushless);
-        
+       
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
-
         leftLeader.setInverted(true);
         rightLeader.setInverted(false);
-        gyro = new AHRS(Port.kMXP);
     }
     public Rotation2d getHeading() {
-        return Rotation2d.fromDegrees(-gyro.getAngle());
-    }
+     return Rotation2d.fromDegrees(-gyro.getRoll());
+     }
 
     public DifferentialDriveWheelSpeeds getSpeeds() {
         return new DifferentialDriveWheelSpeeds(
@@ -95,6 +92,7 @@ public class Drivetrain extends SubsystemBase{
     public void periodic() {
         SmartDashboard.putNumber("left pos", getleftPos());
         SmartDashboard.putNumber("Right pos", getrightPos());
-        pose = odometry.update(getHeading(), getleftPos(), getrightPos());
+        // pose = odometry.update(getHeading(), getleftPos(), getrightPos());
+        SmartDashboard.putNumber("Angle",gyro.getRoll());
     }
 }

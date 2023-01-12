@@ -7,7 +7,7 @@ package frc.robot;
 import java.util.Arrays;
 import java.util.List;
 import frc.robot.Robot;
-
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
+private Drivetrain drive = new Drivetrain();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -46,35 +46,35 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    TrajectoryConfig config = new TrajectoryConfig(Units.feetToMeters(2), Units.feetToMeters(2));
-    config.setKinematics(Robot.drivetrain.getKinematics());
+  // public Command getAutonomousCommand() {
+  //   // TrajectoryConfig config = new TrajectoryConfig(Units.feetToMeters(2), Units.feetToMeters(2));
+  //   // config.setKinematics(Robot.drivetrain.getKinematics());
     
-    Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
-        Arrays.asList(new Pose2d(), new Pose2d(1,0, new Rotation2d())),
-        config);
+  //   // Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
+  //   //     Arrays.asList(new Pose2d(), new Pose2d(1,0, new Rotation2d())),
+  //   //     config);
 
 
-    // new Pose2d(0,0, new Rotation2d(0)),
-    //     List.of(new Translation2d(2,0)), 
-    //     new Pose2d(4,0, new Rotation2d(0)),
-    //      config);
+  //   // new Pose2d(0,0, new Rotation2d(0)),
+  //   //     List.of(new Translation2d(2,0)), 
+  //   //     new Pose2d(4,0, new Rotation2d(0)),
+  //   //      config);
 
 
          
-    RamseteCommand command = new RamseteCommand(
-      trajectory,
-      Robot.drivetrain:: getPose,
-      new RamseteController(2,.7),
-      Robot.drivetrain.getFeedforward(),
-      Robot.drivetrain.getKinematics(),
-      Robot.drivetrain:: getSpeeds,
-      Robot.drivetrain.getLeftPidController(),
-      Robot.drivetrain.getRightPidController(),
-      Robot.drivetrain::setOutput,
-      Robot.drivetrain
-     );
+  //   // RamseteCommand command = new RamseteCommand(
+  //   //   trajectory,
+  //   //   Robot.drivetrain:: getPose,
+  //   //   new RamseteController(2,.7),
+  //   //   Robot.drivetrain.getFeedforward(),
+  //   //   Robot.drivetrain.getKinematics(),
+  //   //   Robot.drivetrain:: getSpeeds,
+  //   //   Robot.drivetrain.getLeftPidController(),
+  //   //   Robot.drivetrain.getRightPidController(),
+  //   //   Robot.drivetrain::setOutput,
+  //   //   Robot.drivetrain
+  //   //  );
 
-     return command;
-  }
+  //   //  return command;
+  // }
 }
