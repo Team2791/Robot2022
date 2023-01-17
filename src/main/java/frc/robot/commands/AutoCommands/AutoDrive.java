@@ -5,13 +5,16 @@
 package frc.robot.commands.AutoCommands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 
 public class AutoDrive extends CommandBase {
 	private PIDController controller;
 	private double output;
+	private Timer timer;
 
 	/** Creates a new AutoDrive. */
 	public AutoDrive() {
@@ -25,11 +28,16 @@ public class AutoDrive extends CommandBase {
 	public void initialize() {
 		controller.setSetpoint(2);
 		controller.setTolerance(0.5);
+		timer.start();
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.
 	@Override
 	public void execute() {
+		if(timer.get() >= 5)
+		{
+			end(interrupted);
+		}
 	}
 
 	// Called once the command ends or is interrupted.
