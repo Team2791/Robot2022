@@ -36,7 +36,6 @@ public class AutoDrive extends CommandBase {
 	public void execute() {
 		if(timer.get() >= 5)
 		{
-			end(interrupted);
 		}
 	}
 
