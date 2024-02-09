@@ -3,7 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.IntakeIndexerEnd;
 //import frc.robot.commands.IntakeIndexerStart;
@@ -28,20 +29,20 @@ public class OI {
     public static Joystick driverStick;
     public static Joystick operatorStick;
     public static Joystick pitStick; 
-    Button driveButton;
-    private Button driverLB, driverRB, pitRB, pitLB;
-    private Button driverStart, driverBack;
-    private Button operatorStart;
-    private Button driverA, driverB, driverY;
-    private Button driverDPadDown, driverDPadRight, driverDPadLeft, driverDPadUp, pitDPadUp, pitDPadDown;
-    public Button operatorRB, operatorLT, operatorLB, operatorRT, pitRT, pitLT;
-    public Button operatorLS, operatorBack, pitLS;
-    private Button driverX;
-    private Button driverRS, driverLS;
-    private Button driverRX;
-    protected Button operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadUp, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
-    private Button operatorA, operatorB, operatorX, operatorY;
-    private Button pitA, pitB, pitX, pitY; 
+    Trigger driveButton;
+    private Trigger driverLB, driverRB, pitRB, pitLB;
+    private Trigger driverStart, driverBack;
+    private Trigger operatorStart;
+    private Trigger driverA, driverB, driverY;
+    private Trigger driverDPadDown, driverDPadRight, driverDPadLeft, driverDPadUp, pitDPadUp, pitDPadDown;
+    public Trigger operatorRB, operatorLT, operatorLB, operatorRT, pitRT, pitLT;
+    public Trigger operatorLS, operatorBack, pitLS;
+    private Trigger driverX;
+    private Trigger driverRS, driverLS;
+    private Trigger driverRX;
+    protected Trigger operatorLeftJoystickUsed, operatorRightJoystickUsed, operatorDPadUp, operatorDPadDown, operatorDPadLeft, operatorDPadRight;
+    private Trigger operatorA, operatorB, operatorX, operatorY;
+    private Trigger pitA, pitB, pitX, pitY; 
 
     public OI(){
         driverStick = new Joystick(0);
@@ -56,54 +57,54 @@ public class OI {
         //MAP JOYSTICK CONTROLS HERE:
 
         //Intake commands 
-        driverA.whenHeld(new ExtendRunIntake());
+        driverA.toggleOnTrue(new ExtendRunIntake());
 
         //Drive Commmands
-        driveButton.whileHeld(new DriveWithJoystick(driverStick, 0.1));
-        driveButton.whenReleased(new stopMotors());
+        driveButton.whileTrue(new DriveWithJoystick(driverStick, 0.1));
+        driveButton.onFalse(new stopMotors());
        
         //Intake up and down 
-        driverY.whenHeld(new ReverseIntake());
+        driverY.toggleOnTrue(new ReverseIntake());
 
-        // driverB.whenHeld(new TurnCounterClockwisePID(-22.34));
+        // driverB.toggleOnTrue(new TurnCounterClockwisePID(-22.34));
         
-        operatorDPadDown.whileHeld(new ReverseIndexer());
-        operatorDPadDown.whenReleased(new StopIndexer());
+        operatorDPadDown.whileTrue(new ReverseIndexer());
+        operatorDPadDown.onFalse(new StopIndexer());
 
-        operatorDPadUp.whileHeld(new RunIndexerBelts());
-        operatorDPadUp.whenReleased(new StopIndexer());
+        operatorDPadUp.whileTrue(new RunIndexerBelts());
+        operatorDPadUp.onFalse(new StopIndexer());
 
-        operatorRB.whenHeld(new RunIndexer());
+        operatorRB.toggleOnTrue(new RunIndexer());
 
-        operatorRT.whenHeld(new TwoBallManuel());
-        operatorLT.whenPressed(new PidTesting(-20.34));
+        operatorRT.toggleOnTrue(new TwoBallManuel());
+        operatorLT.onTrue(new PidTesting(-20.34));
 
         //Shooter
-        // operatorA.whenHeld(new UpperHubClose());
-        operatorB.whenHeld(new LowerHubClose());
-        // operatorY.whenHeld(new longShotOuterTarmac());
-        // operatorX.whenHeld(new GachLongShot());
-        //operatorLT.whenPressed(new StopFlywheel());
+        // operatorA.toggleOnTrue(new UpperHubClose());
+        operatorB.toggleOnTrue(new LowerHubClose());
+        // operatorY.toggleOnTrue(new longShotOuterTarmac());
+        // operatorX.toggleOnTrue(new GachLongShot());
+        //operatorLT.onTrue(new StopFlywheel());
         
 
         //Climb commands
-        operatorDPadRight.whenHeld(new RunClimbUpWithTimer());
-        operatorDPadLeft.whenHeld(new RunClimbDownWithTimer());
+        operatorDPadRight.toggleOnTrue(new RunClimbUpWithTimer());
+        operatorDPadLeft.toggleOnTrue(new RunClimbDownWithTimer());
         
         //stop climb 
-        operatorDPadRight.whenReleased(new StopClimb());
-        operatorDPadLeft.whenReleased(new StopClimb());   
+        operatorDPadRight.onFalse(new StopClimb());
+        operatorDPadLeft.onFalse(new StopClimb());   
 
-        driverDPadDown.whenHeld(new LeftClimbDown());
-        driverDPadUp.whenHeld(new LeftClimbUp());
+        driverDPadDown.toggleOnTrue(new LeftClimbDown());
+        driverDPadUp.toggleOnTrue(new LeftClimbUp());
 
-        driverDPadLeft.whenHeld(new RightClimbDown());
-        driverDPadRight.whenHeld(new RightClimbUp());
+        driverDPadLeft.toggleOnTrue(new RightClimbDown());
+        driverDPadRight.toggleOnTrue(new RightClimbUp());
 
         //Pit controls 
-        pitDPadUp.whenHeld(new PitMoveClimb());
-        pitDPadDown.whenHeld(new PitMoveClimbDown());
-        operatorLB.whenHeld(new SetBrakeMode());
+        pitDPadUp.toggleOnTrue(new PitMoveClimb());
+        pitDPadDown.toggleOnTrue(new PitMoveClimbDown());
+        operatorLB.toggleOnTrue(new SetBrakeMode());
     }
 
     private void initButtons(){
@@ -120,10 +121,10 @@ public class OI {
             driverLS = new JoystickButton(driverStick,9);
             // driverRS = new JoystickButton(driverStick,10);
             driverRX = new AnalogButton(driverStick, 4);
-            driverDPadDown = new DPadButton(driverStick, DPadButton.kDPadDown);
-            driverDPadRight = new DPadButton(driverStick, DPadButton.kDPadRight);
-            driverDPadUp = new DPadButton(driverStick, DPadButton.kDPadUp);
-            driverDPadLeft = new DPadButton(driverStick, DPadButton.kDPadLeft);
+            driverDPadDown = new POVButton(driver, 180);
+	    driverDPadUp = new POVButton(driver, 0);
+	    driverDPadRight = new POVButton(driver, 90);
+	    driverDPadLeft = new POVButton(driver, 270);
             driveButton = new MultiButton(new Button[] {
                 new AnalogButton(driverStick, 3,2,0,0.2),
                 driverRB, driverLB
