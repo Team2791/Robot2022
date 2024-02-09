@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj2.command.button.AnalogTrigger;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import frc.robot.commands.IntakeIndexerEnd;
@@ -35,7 +36,7 @@ public class OI {
     private Trigger operatorStart;
     private Trigger driverA, driverB, driverY;
     private Trigger driverDPadDown, driverDPadRight, driverDPadLeft, driverDPadUp, pitDPadUp, pitDPadDown;
-    public Trigger operatorRB, operatorLT, operatorLB, operatorRT, pitRT, pitLT;
+    public AnalogTrigger operatorRB, operatorLT, operatorLB, operatorRT, pitRT, pitLT;
     public Trigger operatorLS, operatorBack, pitLS;
     private Trigger driverX;
     private Trigger driverRS, driverLS;
@@ -163,11 +164,11 @@ public class OI {
             //  pitStart = new JoystickButton(pitStick, 8);
              pitRB = new JoystickButton(pitStick, 6);
              pitLB = new JoystickButton(pitStick, 5);
-             pitLT = new AnalogButton(pitStick, 2);
-             pitRT = new AnalogButton(pitStick, 3);
-             pitLS = new AnalogButton(pitStick, 1);
-             pitDPadDown = new DPadButton(pitStick, DPadButton.kDPadDown);
-             pitDPadUp = new DPadButton(pitStick, DPadButton.kDPadUp);
+             pitLT = new AnalogTrigger(pitStick, 2);
+             pitRT = new AnalogTrigger(pitStick, 3);
+             pitLS = new AnalogTrigger(pitStick, 1);
+             // pitDPadDown = new DPadButton(pitStick, DPadButton.kDPadDown);
+             // pitDPadUp = new DPadButton(pitStick, DPadButton.kDPadUp);
         }
 
         catch (Exception error){
